@@ -1,0 +1,803 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DataentryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cities">
+          <Key>
+            <PropertyRef Name="cityId" />
+          </Key>
+          <Property Name="cityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cityCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="countryId" Type="int" />
+        </EntityType>
+        <EntityType Name="countriesCodes">
+          <Key>
+            <PropertyRef Name="countryId" />
+          </Key>
+          <Property Name="countryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="currency" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="isDefault" Type="tinyint" Nullable="false" />
+          <Property Name="timeZoneName" Type="nvarchar" MaxLength="100" />
+          <Property Name="timeZoneOffset" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="customers">
+          <Key>
+            <PropertyRef Name="custId" />
+          </Key>
+          <Property Name="custId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="custname" Type="nvarchar" MaxLength="500" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="500" />
+          <Property Name="mobile" Type="nvarchar" MaxLength="500" />
+          <Property Name="department" Type="nvarchar" MaxLength="500" />
+          <Property Name="barcode" Type="nvarchar" MaxLength="500" />
+          <Property Name="printDate" Type="datetime2" Precision="7" />
+          <Property Name="image" Type="nvarchar(max)" />
+          <Property Name="notes" Type="nvarchar(max)" />
+          <Property Name="createUserId" Type="bigint" />
+          <Property Name="updateUserId" Type="bigint" />
+          <Property Name="createDate" Type="datetime2" Precision="7" />
+          <Property Name="updateDate" Type="datetime2" Precision="7" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="nationalityId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="error">
+          <Key>
+            <PropertyRef Name="errorId" />
+          </Key>
+          <Property Name="errorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="num" Type="nvarchar" MaxLength="200" />
+          <Property Name="msg" Type="ntext" />
+          <Property Name="stackTrace" Type="ntext" />
+          <Property Name="targetSite" Type="ntext" />
+          <Property Name="createDate" Type="datetime2" Precision="7" />
+          <Property Name="createUserId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="nationalities">
+          <Key>
+            <PropertyRef Name="nationalityId" />
+          </Key>
+          <Property Name="nationalityId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="500" />
+          <Property Name="notes" Type="nvarchar(max)" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="createUserId" Type="bigint" />
+          <Property Name="updateUserId" Type="bigint" />
+          <Property Name="createDate" Type="datetime2" Precision="7" />
+          <Property Name="updateDate" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="setting">
+          <Key>
+            <PropertyRef Name="settingId" />
+          </Key>
+          <Property Name="settingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="200" />
+          <Property Name="notes" Type="ntext" />
+        </EntityType>
+        <EntityType Name="setValues">
+          <Key>
+            <PropertyRef Name="valId" />
+          </Key>
+          <Property Name="valId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="value" Type="nvarchar(max)" />
+          <Property Name="isDefault" Type="int" Nullable="false" />
+          <Property Name="isSystem" Type="int" Nullable="false" />
+          <Property Name="notes" Type="nvarchar(max)" />
+          <Property Name="settingId" Type="int" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="AccountName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="500" />
+          <Property Name="company" Type="nvarchar" MaxLength="500" />
+          <Property Name="email" Type="nvarchar" MaxLength="500" />
+          <Property Name="phone" Type="nvarchar" MaxLength="500" />
+          <Property Name="mobile" Type="nvarchar" MaxLength="500" />
+          <Property Name="fax" Type="nvarchar" MaxLength="500" />
+          <Property Name="address" Type="nvarchar" MaxLength="500" />
+          <Property Name="agentLevel" Type="nvarchar" MaxLength="500" />
+          <Property Name="createDate" Type="datetime2" Precision="7" />
+          <Property Name="updateDate" Type="datetime2" Precision="7" />
+          <Property Name="password" Type="nvarchar" MaxLength="500" />
+          <Property Name="type" Type="nvarchar" MaxLength="10" />
+          <Property Name="image" Type="ntext" />
+          <Property Name="notes" Type="nvarchar" MaxLength="500" />
+          <Property Name="balance" Type="decimal" Precision="20" Scale="3" Nullable="false" />
+          <Property Name="createUserId" Type="bigint" />
+          <Property Name="updateUserId" Type="bigint" />
+          <Property Name="isActive" Type="int" />
+          <Property Name="code" Type="nvarchar" MaxLength="500" />
+          <Property Name="isAdmin" Type="bit" />
+          <Property Name="groupId" Type="int" />
+          <Property Name="balanceType" Type="tinyint" />
+          <Property Name="job" Type="nvarchar" MaxLength="100" />
+          <Property Name="isOnline" Type="tinyint" />
+          <Property Name="countryId" Type="int" />
+        </EntityType>
+        <EntityType Name="userSetValues">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="bigint" />
+          <Property Name="valId" Type="int" />
+          <Property Name="note" Type="nvarchar(max)" />
+          <Property Name="createDate" Type="datetime2" Precision="7" />
+          <Property Name="updateDate" Type="datetime2" Precision="7" />
+          <Property Name="createUserId" Type="bigint" />
+          <Property Name="updateUserId" Type="bigint" />
+        </EntityType>
+        <Association Name="FK_cities_countriesCodes">
+          <End Role="countriesCodes" Type="Self.countriesCodes" Multiplicity="0..1" />
+          <End Role="cities" Type="Self.cities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countriesCodes">
+              <PropertyRef Name="countryId" />
+            </Principal>
+            <Dependent Role="cities">
+              <PropertyRef Name="countryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_customers_nationalities">
+          <End Role="nationalities" Type="Self.nationalities" Multiplicity="0..1" />
+          <End Role="customers" Type="Self.customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nationalities">
+              <PropertyRef Name="nationalityId" />
+            </Principal>
+            <Dependent Role="customers">
+              <PropertyRef Name="nationalityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_customers_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="customers" Type="Self.customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="customers">
+              <PropertyRef Name="createUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_customers_users1">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="customers" Type="Self.customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="customers">
+              <PropertyRef Name="updateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_error_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="error" Type="Self.error" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="error">
+              <PropertyRef Name="createUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nationalities_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="nationalities" Type="Self.nationalities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="nationalities">
+              <PropertyRef Name="createUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nationalities_users1">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="nationalities" Type="Self.nationalities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="nationalities">
+              <PropertyRef Name="updateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_setValues_setting">
+          <End Role="setting" Type="Self.setting" Multiplicity="0..1" />
+          <End Role="setValues" Type="Self.setValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="setting">
+              <PropertyRef Name="settingId" />
+            </Principal>
+            <Dependent Role="setValues">
+              <PropertyRef Name="settingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_countriesCodes">
+          <End Role="countriesCodes" Type="Self.countriesCodes" Multiplicity="0..1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countriesCodes">
+              <PropertyRef Name="countryId" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="countryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_userSetValues_setValues">
+          <End Role="setValues" Type="Self.setValues" Multiplicity="0..1" />
+          <End Role="userSetValues" Type="Self.userSetValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="setValues">
+              <PropertyRef Name="valId" />
+            </Principal>
+            <Dependent Role="userSetValues">
+              <PropertyRef Name="valId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DataentryModelStoreContainer">
+          <EntitySet Name="cities" EntityType="Self.cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="countriesCodes" EntityType="Self.countriesCodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customers" EntityType="Self.customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="error" EntityType="Self.error" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nationalities" EntityType="Self.nationalities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="setting" EntityType="Self.setting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="setValues" EntityType="Self.setValues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="userSetValues" EntityType="Self.userSetValues" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_cities_countriesCodes" Association="Self.FK_cities_countriesCodes">
+            <End Role="countriesCodes" EntitySet="countriesCodes" />
+            <End Role="cities" EntitySet="cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_customers_nationalities" Association="Self.FK_customers_nationalities">
+            <End Role="nationalities" EntitySet="nationalities" />
+            <End Role="customers" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_customers_users" Association="Self.FK_customers_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="customers" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_customers_users1" Association="Self.FK_customers_users1">
+            <End Role="users" EntitySet="users" />
+            <End Role="customers" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_error_users" Association="Self.FK_error_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="error" EntitySet="error" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nationalities_users" Association="Self.FK_nationalities_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="nationalities" EntitySet="nationalities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nationalities_users1" Association="Self.FK_nationalities_users1">
+            <End Role="users" EntitySet="users" />
+            <End Role="nationalities" EntitySet="nationalities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_setValues_setting" Association="Self.FK_setValues_setting">
+            <End Role="setting" EntitySet="setting" />
+            <End Role="setValues" EntitySet="setValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_countriesCodes" Association="Self.FK_users_countriesCodes">
+            <End Role="countriesCodes" EntitySet="countriesCodes" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_userSetValues_setValues" Association="Self.FK_userSetValues_setValues">
+            <End Role="setValues" EntitySet="setValues" />
+            <End Role="userSetValues" EntitySet="userSetValues" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DataentryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cities">
+          <Key>
+            <PropertyRef Name="cityId" />
+          </Key>
+          <Property Name="cityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cityCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="countryId" Type="Int32" />
+          <NavigationProperty Name="countriesCodes" Relationship="Self.FK_cities_countriesCodes" FromRole="cities" ToRole="countriesCodes" />
+        </EntityType>
+        <EntityType Name="countriesCodes">
+          <Key>
+            <PropertyRef Name="countryId" />
+          </Key>
+          <Property Name="countryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="currency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="isDefault" Type="Byte" Nullable="false" />
+          <Property Name="timeZoneName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="timeZoneOffset" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="cities" Relationship="Self.FK_cities_countriesCodes" FromRole="countriesCodes" ToRole="cities" />
+          <NavigationProperty Name="users" Relationship="Self.FK_users_countriesCodes" FromRole="countriesCodes" ToRole="users" />
+        </EntityType>
+        <EntityType Name="customers">
+          <Key>
+            <PropertyRef Name="custId" />
+          </Key>
+          <Property Name="custId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="custname" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="mobile" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="department" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="barcode" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="printDate" Type="DateTime" Precision="7" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="createUserId" Type="Int64" />
+          <Property Name="updateUserId" Type="Int64" />
+          <Property Name="createDate" Type="DateTime" Precision="7" />
+          <Property Name="updateDate" Type="DateTime" Precision="7" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="nationalityId" Type="Int64" />
+          <NavigationProperty Name="nationalities" Relationship="Self.FK_customers_nationalities" FromRole="customers" ToRole="nationalities" />
+          <NavigationProperty Name="users" Relationship="Self.FK_customers_users" FromRole="customers" ToRole="users" />
+          <NavigationProperty Name="users1" Relationship="Self.FK_customers_users1" FromRole="customers" ToRole="users" />
+        </EntityType>
+        <EntityType Name="error">
+          <Key>
+            <PropertyRef Name="errorId" />
+          </Key>
+          <Property Name="errorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="num" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="msg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="stackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="targetSite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="createDate" Type="DateTime" Precision="7" />
+          <Property Name="createUserId" Type="Int64" />
+          <NavigationProperty Name="users" Relationship="Self.FK_error_users" FromRole="error" ToRole="users" />
+        </EntityType>
+        <EntityType Name="nationalities">
+          <Key>
+            <PropertyRef Name="nationalityId" />
+          </Key>
+          <Property Name="nationalityId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="createUserId" Type="Int64" />
+          <Property Name="updateUserId" Type="Int64" />
+          <Property Name="createDate" Type="DateTime" Precision="7" />
+          <Property Name="updateDate" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="customers" Relationship="Self.FK_customers_nationalities" FromRole="nationalities" ToRole="customers" />
+          <NavigationProperty Name="users" Relationship="Self.FK_nationalities_users" FromRole="nationalities" ToRole="users" />
+          <NavigationProperty Name="users1" Relationship="Self.FK_nationalities_users1" FromRole="nationalities" ToRole="users" />
+        </EntityType>
+        <EntityType Name="setting">
+          <Key>
+            <PropertyRef Name="settingId" />
+          </Key>
+          <Property Name="settingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="setValues" Relationship="Self.FK_setValues_setting" FromRole="setting" ToRole="setValues" />
+        </EntityType>
+        <EntityType Name="setValues">
+          <Key>
+            <PropertyRef Name="valId" />
+          </Key>
+          <Property Name="valId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isDefault" Type="Int32" Nullable="false" />
+          <Property Name="isSystem" Type="Int32" Nullable="false" />
+          <Property Name="notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="settingId" Type="Int32" />
+          <NavigationProperty Name="setting" Relationship="Self.FK_setValues_setting" FromRole="setValues" ToRole="setting" />
+          <NavigationProperty Name="userSetValues" Relationship="Self.FK_userSetValues_setValues" FromRole="setValues" ToRole="userSetValues" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="company" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="mobile" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="fax" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="agentLevel" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="createDate" Type="DateTime" Precision="7" />
+          <Property Name="updateDate" Type="DateTime" Precision="7" />
+          <Property Name="password" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="balance" Type="Decimal" Precision="20" Scale="3" Nullable="false" />
+          <Property Name="createUserId" Type="Int64" />
+          <Property Name="updateUserId" Type="Int64" />
+          <Property Name="isActive" Type="Int32" />
+          <Property Name="code" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="isAdmin" Type="Boolean" />
+          <Property Name="groupId" Type="Int32" />
+          <Property Name="balanceType" Type="Byte" />
+          <Property Name="job" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="isOnline" Type="Byte" />
+          <Property Name="countryId" Type="Int32" />
+          <NavigationProperty Name="countriesCodes" Relationship="Self.FK_users_countriesCodes" FromRole="users" ToRole="countriesCodes" />
+          <NavigationProperty Name="customers" Relationship="Self.FK_customers_users" FromRole="users" ToRole="customers" />
+          <NavigationProperty Name="customers1" Relationship="Self.FK_customers_users1" FromRole="users" ToRole="customers" />
+          <NavigationProperty Name="error" Relationship="Self.FK_error_users" FromRole="users" ToRole="error" />
+          <NavigationProperty Name="nationalities" Relationship="Self.FK_nationalities_users" FromRole="users" ToRole="nationalities" />
+          <NavigationProperty Name="nationalities1" Relationship="Self.FK_nationalities_users1" FromRole="users" ToRole="nationalities" />
+        </EntityType>
+        <EntityType Name="userSetValues">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int64" />
+          <Property Name="valId" Type="Int32" />
+          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="createDate" Type="DateTime" Precision="7" />
+          <Property Name="updateDate" Type="DateTime" Precision="7" />
+          <Property Name="createUserId" Type="Int64" />
+          <Property Name="updateUserId" Type="Int64" />
+          <NavigationProperty Name="setValues" Relationship="Self.FK_userSetValues_setValues" FromRole="userSetValues" ToRole="setValues" />
+        </EntityType>
+        <Association Name="FK_cities_countriesCodes">
+          <End Role="countriesCodes" Type="Self.countriesCodes" Multiplicity="0..1" />
+          <End Role="cities" Type="Self.cities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countriesCodes">
+              <PropertyRef Name="countryId" />
+            </Principal>
+            <Dependent Role="cities">
+              <PropertyRef Name="countryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_countriesCodes">
+          <End Role="countriesCodes" Type="Self.countriesCodes" Multiplicity="0..1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countriesCodes">
+              <PropertyRef Name="countryId" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="countryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_customers_nationalities">
+          <End Role="nationalities" Type="Self.nationalities" Multiplicity="0..1" />
+          <End Role="customers" Type="Self.customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nationalities">
+              <PropertyRef Name="nationalityId" />
+            </Principal>
+            <Dependent Role="customers">
+              <PropertyRef Name="nationalityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_customers_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="customers" Type="Self.customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="customers">
+              <PropertyRef Name="createUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_customers_users1">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="customers" Type="Self.customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="customers">
+              <PropertyRef Name="updateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_error_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="error" Type="Self.error" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="error">
+              <PropertyRef Name="createUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nationalities_users">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="nationalities" Type="Self.nationalities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="nationalities">
+              <PropertyRef Name="createUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_nationalities_users1">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="nationalities" Type="Self.nationalities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="nationalities">
+              <PropertyRef Name="updateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_setValues_setting">
+          <End Role="setting" Type="Self.setting" Multiplicity="0..1" />
+          <End Role="setValues" Type="Self.setValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="setting">
+              <PropertyRef Name="settingId" />
+            </Principal>
+            <Dependent Role="setValues">
+              <PropertyRef Name="settingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_userSetValues_setValues">
+          <End Role="setValues" Type="Self.setValues" Multiplicity="0..1" />
+          <End Role="userSetValues" Type="Self.userSetValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="setValues">
+              <PropertyRef Name="valId" />
+            </Principal>
+            <Dependent Role="userSetValues">
+              <PropertyRef Name="valId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dedbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cities" EntityType="Self.cities" />
+          <EntitySet Name="countriesCodes" EntityType="Self.countriesCodes" />
+          <EntitySet Name="customers" EntityType="Self.customers" />
+          <EntitySet Name="error" EntityType="Self.error" />
+          <EntitySet Name="nationalities" EntityType="Self.nationalities" />
+          <EntitySet Name="setting" EntityType="Self.setting" />
+          <EntitySet Name="setValues" EntityType="Self.setValues" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <EntitySet Name="userSetValues" EntityType="Self.userSetValues" />
+          <AssociationSet Name="FK_cities_countriesCodes" Association="Self.FK_cities_countriesCodes">
+            <End Role="countriesCodes" EntitySet="countriesCodes" />
+            <End Role="cities" EntitySet="cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_countriesCodes" Association="Self.FK_users_countriesCodes">
+            <End Role="countriesCodes" EntitySet="countriesCodes" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_customers_nationalities" Association="Self.FK_customers_nationalities">
+            <End Role="nationalities" EntitySet="nationalities" />
+            <End Role="customers" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_customers_users" Association="Self.FK_customers_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="customers" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_customers_users1" Association="Self.FK_customers_users1">
+            <End Role="users" EntitySet="users" />
+            <End Role="customers" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_error_users" Association="Self.FK_error_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="error" EntitySet="error" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nationalities_users" Association="Self.FK_nationalities_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="nationalities" EntitySet="nationalities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_nationalities_users1" Association="Self.FK_nationalities_users1">
+            <End Role="users" EntitySet="users" />
+            <End Role="nationalities" EntitySet="nationalities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_setValues_setting" Association="Self.FK_setValues_setting">
+            <End Role="setting" EntitySet="setting" />
+            <End Role="setValues" EntitySet="setValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_userSetValues_setValues" Association="Self.FK_userSetValues_setValues">
+            <End Role="setValues" EntitySet="setValues" />
+            <End Role="userSetValues" EntitySet="userSetValues" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DataentryModelStoreContainer" CdmEntityContainer="dedbEntities">
+          <EntitySetMapping Name="cities">
+            <EntityTypeMapping TypeName="DataentryModel.cities">
+              <MappingFragment StoreEntitySet="cities">
+                <ScalarProperty Name="cityId" ColumnName="cityId" />
+                <ScalarProperty Name="cityCode" ColumnName="cityCode" />
+                <ScalarProperty Name="countryId" ColumnName="countryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countriesCodes">
+            <EntityTypeMapping TypeName="DataentryModel.countriesCodes">
+              <MappingFragment StoreEntitySet="countriesCodes">
+                <ScalarProperty Name="countryId" ColumnName="countryId" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="currency" ColumnName="currency" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="isDefault" ColumnName="isDefault" />
+                <ScalarProperty Name="timeZoneName" ColumnName="timeZoneName" />
+                <ScalarProperty Name="timeZoneOffset" ColumnName="timeZoneOffset" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="DataentryModel.customers">
+              <MappingFragment StoreEntitySet="customers">
+                <ScalarProperty Name="custId" ColumnName="custId" />
+                <ScalarProperty Name="custname" ColumnName="custname" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="department" ColumnName="department" />
+                <ScalarProperty Name="barcode" ColumnName="barcode" />
+                <ScalarProperty Name="printDate" ColumnName="printDate" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="createUserId" ColumnName="createUserId" />
+                <ScalarProperty Name="updateUserId" ColumnName="updateUserId" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="nationalityId" ColumnName="nationalityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="error">
+            <EntityTypeMapping TypeName="DataentryModel.error">
+              <MappingFragment StoreEntitySet="error">
+                <ScalarProperty Name="errorId" ColumnName="errorId" />
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="msg" ColumnName="msg" />
+                <ScalarProperty Name="stackTrace" ColumnName="stackTrace" />
+                <ScalarProperty Name="targetSite" ColumnName="targetSite" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="createUserId" ColumnName="createUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nationalities">
+            <EntityTypeMapping TypeName="DataentryModel.nationalities">
+              <MappingFragment StoreEntitySet="nationalities">
+                <ScalarProperty Name="nationalityId" ColumnName="nationalityId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="createUserId" ColumnName="createUserId" />
+                <ScalarProperty Name="updateUserId" ColumnName="updateUserId" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="setting">
+            <EntityTypeMapping TypeName="DataentryModel.setting">
+              <MappingFragment StoreEntitySet="setting">
+                <ScalarProperty Name="settingId" ColumnName="settingId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="setValues">
+            <EntityTypeMapping TypeName="DataentryModel.setValues">
+              <MappingFragment StoreEntitySet="setValues">
+                <ScalarProperty Name="valId" ColumnName="valId" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="isDefault" ColumnName="isDefault" />
+                <ScalarProperty Name="isSystem" ColumnName="isSystem" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="settingId" ColumnName="settingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="DataentryModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="agentLevel" ColumnName="agentLevel" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="balance" ColumnName="balance" />
+                <ScalarProperty Name="createUserId" ColumnName="createUserId" />
+                <ScalarProperty Name="updateUserId" ColumnName="updateUserId" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+                <ScalarProperty Name="groupId" ColumnName="groupId" />
+                <ScalarProperty Name="balanceType" ColumnName="balanceType" />
+                <ScalarProperty Name="job" ColumnName="job" />
+                <ScalarProperty Name="isOnline" ColumnName="isOnline" />
+                <ScalarProperty Name="countryId" ColumnName="countryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userSetValues">
+            <EntityTypeMapping TypeName="DataentryModel.userSetValues">
+              <MappingFragment StoreEntitySet="userSetValues">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="valId" ColumnName="valId" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="createDate" ColumnName="createDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+                <ScalarProperty Name="createUserId" ColumnName="createUserId" />
+                <ScalarProperty Name="updateUserId" ColumnName="updateUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
