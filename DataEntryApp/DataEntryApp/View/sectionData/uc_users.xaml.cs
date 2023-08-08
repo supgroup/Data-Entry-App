@@ -3,7 +3,7 @@ using DataEntryApp.Classes;
 using DataEntryApp.View.windows;
 using Microsoft.Win32;
 using netoaster;
-using POS.View.windows;
+using DataEntryApp.View.windows;
 using System;
 using System.Collections.Generic;
 using System.IO;

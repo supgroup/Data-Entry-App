@@ -17,18 +17,24 @@ using Newtonsoft.Json.Converters;
 
 namespace DataEntryApp.ApiClasses
 {
-    public class Passengers
+    public class Customers
     {
-        public int passengerId { get; set; }
-        public string name { get; set; }
+        public long custId { get; set; }
+        public string custname { get; set; }
         public string lastName { get; set; }
-        public string father { get; set; }
-        public string mother { get; set; }
+        public string mobile { get; set; }
+        public string department { get; set; }
+        public string barcode { get; set; }
+        public Nullable<System.DateTime> printDate { get; set; }
+        public string image { get; set; }
         public string notes { get; set; }
+        public Nullable<long> createUserId { get; set; }
+        public Nullable<long> updateUserId { get; set; }
         public Nullable<System.DateTime> createDate { get; set; }
         public Nullable<System.DateTime> updateDate { get; set; }
-        public Nullable<int> createUserId { get; set; }
-        public Nullable<int> updateUserId { get; set; }
+        public Nullable<bool> isActive { get; set; }
+        public Nullable<long> nationalityId { get; set; }
+        public string Nationality { get; set; }
 
         public bool canDelete { get; set; }
 
@@ -39,28 +45,36 @@ namespace DataEntryApp.ApiClasses
         /// </summary>
         /// <returns></returns>
         /// 
-        public async Task<List<Passengers>> GetAll()
+        public async Task<List<Customers>> GetAll()
         {
 
-            List<Passengers> List = new List<Passengers>();
+            List<Customers> List = new List<Customers>();
             bool canDelete = false;
             try
             {
                 using (dedbEntities entity = new dedbEntities())
                 {
-                    List = (from S in entity.passengers
-                            select new Passengers()
+                    List = (from S in entity.customers
+                            join N in entity.nationalities on S.nationalityId equals N.nationalityId into JN
+                            from NAT in JN.DefaultIfEmpty()
+                            select new Customers()
                             {
-                                passengerId = S.passengerId,
-                                name = S.name,
+                                custId = S.custId,
+                                custname = S.custname,
                                 lastName = S.lastName,
-                                father = S.father,
-                                mother = S.mother,
+                                mobile = S.mobile,
+                                department = S.department,
+                                barcode = S.barcode,
+                                printDate = S.printDate,
+                                image = S.image,
                                 notes = S.notes,
-                                createDate = S.createDate,
-                                updateDate = S.updateDate,
                                 createUserId = S.createUserId,
                                 updateUserId = S.updateUserId,
+                                createDate = S.createDate,
+                                updateDate = S.updateDate,
+                                isActive = S.isActive,
+                                nationalityId = S.nationalityId,
+                                Nationality = NAT.name,
 
                                 canDelete = true,
 
@@ -91,10 +105,10 @@ namespace DataEntryApp.ApiClasses
             }
         }
 
-        public async Task<decimal> Save(Passengers newitem)
+        public async Task<decimal> Save(Customers newitem)
         {
-            passengers newObject = new passengers();
-            newObject = JsonConvert.DeserializeObject<passengers>(JsonConvert.SerializeObject(newitem));
+            customers newObject = new customers();
+            newObject = JsonConvert.DeserializeObject<customers>(JsonConvert.SerializeObject(newitem));
 
             decimal message = 0;
             if (newObject != null)
@@ -116,8 +130,8 @@ namespace DataEntryApp.ApiClasses
                 {
                     using (dedbEntities entity = new dedbEntities())
                     {
-                        var locationEntity = entity.Set<passengers>();
-                        if (newObject.passengerId == 0)
+                        var locationEntity = entity.Set<customers>();
+                        if (newObject.custId == 0)
                         {
                             newObject.createDate = DateTime.Now;
                             newObject.updateDate = newObject.createDate;
@@ -126,28 +140,31 @@ namespace DataEntryApp.ApiClasses
 
                             locationEntity.Add(newObject);
                             entity.SaveChanges();
-                            message = newObject.passengerId;
+                            message = newObject.custId;
                         }
                         else
                         {
-                            var tmpObject = entity.passengers.Where(p => p.passengerId == newObject.passengerId).FirstOrDefault();
-
-                            tmpObject.updateDate = DateTime.Now;
-                            tmpObject.passengerId = newObject.passengerId;
-                            tmpObject.name = newObject.name;
+                            var tmpObject = entity.customers.Where(p => p.custId == newObject.custId).FirstOrDefault();
+                            newObject.updateDate = DateTime.Now;
+                          //  tmpObject.custId = newObject.custId;
+                            tmpObject.custname = newObject.custname;
                             tmpObject.lastName = newObject.lastName;
-                            tmpObject.father = newObject.father;
-                            tmpObject.mother = newObject.mother;
+                            tmpObject.mobile = newObject.mobile;
+                            tmpObject.department = newObject.department;
+                            tmpObject.barcode = newObject.barcode;
+                            tmpObject.printDate = newObject.printDate;
+                            tmpObject.image = newObject.image;
                             tmpObject.notes = newObject.notes;
-                           // tmpObject.createDate = newObject.createDate;
-                          //  tmpObject.updateDate = newObject.updateDate;
-                           // tmpObject.createUserId = newObject.createUserId;
+                          //  tmpObject.createUserId = newObject.createUserId;
                             tmpObject.updateUserId = newObject.updateUserId;
-
+                          //  tmpObject.createDate = newObject.createDate;
+                         //   tmpObject.updateDate = newObject.updateDate;
+                            tmpObject.isActive = newObject.isActive;
+                            tmpObject.nationalityId = newObject.nationalityId;
 
                             entity.SaveChanges();
 
-                            message = tmpObject.passengerId;
+                            message = tmpObject.custId;
                         }
                     }
                     return message;
@@ -162,32 +179,38 @@ namespace DataEntryApp.ApiClasses
                 return 0;
             }
         }
-        public async Task<Passengers> GetByID(int itemId)
+        public async Task<Customers> GetByID(int itemId)
         {
 
 
-            Passengers item = new Passengers();
+            Customers item = new Customers();
            
 
-            Passengers row = new Passengers();
+            Customers row = new Customers();
             try
             {
                 using (dedbEntities entity = new dedbEntities())
                 {
-                    var list = entity.passengers.ToList();
-                    row = list.Where(u => u.passengerId == itemId)
-                     .Select(S => new Passengers()
+                    var list = entity.customers.ToList();
+                    row = list.Where(u => u.custId == itemId)
+                     .Select(S => new Customers()
                      {
-                         passengerId = S.passengerId,
-                         name = S.name,
+                         custId = S.custId,
+                         custname = S.custname,
                          lastName = S.lastName,
-                         father = S.father,
-                         mother = S.mother,
+                         mobile = S.mobile,
+                         department = S.department,
+                         barcode = S.barcode,
+                         printDate = S.printDate,
+                         image = S.image,
                          notes = S.notes,
-                         createDate = S.createDate,
-                         updateDate = S.updateDate,
                          createUserId = S.createUserId,
                          updateUserId = S.updateUserId,
+                         createDate = S.createDate,
+                         updateDate = S.updateDate,
+                         isActive = S.isActive,
+                         nationalityId = S.nationalityId,
+
 
                      }).FirstOrDefault();
                     return row;
@@ -196,12 +219,12 @@ namespace DataEntryApp.ApiClasses
             }
             catch (Exception ex)
             {
-                row = new Passengers();
+                row = new Customers();
                 //userrow.name = ex.ToString();
                 return row;
             }
         }
-        public async Task<decimal> Delete(int id, int signuserId, bool final)
+        public async Task<decimal> Delete(long id, long signuserId, bool final)
         {
 
             decimal message = 0;
@@ -211,9 +234,9 @@ namespace DataEntryApp.ApiClasses
                 {
                     using (dedbEntities entity = new dedbEntities())
                     {
-                        passengers objectDelete = entity.passengers.Find(id);
+                        customers objectDelete = entity.customers.Find(id);
 
-                        entity.passengers.Remove(objectDelete);
+                        entity.customers.Remove(objectDelete);
                         message = entity.SaveChanges();
                         return message;
 
@@ -232,7 +255,7 @@ namespace DataEntryApp.ApiClasses
             //    {
             //        using (dedbEntities entity = new dedbEntities())
             //        {
-            //            passengers objectDelete = entity.passengers.Find(userId);
+            //            customers objectDelete = entity.customers.Find(userId);
 
             //            objectDelete.isActive = 0;
             //            objectDelete.updateUserId = signuserId;
@@ -270,7 +293,7 @@ namespace DataEntryApp.ApiClasses
         //        int lastNum = 0;
         //        using (dedbEntities entity = new dedbEntities())
         //        {
-        //            numberList = entity.passengers.Where(b => b.nu.Contains(type + "-")).Select(b => b.serviceNum).ToList();
+        //            numberList = entity.customers.Where(b => b.nu.Contains(type + "-")).Select(b => b.serviceNum).ToList();
 
         //            for (int i = 0; i < numberList.Count; i++)
         //            {

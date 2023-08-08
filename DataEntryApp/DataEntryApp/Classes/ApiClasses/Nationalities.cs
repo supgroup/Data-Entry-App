@@ -17,18 +17,17 @@ using Newtonsoft.Json.Converters;
 
 namespace DataEntryApp.ApiClasses
 {
-    public class Flights
+    public class Nationalities
     {
-        public int flightId { get; set; }
-        public string airline { get; set; }
-        public string flight { get; set; }
-        public string flightFrom { get; set; }
-        public string flightTo { get; set; }
+        public long nationalityId { get; set; }
+        public string name { get; set; }
         public string notes { get; set; }
+        public Nullable<bool> isActive { get; set; }
+        public Nullable<long> createUserId { get; set; }
+        public Nullable<long> updateUserId { get; set; }
         public Nullable<System.DateTime> createDate { get; set; }
         public Nullable<System.DateTime> updateDate { get; set; }
-        public Nullable<int> createUserId { get; set; }
-        public Nullable<int> updateUserId { get; set; }
+
         public bool canDelete { get; set; }
 
 
@@ -38,28 +37,26 @@ namespace DataEntryApp.ApiClasses
         /// </summary>
         /// <returns></returns>
         /// 
-        public async Task<List<Flights>> GetAll()
+        public async Task<List<Nationalities>> GetAll()
         {
 
-            List<Flights> List = new List<Flights>();
+            List<Nationalities> List = new List<Nationalities>();
             bool canDelete = false;
             try
             {
                 using (dedbEntities entity = new dedbEntities())
                 {
-                    List = (from S in entity.flights
-                            select new Flights()
+                    List = (from S in entity.nationalities
+                            select new Nationalities()
                             {
-                                flightId = S.flightId,
-                                airline = S.airline,
-                                flight = S.flight,
-                                flightFrom = S.flightFrom,
-                                flightTo = S.flightTo,
+                                nationalityId = S.nationalityId,
+                                name = S.name,
                                 notes = S.notes,
-                                createDate = S.createDate,
-                                updateDate = S.updateDate,
+                                isActive = S.isActive,
                                 createUserId = S.createUserId,
                                 updateUserId = S.updateUserId,
+                                createDate = S.createDate,
+                                updateDate = S.updateDate,
 
 
                                 canDelete = true,
@@ -91,10 +88,10 @@ namespace DataEntryApp.ApiClasses
             }
         }
 
-        public async Task<decimal> Save(Flights newitem)
+        public async Task<decimal> Save(Nationalities newitem)
         {
-            flights newObject = new flights();
-            newObject = JsonConvert.DeserializeObject<flights>(JsonConvert.SerializeObject(newitem));
+            nationalities newObject = new nationalities();
+            newObject = JsonConvert.DeserializeObject<nationalities>(JsonConvert.SerializeObject(newitem));
 
             decimal message = 0;
             if (newObject != null)
@@ -116,8 +113,8 @@ namespace DataEntryApp.ApiClasses
                 {
                     using (dedbEntities entity = new dedbEntities())
                     {
-                        var locationEntity = entity.Set<flights>();
-                        if (newObject.flightId == 0)
+                        var locationEntity = entity.Set<nationalities>();
+                        if (newObject.nationalityId == 0)
                         {
                             newObject.createDate = DateTime.Now;
                             newObject.updateDate = newObject.createDate;
@@ -126,29 +123,26 @@ namespace DataEntryApp.ApiClasses
 
                             locationEntity.Add(newObject);
                             entity.SaveChanges();
-                            message = newObject.flightId;
+                            message = newObject.nationalityId;
                         }
                         else
                         {
-                            var tmpObject = entity.flights.Where(p => p.flightId == newObject.flightId).FirstOrDefault();
-
-                            tmpObject.updateDate = DateTime.Now;
-
-                        //    tmpObject.flightId = newObject.flightId;
-                            tmpObject.airline = newObject.airline;
-                            tmpObject.flight = newObject.flight;
-                            tmpObject.flightFrom = newObject.flightFrom;
-                            tmpObject.flightTo = newObject.flightTo;
+                            var tmpObject = entity.nationalities.Where(p => p.nationalityId == newObject.nationalityId).FirstOrDefault();
+                            newObject.updateDate = DateTime.Now;
+                            //  tmpObject.nationalityId = newObject.nationalityId;
+                            tmpObject.nationalityId = newObject.nationalityId;
+                            tmpObject.name = newObject.name;
                             tmpObject.notes = newObject.notes;
-                            tmpObject.createDate = newObject.createDate;
-                           
-                            tmpObject.createUserId = newObject.createUserId;
+                            tmpObject.isActive = newObject.isActive;
+                           // tmpObject.createUserId = newObject.createUserId;
                             tmpObject.updateUserId = newObject.updateUserId;
+                            //tmpObject.createDate = newObject.createDate;
+                            //tmpObject.updateDate = newObject.updateDate;
 
 
                             entity.SaveChanges();
 
-                            message = tmpObject.flightId;
+                            message = tmpObject.nationalityId;
                         }
                     }
                     return message;
@@ -163,32 +157,30 @@ namespace DataEntryApp.ApiClasses
                 return 0;
             }
         }
-        public async Task<Flights> GetByID(int itemId)
+        public async Task<Nationalities> GetByID(int itemId)
         {
 
 
-            Flights item = new Flights();
+            Nationalities item = new Nationalities();
            
 
-            Flights row = new Flights();
+            Nationalities row = new Nationalities();
             try
             {
                 using (dedbEntities entity = new dedbEntities())
                 {
-                    var list = entity.flights.ToList();
-                    row = list.Where(u => u.flightId == itemId)
-                     .Select(S => new Flights()
+                    var list = entity.nationalities.ToList();
+                    row = list.Where(u => u.nationalityId == itemId)
+                     .Select(S => new Nationalities()
                      {
-                         flightId = S.flightId,
-                         airline = S.airline,
-                         flight = S.flight,
-                         flightFrom = S.flightFrom,
-                         flightTo = S.flightTo,
+                         nationalityId = S.nationalityId,
+                         name = S.name,
                          notes = S.notes,
-                         createDate = S.createDate,
-                         updateDate = S.updateDate,
+                         isActive = S.isActive,
                          createUserId = S.createUserId,
                          updateUserId = S.updateUserId,
+                         createDate = S.createDate,
+                         updateDate = S.updateDate,
 
 
                      }).FirstOrDefault();
@@ -198,7 +190,7 @@ namespace DataEntryApp.ApiClasses
             }
             catch (Exception ex)
             {
-                row = new Flights();
+                row = new Nationalities();
                 //userrow.name = ex.ToString();
                 return row;
             }
@@ -213,9 +205,9 @@ namespace DataEntryApp.ApiClasses
                 {
                     using (dedbEntities entity = new dedbEntities())
                     {
-                        flights objectDelete = entity.flights.Find(id);
+                        nationalities objectDelete = entity.nationalities.Find(id);
 
-                        entity.flights.Remove(objectDelete);
+                        entity.nationalities.Remove(objectDelete);
                         message = entity.SaveChanges();
                         return message;
 
@@ -234,7 +226,7 @@ namespace DataEntryApp.ApiClasses
             //    {
             //        using (dedbEntities entity = new dedbEntities())
             //        {
-            //            flights objectDelete = entity.flights.Find(userId);
+            //            nationalities objectDelete = entity.nationalities.Find(userId);
 
             //            objectDelete.isActive = 0;
             //            objectDelete.updateUserId = signuserId;
@@ -252,6 +244,48 @@ namespace DataEntryApp.ApiClasses
 
         }
 
+        //public async Task<string> generateCodeNumber(string type)
+        //{
+        //    int sequence = await GetLastNumOfCode(type);
+        //    sequence++;
+        //    string strSeq = sequence.ToString();
+        //    if (sequence <= 999999)
+        //        strSeq = sequence.ToString().PadLeft(6, '0');
+        //    string transNum = type.ToUpper() + "-" + strSeq;
+        //    return transNum;
+        //}
+
+        //public async Task<int> GetLastNumOfCode(string type)
+        //{
+
+        //    try
+        //    {
+        //        List<string> numberList;
+        //        int lastNum = 0;
+        //        using (dedbEntities entity = new dedbEntities())
+        //        {
+        //            numberList = entity.nationalities.Where(b => b.nu.Contains(type + "-")).Select(b => b.serviceNum).ToList();
+
+        //            for (int i = 0; i < numberList.Count; i++)
+        //            {
+        //                string code = numberList[i];
+        //                string s = code.Substring(code.LastIndexOf("-") + 1);
+        //                numberList[i] = s;
+        //            }
+        //            if (numberList.Count > 0)
+        //            {
+        //                numberList.Sort();
+        //                lastNum = int.Parse(numberList[numberList.Count - 1]);
+        //            }
+        //        }
+
+        //        return lastNum;
+        //    }
+        //    catch
+        //    {
+        //        return 0;
+        //    }
+        //}
 
     }
 }

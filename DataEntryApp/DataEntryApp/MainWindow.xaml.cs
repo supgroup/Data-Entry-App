@@ -26,7 +26,7 @@ using DataEntryApp.View.settings;
 using System.Windows.Resources;
 using DataEntryApp.View.windows;
 using DataEntryApp.View.reports;
-
+using DataEntryApp.View.badge;
 namespace DataEntryApp
 {
     /// <summary>
@@ -251,7 +251,7 @@ namespace DataEntryApp
                 //}
                 //else
                 //{
-                    Btn_book_sales_Click(btn_book_sales, null);
+                  //  Btn_book_sales_Click(btn_book_sales, null);
                 //}
                 if (sender != null)
                     HelpClass.EndAwait(grid_mainGrid);
@@ -378,9 +378,9 @@ namespace DataEntryApp
                 Button button = sender as Button;
                 colorTextRefreash(button.Tag.ToString());
                 ColorIconRefreash(button.Tag.ToString());
-                openVisible(button.Tag.ToString());
+               // openVisible(button.Tag.ToString());
                 grid_main.Children.Clear();
-                grid_main.Children.Add(uc_applications.Instance);
+                grid_main.Children.Add(uc_customers.Instance);
             }
             catch (Exception ex)
             {

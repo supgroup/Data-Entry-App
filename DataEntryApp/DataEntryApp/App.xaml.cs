@@ -1,6 +1,6 @@
 ﻿using DataEntryApp.Classes;
 using DataEntryApp.View.windows;
-using POS.View.windows;
+
 using System;
 using System.Collections.Generic;
 using System.Configuration;
