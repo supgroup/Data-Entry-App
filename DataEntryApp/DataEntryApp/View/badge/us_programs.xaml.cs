@@ -1,6 +1,7 @@
 ﻿
 using netoaster;
-using POS.View.windows;
+using DataEntryApp.View.windows;
+using DataEntryApp.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Reporting.WinForms;
 using Microsoft.Win32;
-using BookAccountApp.View.windows;
+using DataEntryApp.View.windows;
 using System.IO;
 
-namespace BookAccountApp.View.applications
+namespace DataEntryApp.View.applications
 {
     /// <summary>
     /// Interaction logic for us_programs.xaml

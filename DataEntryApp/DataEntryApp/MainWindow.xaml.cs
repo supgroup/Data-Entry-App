@@ -1,5 +1,5 @@
 ﻿using DataEntryApp.Classes;
-using DataEntryApp.View.applications;
+using DataEntryApp.View.badge;
 using POS.Classes;
 using System;
 using System.Collections.Generic;
@@ -26,7 +26,7 @@ using DataEntryApp.View.settings;
 using System.Windows.Resources;
 using DataEntryApp.View.windows;
 using DataEntryApp.View.reports;
-using DataEntryApp.View.badge;
+
 namespace DataEntryApp
 {
     /// <summary>
@@ -237,8 +237,8 @@ namespace DataEntryApp
               // await FillCombo.RefreshCountry();
               //  FillCombo.fillRegion();
                 await loading_getUserPersonalInfo();
-               
-                
+
+
                 #endregion
 
                 //if (MainWindow.userLogin.type == "ag")
@@ -251,7 +251,10 @@ namespace DataEntryApp
                 //}
                 //else
                 //{
-                  //  Btn_book_sales_Click(btn_book_sales, null);
+                Btn_book_sales_Click(btn_book_sales, null);
+                //show_applications();
+
+            //     Btn_book_sales_Click(uc_applications., null);
                 //}
                 if (sender != null)
                     HelpClass.EndAwait(grid_mainGrid);
@@ -355,22 +358,38 @@ namespace DataEntryApp
                 HelpClass.ExceptionMessage(ex, this);
             }
         }
-        //private void Btn_applications_Click(object sender, RoutedEventArgs e)
-        //{//application
-        //    try
-        //    {
-        //        Button button = sender as Button;
-        //        colorTextRefreash(button.Tag.ToString());
-        //        ColorIconRefreash(button.Tag.ToString());
-        //        openVisible(button.Tag.ToString());
-        //        grid_main.Children.Clear();
-        //        grid_main.Children.Add(uc_applications.Instance);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        HelpClass.ExceptionMessage(ex, this);
-        //    }
-        //}
+        private void Btn_applications_Click(object sender, RoutedEventArgs e)
+        {//application
+            try
+            {
+                Button button = sender as Button;
+                colorTextRefreash(button.Tag.ToString());
+                ColorIconRefreash(button.Tag.ToString());
+                openVisible(button.Tag.ToString());
+                grid_main.Children.Clear();
+                grid_main.Children.Add(uc_applications.Instance);
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this);
+            }
+        }
+        public void show_applications( )
+        {//application
+            try
+            {
+              //  Button button = sender as Button;
+                //colorTextRefreash(button.Tag.ToString());
+                //ColorIconRefreash(button.Tag.ToString());
+              // openVisible(button.Tag.ToString());
+                grid_main.Children.Clear();
+                grid_main.Children.Add(uc_applications.Instance);
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this);
+            }
+        }
         private void Btn_book_sales_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -380,7 +399,8 @@ namespace DataEntryApp
                 ColorIconRefreash(button.Tag.ToString());
                // openVisible(button.Tag.ToString());
                 grid_main.Children.Clear();
-                grid_main.Children.Add(uc_customers.Instance);
+             //   grid_main.Children.Add(uc_customers.Instance);
+                grid_main.Children.Add(uc_applications.Instance);
             }
             catch (Exception ex)
             {

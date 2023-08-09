@@ -15,8 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
-namespace DataEntryApp.View.applications
+using DataEntryApp.View.applications;
+namespace DataEntryApp.View.badge
 {
     /// <summary>
     /// Interaction logic for us_applications.xaml
@@ -69,8 +69,8 @@ namespace DataEntryApp.View.applications
                 translate();
                 #endregion
 
-                Btn_programs_Click(btn_programs , null);
-
+            //  Btn_programs_Click(btn_programs , null);
+                show_programs();
                 if (sender != null)
                     HelpClass.EndAwait(grid_mainGrid);
             }
@@ -117,7 +117,21 @@ namespace DataEntryApp.View.applications
                 Button button = sender as Button;
             colorButtonRefreash(button.Tag.ToString());
             grid_main.Children.Clear();
-         //   grid_main.Children.Add(uc_programs.Instance);
+        grid_main.Children.Add(uc_programs.Instance);
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this);
+            }
+        }
+        public void show_programs( )
+        {
+            try
+            {
+                 
+                 
+                grid_main.Children.Clear();
+                grid_main.Children.Add(uc_programs.Instance);
             }
             catch (Exception ex)
             {
