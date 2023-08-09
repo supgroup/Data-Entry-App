@@ -208,9 +208,9 @@
 
 
             <Grid Width="350" Height="125" Margin="0,0,0,65"    Grid.ColumnSpan="2"
-                  HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FFFFFF"  >
+                  HorizontalAlignment="Right" VerticalAlignment="Top"   >
                 <Grid Width="350" Height="60" Margin="0,0,0,65"    Grid.ColumnSpan="2"
-                  HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FFFFFF"  >
+                  HorizontalAlignment="Right" VerticalAlignment="Top"   >
                     <Grid.ColumnDefinitions>
 
                         <ColumnDefinition Width="*"/>
@@ -237,10 +237,10 @@
 
 
                     <StackPanel  Margin="0,25,0,0"   Grid.Column="5" VerticalAlignment="Center">
-                        <Menu Background="White"  Padding="0" VerticalAlignment="Center">
+                        <Menu Background="#EEF1F8"  Padding="0" VerticalAlignment="Center">
                             <MenuItem Padding="0,0,0,25" >
                                 <MenuItem.Header>
-                                    <materialDesign:PackIcon Foreground="{StaticResource SecondColor}" Kind="MenuDown" 
+                                    <materialDesign:PackIcon Foreground="{StaticResource SecondColor}" Kind="MenuDown" Background="#EEF1F8"
                                          Width="35" Height="35"/>
                                 </MenuItem.Header>
                                 <MenuItem x:Name="mi_changePassword"  Foreground="{StaticResource SecondColor}"  BorderThickness="0,1,0,0" BorderBrush="#DEDEDE"
@@ -306,7 +306,7 @@
                 </Grid>
             </Grid>
 
-            <Rectangle Width="350"  Grid.ColumnSpan="2" Fill="White" Margin="0,125,0,0"
+            <Rectangle Width="350"  Grid.ColumnSpan="2"   Margin="0,125,0,0"
                         HorizontalAlignment="Right"  />
 
             <Grid   x:Name="grid_main" Grid.Row="0" Grid.Column="1"/>
