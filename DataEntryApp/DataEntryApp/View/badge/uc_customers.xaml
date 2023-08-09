@@ -308,6 +308,18 @@
                                         SelectedValue="{Binding custlevel, Mode=OneWay}"/>
                         </Grid>
                     </Border>
+                    <Border Grid.Row="1" Grid.Column="0" CornerRadius="10" Margin="10,5,10,5"   BorderThickness="1" BorderBrush="{StaticResource MainColor}">
+                        <Grid   >
+                            <ComboBox   x:Name="cb_speciality" Padding="10,5,5,5"      IsEditable="True"
+                                        TextBlock.Foreground="#4E4E4E"   Margin="4,0"
+                                        Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
+                                        materialDesign:HintAssist.Hint="speciality..."    
+                                        VerticalAlignment="Center" BorderThickness="0"
+                                        Height="40" 
+                                        SelectedValue="{Binding custlevel, Mode=OneWay}"/>
+                        </Grid>
+                    </Border>
+
                     <Border Grid.Row="1" CornerRadius="10" Margin="10,5,10,5"   BorderThickness="1" BorderBrush="{StaticResource MainColor}">
                         <Grid   >
                             <TextBox x:Name="tb_department"  Text="{Binding company, Mode=OneWay}" Padding="10,0,5,0" 
@@ -326,6 +338,7 @@
                             </Path>
                         </Grid>
                     </Border>
+                   
                     <Border Grid.Row="1" CornerRadius="10" Margin="10,5,10,5"   BorderThickness="1" BorderBrush="{StaticResource MainColor}">
                         <Grid   >
                             <TextBox x:Name="tb_mobile"  Text="{Binding company, Mode=OneWay}" Padding="10,0,5,0" 

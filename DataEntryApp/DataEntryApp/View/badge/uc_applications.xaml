@@ -19,19 +19,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button   Grid.Column="0"
-             Background="{StaticResource MainColor}" BorderBrush="{x:Null}" 
-                 Content="Programs" FontWeight="Bold"      Margin="5" materialDesign:ButtonAssist.CornerRadius="10"
-                      x:Name="btn_programs" Click="Btn_programs_Click" Tag="programs"/>
-            <Button   Grid.Column="1"
-             Background="{StaticResource SecondColor}" BorderBrush="{x:Null}" 
-                 Content="Versions" FontWeight="Bold"      Margin="5" materialDesign:ButtonAssist.CornerRadius="10"
-                       x:Name="btn_versions" Click="Btn_versions_Click" Tag="versions"/>
-            <Button   Grid.Column="2"
-             Background="{StaticResource SecondColor}" BorderBrush="{x:Null}" 
-                 Content="Packages" FontWeight="Bold"      Margin="5" materialDesign:ButtonAssist.CornerRadius="10"   
-                       x:Name="btn_packages" Click="Btn_packages_Click" Tag="packages"/>
-            
+
         </Grid>
         <Grid Grid.Row="1" x:Name="grid_main"/>
     </Grid>

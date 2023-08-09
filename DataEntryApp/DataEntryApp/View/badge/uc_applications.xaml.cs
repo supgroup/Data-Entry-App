@@ -84,9 +84,9 @@ namespace DataEntryApp.View.badge
 
         private void translate()
         {
-            btn_programs.Content = MainWindow.resourcemanager.GetString("trPrograms");
-            btn_versions.Content = MainWindow.resourcemanager.GetString("trVersions");
-            btn_packages.Content = MainWindow.resourcemanager.GetString("trPackages");
+            //btn_programs.Content = MainWindow.resourcemanager.GetString("trPrograms");
+            //btn_versions.Content = MainWindow.resourcemanager.GetString("trVersions");
+            //btn_packages.Content = MainWindow.resourcemanager.GetString("trPackages");
 
         }
 
@@ -110,20 +110,20 @@ namespace DataEntryApp.View.badge
                 }
             }
         }
-        private void Btn_programs_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Button button = sender as Button;
-            colorButtonRefreash(button.Tag.ToString());
-            grid_main.Children.Clear();
-        grid_main.Children.Add(uc_programs.Instance);
-            }
-            catch (Exception ex)
-            {
-                HelpClass.ExceptionMessage(ex, this);
-            }
-        }
+        //private void Btn_programs_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        Button button = sender as Button;
+        //    colorButtonRefreash(button.Tag.ToString());
+        //    grid_main.Children.Clear();
+        //grid_main.Children.Add(uc_programs.Instance);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        HelpClass.ExceptionMessage(ex, this);
+        //    }
+        //}
         public void show_programs( )
         {
             try
@@ -139,35 +139,35 @@ namespace DataEntryApp.View.badge
             }
         }
 
-        private void Btn_versions_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                //Button button = sender as Button;
-                //colorButtonRefreash(button.Tag.ToString());
-                //grid_main.Children.Clear();
-                //grid_main.Children.Add(uc_versions.Instance);
-            }
-            catch (Exception ex)
-            {
-                HelpClass.ExceptionMessage(ex, this);
-            }
-        }
+        //private void Btn_versions_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        //Button button = sender as Button;
+        //        //colorButtonRefreash(button.Tag.ToString());
+        //        //grid_main.Children.Clear();
+        //        //grid_main.Children.Add(uc_versions.Instance);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        HelpClass.ExceptionMessage(ex, this);
+        //    }
+        //}
 
-        private void Btn_packages_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                //Button button = sender as Button;
-                //colorButtonRefreash(button.Tag.ToString());
-                //grid_main.Children.Clear();
-                //grid_main.Children.Add(uc_packages.Instance);
-            }
-            catch (Exception ex)
-            {
-                HelpClass.ExceptionMessage(ex, this);
-            }
-        }
+        //private void Btn_packages_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        //Button button = sender as Button;
+        //        //colorButtonRefreash(button.Tag.ToString());
+        //        //grid_main.Children.Clear();
+        //        //grid_main.Children.Add(uc_packages.Instance);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        HelpClass.ExceptionMessage(ex, this);
+        //    }
+        //}
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {

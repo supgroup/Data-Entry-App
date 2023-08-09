@@ -79,7 +79,7 @@ namespace DataEntryApp.View.applications
                     grid_main.FlowDirection = FlowDirection.RightToLeft;
                 }
                 translate();
-                Keyboard.Focus(tb_code);
+                Keyboard.Focus(tb_name);
                 /*
                 await RefreshProgramsList();
                 await Search();
