@@ -734,8 +734,22 @@ namespace DataEntryApp.View.applications
 
 
 
+
         #endregion
 
-     
+        private void Btn_print_card_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Btn_previewcard_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Btn_pdfcard_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
