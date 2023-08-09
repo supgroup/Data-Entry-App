@@ -12,6 +12,12 @@
         WindowState="Maximized" d:DesignWidth="1200" d:DesignHeight="800"   >
     <Grid Margin="0" x:Name="grid_mainGrid" >
         <Grid Background="#EEF1F8"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="3"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="220"/>
                 <ColumnDefinition Width="*"/>
@@ -207,9 +213,9 @@
             </Grid>
 
 
-            <Grid Width="350" Height="125" Margin="0,0,0,65"    Grid.ColumnSpan="2"
+            <Grid       Grid.Row="1" Grid.Column="1" 
                   HorizontalAlignment="Right" VerticalAlignment="Top"   >
-                <Grid Width="350" Height="60" Margin="0,0,0,65"    Grid.ColumnSpan="2"
+                <Grid Width="350" Height="60" Margin="0,0,0,65"     
                   HorizontalAlignment="Right" VerticalAlignment="Top"   >
                     <Grid.ColumnDefinitions>
 
@@ -309,8 +315,27 @@
             <Rectangle Width="350"  Grid.ColumnSpan="2"   Margin="0,125,0,0"
                         HorizontalAlignment="Right"  />
 
-            <Grid   x:Name="grid_main" Grid.Row="0" Grid.Column="1"/>
-
+            <Grid   x:Name="grid_main" Grid.Row="1" Grid.Column="1"/>
+            <Grid Background="#F1F5F8"  Grid.Row="2" Grid.Column="1">
+                <Separator Margin="5 5 5 0" Background="{StaticResource veryLightGrey}" VerticalAlignment="Top" Width="auto" />
+                <StackPanel Orientation="Horizontal" Margin="10 5"
+                           HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                    <TextBlock Text="POS - " Foreground="{StaticResource Grey}"   />
+                    <TextBlock Text="SC Restaurant" Foreground="{StaticResource MainColor}"   />
+                    <TextBlock Text="Version: " Name="tb_versionTitle"
+                               Margin="25 0 5 0"
+                               Foreground="{StaticResource Grey}"/>
+                    <TextBlock Text="" Name="tb_version"
+                               Foreground="{StaticResource Grey}"   />
+                </StackPanel>
+                <TextBlock Grid.Row="7" Grid.Column="0"  FontSize="12" Grid.ColumnSpan="6" 
+                   FontWeight="Normal" Foreground="#9B9B9B"
+                       VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                           Margin="5,5,25,5"
+                x:Name="txt_rightReserved"
+                           Text="2021 © All Right Reserved for SupClouds"/>
+            </Grid>
+            <Grid     Grid.Row="2" Grid.Column="0"  Background="White"/>
         </Grid>
         <!--<Canvas  Width="250"  Grid.RowSpan="5" Grid.ColumnSpan="5"  VerticalAlignment="Top"   HorizontalAlignment="Right"
                       Background="Red">-->
