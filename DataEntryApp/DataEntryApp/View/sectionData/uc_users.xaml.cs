@@ -66,16 +66,16 @@ namespace DataEntryApp.View.sectionData
                 //   requiredControlList = new List<string> { "name", "lastName", "AccountName",  "type", "mobile" , "country" };
                 requiredControlList = new List<string> { "name", "lastName", "AccountName", "type", "mobile" };
                 #region translate
-                if (MainWindow.lang.Equals("en"))
-                {
-                    MainWindow.resourcemanager = new ResourceManager("DataEntryApp.en_file", Assembly.GetExecutingAssembly());
-                    grid_main.FlowDirection = FlowDirection.LeftToRight;
-                }
-                else
-                {
-                    MainWindow.resourcemanager = new ResourceManager("DataEntryApp.ar_file", Assembly.GetExecutingAssembly());
-                    grid_main.FlowDirection = FlowDirection.RightToLeft;
-                }
+                //if (MainWindow.lang.Equals("en"))
+                //{
+                //    MainWindow.resourcemanager = new ResourceManager("DataEntryApp.en_file", Assembly.GetExecutingAssembly());
+                //    grid_main.FlowDirection = FlowDirection.LeftToRight;
+                //}
+                //else
+                //{
+                //    MainWindow.resourcemanager = new ResourceManager("DataEntryApp.ar_file", Assembly.GetExecutingAssembly());
+                //    grid_main.FlowDirection = FlowDirection.RightToLeft;
+                //}
                 translate();
                 #endregion
 

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DataentryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DataentryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="cities">
           <Key>
             <PropertyRef Name="cityId" />
@@ -44,6 +44,14 @@
           <Property Name="updateDate" Type="datetime2" Precision="7" />
           <Property Name="isActive" Type="bit" />
           <Property Name="nationalityId" Type="bigint" />
+          <Property Name="departmentId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="departments">
+          <Key>
+            <PropertyRef Name="departmentId" />
+          </Key>
+          <Property Name="departmentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="error">
           <Key>
@@ -144,6 +152,18 @@
             </Principal>
             <Dependent Role="cities">
               <PropertyRef Name="countryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_customers_departments">
+          <End Role="departments" Type="Self.departments" Multiplicity="0..1" />
+          <End Role="customers" Type="Self.customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departments">
+              <PropertyRef Name="departmentId" />
+            </Principal>
+            <Dependent Role="customers">
+              <PropertyRef Name="departmentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -259,6 +279,7 @@
           <EntitySet Name="cities" EntityType="Self.cities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="countriesCodes" EntityType="Self.countriesCodes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="customers" EntityType="Self.customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="departments" EntityType="Self.departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="error" EntityType="Self.error" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="nationalities" EntityType="Self.nationalities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="setting" EntityType="Self.setting" Schema="dbo" store:Type="Tables" />
@@ -268,6 +289,10 @@
           <AssociationSet Name="FK_cities_countriesCodes" Association="Self.FK_cities_countriesCodes">
             <End Role="countriesCodes" EntitySet="countriesCodes" />
             <End Role="cities" EntitySet="cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_customers_departments" Association="Self.FK_customers_departments">
+            <End Role="departments" EntitySet="departments" />
+            <End Role="customers" EntitySet="customers" />
           </AssociationSet>
           <AssociationSet Name="FK_customers_nationalities" Association="Self.FK_customers_nationalities">
             <End Role="nationalities" EntitySet="nationalities" />
@@ -306,8 +331,7 @@
             <End Role="userSetValues" EntitySet="userSetValues" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DataentryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -356,6 +380,8 @@
           <NavigationProperty Name="nationalities" Relationship="Self.FK_customers_nationalities" FromRole="customers" ToRole="nationalities" />
           <NavigationProperty Name="users" Relationship="Self.FK_customers_users" FromRole="customers" ToRole="users" />
           <NavigationProperty Name="users1" Relationship="Self.FK_customers_users1" FromRole="customers" ToRole="users" />
+          <Property Name="departmentId" Type="Int64" />
+          <NavigationProperty Name="departments" Relationship="DataentryModel.FK_customers_departments" FromRole="customers" ToRole="departments" />
         </EntityType>
         <EntityType Name="error">
           <Key>
@@ -631,7 +657,32 @@
             <End Role="setValues" EntitySet="setValues" />
             <End Role="userSetValues" EntitySet="userSetValues" />
           </AssociationSet>
+          <EntitySet Name="departments" EntityType="DataentryModel.departments" />
+          <AssociationSet Name="FK_customers_departments" Association="DataentryModel.FK_customers_departments">
+            <End Role="departments" EntitySet="departments" />
+            <End Role="customers" EntitySet="customers" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="departments">
+          <Key>
+            <PropertyRef Name="departmentId" />
+          </Key>
+          <Property Name="departmentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="customers" Relationship="DataentryModel.FK_customers_departments" FromRole="departments" ToRole="customers" />
+        </EntityType>
+        <Association Name="FK_customers_departments">
+          <End Type="DataentryModel.departments" Role="departments" Multiplicity="0..1" />
+          <End Type="DataentryModel.customers" Role="customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departments">
+              <PropertyRef Name="departmentId" />
+            </Principal>
+            <Dependent Role="customers">
+              <PropertyRef Name="departmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -663,6 +714,7 @@
           <EntitySetMapping Name="customers">
             <EntityTypeMapping TypeName="DataentryModel.customers">
               <MappingFragment StoreEntitySet="customers">
+                <ScalarProperty Name="departmentId" ColumnName="departmentId" />
                 <ScalarProperty Name="custId" ColumnName="custId" />
                 <ScalarProperty Name="custname" ColumnName="custname" />
                 <ScalarProperty Name="lastName" ColumnName="lastName" />
@@ -774,6 +826,14 @@
                 <ScalarProperty Name="updateDate" ColumnName="updateDate" />
                 <ScalarProperty Name="createUserId" ColumnName="createUserId" />
                 <ScalarProperty Name="updateUserId" ColumnName="updateUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="departments">
+            <EntityTypeMapping TypeName="DataentryModel.departments">
+              <MappingFragment StoreEntitySet="departments">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="departmentId" ColumnName="departmentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

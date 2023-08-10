@@ -59,7 +59,7 @@ namespace DataEntryApp.View.applications
         IEnumerable<Customers> customersQuery;
         IEnumerable<Customers> customersList;
         
-        byte tgl_customerState;
+        bool tgl_customerState;
         string searchText = "";
         public static List<string> requiredControlList;
         private async void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -96,6 +96,7 @@ namespace DataEntryApp.View.applications
         }
         private void translate()
         {
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, MainWindow.resourcemanager.GetString("trSearchHint"));
             txt_title.Text = MainWindow.resourcemanager.GetString("cardData");
          
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_name, MainWindow.resourcemanager.GetString("trNameHint"));
@@ -103,6 +104,24 @@ namespace DataEntryApp.View.applications
             MaterialDesignThemes.Wpf.HintAssist.SetHint(cb_speciality, MainWindow.resourcemanager.GetString("specializationHint"));
           
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_mobileWhatsapp, MainWindow.resourcemanager.GetString("whatsnumberHint"));
+            txt_active.Text = MainWindow.resourcemanager.GetString("trActive");
+            btn_add.Content = MainWindow.resourcemanager.GetString("trAdd");
+            btn_update.Content = MainWindow.resourcemanager.GetString("trUpdate");
+            btn_delete.Content = MainWindow.resourcemanager.GetString("trDelete");
+
+
+            dg_customer.Columns[0].Header = MainWindow.resourcemanager.GetString("trNo.");
+            dg_customer.Columns[1].Header = MainWindow.resourcemanager.GetString("trName");
+            dg_customer.Columns[2].Header = MainWindow.resourcemanager.GetString("nationality");
+            dg_customer.Columns[3].Header = MainWindow.resourcemanager.GetString("specialization");
+            dg_customer.Columns[4].Header = MainWindow.resourcemanager.GetString("whatsnumber");
+            tt_clear.Content = MainWindow.resourcemanager.GetString("trClear");
+            tt_refresh.Content = MainWindow.resourcemanager.GetString("trRefresh");
+            tt_report.Content = MainWindow.resourcemanager.GetString("trPdf");
+            tt_print.Content = MainWindow.resourcemanager.GetString("trPrint");
+            tt_excel.Content = MainWindow.resourcemanager.GetString("trExcel");
+            //tt_pieChart.Content = MainWindow.resourcemanager.GetString("trPieChart");
+            tt_count.Content = MainWindow.resourcemanager.GetString("trCount");
 
             //txt_active.Text = MainWindow.resourcemanager.GetString("trActive");
             //MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, MainWindow.resourcemanager.GetString("trSearchHint"));
@@ -130,27 +149,11 @@ namespace DataEntryApp.View.applications
             //tt_update_Button.Content = MainWindow.resourcemanager.GetString("trUpdate");
             //tt_delete_Button.Content = MainWindow.resourcemanager.GetString("trDelete");
 
-            btn_add.Content = MainWindow.resourcemanager.GetString("trAdd");
-            btn_update.Content = MainWindow.resourcemanager.GetString("trUpdate");
-          btn_delete.Content = MainWindow.resourcemanager.GetString("trDelete");
-
-
-            dg_customer.Columns[0].Header = MainWindow.resourcemanager.GetString("trNo.");
-            dg_customer.Columns[1].Header = MainWindow.resourcemanager.GetString("trName");
-            dg_customer.Columns[2].Header = MainWindow.resourcemanager.GetString("nationality");
-            dg_customer.Columns[3].Header = MainWindow.resourcemanager.GetString("specialization");
-            dg_customer.Columns[4].Header = MainWindow.resourcemanager.GetString("whatsnumber");
 
             //tt_startTime.Content = MainWindow.resourcemanager.GetString("trStartTime");
             //tt_endTime.Content = MainWindow.resourcemanager.GetString("trEndTime");
 
-            tt_clear.Content = MainWindow.resourcemanager.GetString("trClear");
-            tt_refresh.Content = MainWindow.resourcemanager.GetString("trRefresh");
-            tt_report.Content = MainWindow.resourcemanager.GetString("trPdf");
-            tt_print.Content = MainWindow.resourcemanager.GetString("trPrint");
-            tt_excel.Content = MainWindow.resourcemanager.GetString("trExcel");
-            //tt_pieChart.Content = MainWindow.resourcemanager.GetString("trPieChart");
-            tt_count.Content = MainWindow.resourcemanager.GetString("trCount");
+
             //btn_items.Content = MainWindow.resourcemanager.GetString("trItems");
 
         }
@@ -160,10 +163,10 @@ namespace DataEntryApp.View.applications
             {//refresh
 
                 HelpClass.StartAwait(grid_main);
-                /*
-                await RefreshProgramsList();
+                
+                await RefreshCustomersList();
                 await Search();
-                */
+                
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
@@ -192,9 +195,9 @@ namespace DataEntryApp.View.applications
             try
             {
                 HelpClass.StartAwait(grid_main);
-                //if (programs is null)
-                //    await RefreshProgramsList();
-                //tgl_programState = 1;
+                if (customersList is null)
+                    await RefreshCustomersList();
+                tgl_customerState = true;
                 //await Search();
                 HelpClass.EndAwait(grid_main);
             }
@@ -209,10 +212,10 @@ namespace DataEntryApp.View.applications
             try
             {
                 HelpClass.StartAwait(grid_main);
-                //if (programs is null)
-                //    await RefreshProgramsList();
-                //tgl_programState = 0;
-                //await Search();
+                if (customersList is null)
+                    await RefreshCustomersList();
+                tgl_customerState = false;
+                await Search();
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
@@ -227,9 +230,9 @@ namespace DataEntryApp.View.applications
             try
             {
                 HelpClass.StartAwait(grid_main);
-                /*
+           
                 Clear();
-                */
+               
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
@@ -283,7 +286,7 @@ namespace DataEntryApp.View.applications
             try
             {
                 HelpClass.StartAwait(grid_main);
-                /*
+              /*
                 program = new Programs();
                 if (validate())
                 {
@@ -444,13 +447,15 @@ namespace DataEntryApp.View.applications
         async Task Search()
         {
             //search
-            //if (programs is null)
-            //    await RefreshProgramsList();
-            //searchText = tb_search.Text.ToLower();
-            //programsQuery = programs.Where(s => (s.programCode.ToLower().Contains(searchText) ||
-            //s.name.ToLower().Contains(searchText)
-            //) && s.isActive == tgl_programState);
-            //RefreshProgramsView();
+            if (customersList is null)
+                await RefreshCustomersList();
+            searchText = tb_search.Text.ToLower();
+            customersQuery = customersList.Where(s => (s.custname.ToLower().Contains(searchText) ||
+            s.Nationality.ToLower().Contains(searchText) ||
+            s.department.ToLower().Contains(searchText) ||
+            s.mobile.ToLower().Contains(searchText)
+            ) && s.isActive == tgl_customerState);
+            RefreshProgramsView();
         }
         async Task<IEnumerable<Customers>> RefreshCustomersList()
         {
@@ -459,7 +464,7 @@ namespace DataEntryApp.View.applications
         }
         void RefreshProgramsView()
         {
-            dg_customer.ItemsSource = customersQuery;
+           // dg_customer.ItemsSource = customersQuery;
             txt_count.Text = customersQuery.Count().ToString();
         }
         #endregion

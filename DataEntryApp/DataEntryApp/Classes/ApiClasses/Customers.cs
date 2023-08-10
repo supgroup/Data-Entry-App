@@ -35,7 +35,7 @@ namespace DataEntryApp.ApiClasses
         public Nullable<bool> isActive { get; set; }
         public Nullable<long> nationalityId { get; set; }
         public string Nationality { get; set; }
-
+        public Nullable<long> departmentId { get; set; }
         public bool canDelete { get; set; }
 
 

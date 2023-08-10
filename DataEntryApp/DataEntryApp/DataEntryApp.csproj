@@ -189,6 +189,7 @@
     </Compile>
     <Compile Include="Classes\ApiClasses\City.cs" />
     <Compile Include="Classes\ApiClasses\Country.cs" />
+    <Compile Include="Classes\ApiClasses\Departments.cs" />
     <Compile Include="Classes\ApiClasses\Nationalities.cs" />
     <Compile Include="Classes\ApiClasses\ErrorClass.cs" />
     <Compile Include="Classes\ApiClasses\Customers.cs" />
@@ -239,6 +240,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataentryModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="departments.cs">
+      <DependentUpon>DataentryModel.tt</DependentUpon>
     </Compile>
     <Compile Include="error.cs">
       <DependentUpon>DataentryModel.tt</DependentUpon>

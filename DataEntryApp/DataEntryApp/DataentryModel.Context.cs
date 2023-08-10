@@ -34,5 +34,6 @@ namespace DataEntryApp
         public virtual DbSet<setValues> setValues { get; set; }
         public virtual DbSet<users> users { get; set; }
         public virtual DbSet<userSetValues> userSetValues { get; set; }
+        public virtual DbSet<departments> departments { get; set; }
     }
 }

@@ -29,9 +29,11 @@ namespace DataEntryApp
         public Nullable<System.DateTime> updateDate { get; set; }
         public Nullable<bool> isActive { get; set; }
         public Nullable<long> nationalityId { get; set; }
+        public Nullable<long> departmentId { get; set; }
     
         public virtual nationalities nationalities { get; set; }
         public virtual users users { get; set; }
         public virtual users users1 { get; set; }
+        public virtual departments departments { get; set; }
     }
 }
