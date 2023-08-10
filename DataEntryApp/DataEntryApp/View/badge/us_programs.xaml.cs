@@ -70,12 +70,12 @@ namespace DataEntryApp.View.applications
                 requiredControlList = new List<string> { "name" };
                 if (MainWindow.lang.Equals("en"))
                 {
-                    MainWindow.resourcemanager = new ResourceManager("BookAccountApp.en_file", Assembly.GetExecutingAssembly());
+                    MainWindow.resourcemanager = new ResourceManager("DataEntryApp.en_file", Assembly.GetExecutingAssembly());
                     grid_main.FlowDirection = FlowDirection.LeftToRight;
                 }
                 else
                 {
-                    MainWindow.resourcemanager = new ResourceManager("BookAccountApp.ar_file", Assembly.GetExecutingAssembly());
+                    MainWindow.resourcemanager = new ResourceManager("DataEntryApp.ar_file", Assembly.GetExecutingAssembly());
                     grid_main.FlowDirection = FlowDirection.RightToLeft;
                 }
                 translate();
@@ -96,6 +96,7 @@ namespace DataEntryApp.View.applications
         }
         private void translate()
         {
+            txt_title.Text = MainWindow.resourcemanager.GetString("cardData");
             //txt_active.Text = MainWindow.resourcemanager.GetString("trActive");
             //MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, MainWindow.resourcemanager.GetString("trSearchHint"));
             //txt_programHeader.Text = MainWindow.resourcemanager.GetString("trPrograms");

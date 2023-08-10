@@ -100,7 +100,7 @@ namespace DataEntryApp
 
         private void translate()
         {
-            txt_book_sales.Text = resourcemanager.GetString("book_sales");
+            txt_cards.Text = resourcemanager.GetString("trCards");
             //txt_accounting.Text = resourcemanager.GetString("accounting");
             //txt_reports.Text = resourcemanager.GetString("trReports");
             txt_sectionData.Text = resourcemanager.GetString("trSectionData");
@@ -217,7 +217,7 @@ namespace DataEntryApp
                 if (sender != null)
                     HelpClass.StartAwait(grid_mainGrid);
                 //windowFlowDirection();
-                menuList = new List<string> { "booksales", "accounting", "reports",
+                menuList = new List<string> { "cards", "accounting", "reports",
                    "sectionData","settings"};
                 //menuList = new List<string> { "applications", "sales", "reports",
                 //   "sectionData","settings"};
@@ -251,7 +251,7 @@ namespace DataEntryApp
                 //}
                 //else
                 //{
-                Btn_book_sales_Click(btn_book_sales, null);
+                Btn_cards_Click(btn_cards, null);
                 //show_applications();
 
             //     Btn_book_sales_Click(uc_applications., null);
@@ -367,7 +367,7 @@ namespace DataEntryApp
                 ColorIconRefreash(button.Tag.ToString());
                 openVisible(button.Tag.ToString());
                 grid_main.Children.Clear();
-                grid_main.Children.Add(uc_applications.Instance);
+              //  grid_main.Children.Add(uc_applications.Instance);
             }
             catch (Exception ex)
             {
@@ -390,23 +390,23 @@ namespace DataEntryApp
                 HelpClass.ExceptionMessage(ex, this);
             }
         }
-        private void Btn_book_sales_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                Button button = sender as Button;
-                colorTextRefreash(button.Tag.ToString());
-                ColorIconRefreash(button.Tag.ToString());
-               // openVisible(button.Tag.ToString());
-                grid_main.Children.Clear();
-             //   grid_main.Children.Add(uc_customers.Instance);
-                grid_main.Children.Add(uc_applications.Instance);
-            }
-            catch (Exception ex)
-            {
-                HelpClass.ExceptionMessage(ex, this);
-            }
-        }
+        //private void Btn_book_sales_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        Button button = sender as Button;
+        //        colorTextRefreash(button.Tag.ToString());
+        //        ColorIconRefreash(button.Tag.ToString());
+        //       // openVisible(button.Tag.ToString());
+        //        grid_main.Children.Clear();
+        //     //   grid_main.Children.Add(uc_customers.Instance);
+        //        grid_main.Children.Add(uc_applications.Instance);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        HelpClass.ExceptionMessage(ex, this);
+        //    }
+        //}
         //public  void Btn_sales_Click(object sender, RoutedEventArgs e)
         //{//sales
         //    try
@@ -550,6 +550,22 @@ namespace DataEntryApp
             }
         }
 
-     
+        private void Btn_cards_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                colorTextRefreash(button.Tag.ToString());
+                ColorIconRefreash(button.Tag.ToString());
+                 openVisible(button.Tag.ToString());
+                grid_main.Children.Clear();
+                //   grid_main.Children.Add(uc_customers.Instance);
+                grid_main.Children.Add(uc_applications.Instance);
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this);
+            }
+        }
     }
 }
