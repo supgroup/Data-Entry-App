@@ -290,7 +290,7 @@
                         </Border>
                     <Border Grid.Row="1" Grid.Column="0" CornerRadius="10" Margin="10,5,10,5"   BorderThickness="1" BorderBrush="{StaticResource MainColor}">
                         <Grid   >
-                            <ComboBox   x:Name="cb_custlevel" Padding="10,5,5,5"      IsEditable="True"
+                            <ComboBox   x:Name="cb_nationality" Padding="10,5,5,5"      IsEditable="True"
                                         TextBlock.Foreground="#4E4E4E"   Margin="4,0"
                                         Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
                                         materialDesign:HintAssist.Hint="Nationality..."    
@@ -312,7 +312,7 @@
                     </Border>
                     <Border Grid.Row="1" CornerRadius="10" Margin="10,5,10,5"   BorderThickness="1" BorderBrush="{StaticResource MainColor}">
                         <Grid   >
-                            <TextBox x:Name="tb_mobile"  Text="{Binding company, Mode=OneWay}" Padding="10,0,5,0" 
+                            <TextBox x:Name="tb_mobileWhatsapp"  Text="{Binding company, Mode=OneWay}" Padding="10,0,5,0" 
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                      materialDesign:HintAssist.Hint="Whatsapp Number..."  
                                      Foreground="#4E4E4E"  

@@ -68,16 +68,16 @@ namespace DataEntryApp.View.applications
             {
                 HelpClass.StartAwait(grid_main, "main_loaded");
                 requiredControlList = new List<string> { "name" };
-                if (MainWindow.lang.Equals("en"))
-                {
-                    MainWindow.resourcemanager = new ResourceManager("DataEntryApp.en_file", Assembly.GetExecutingAssembly());
-                    grid_main.FlowDirection = FlowDirection.LeftToRight;
-                }
-                else
-                {
-                    MainWindow.resourcemanager = new ResourceManager("DataEntryApp.ar_file", Assembly.GetExecutingAssembly());
-                    grid_main.FlowDirection = FlowDirection.RightToLeft;
-                }
+                //if (MainWindow.lang.Equals("en"))
+                //{
+                //    MainWindow.resourcemanager = new ResourceManager("DataEntryApp.en_file", Assembly.GetExecutingAssembly());
+                //    grid_main.FlowDirection = FlowDirection.LeftToRight;
+                //}
+                //else
+                //{
+                //    MainWindow.resourcemanager = new ResourceManager("DataEntryApp.ar_file", Assembly.GetExecutingAssembly());
+                //    grid_main.FlowDirection = FlowDirection.RightToLeft;
+                //}
                 translate();
                 Keyboard.Focus(tb_name);
                 /*
@@ -97,6 +97,13 @@ namespace DataEntryApp.View.applications
         private void translate()
         {
             txt_title.Text = MainWindow.resourcemanager.GetString("cardData");
+         
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_name, MainWindow.resourcemanager.GetString("trNameHint"));
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(cb_nationality, MainWindow.resourcemanager.GetString("nationalityHint"));
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(cb_speciality, MainWindow.resourcemanager.GetString("specializationHint"));
+          
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_mobileWhatsapp, MainWindow.resourcemanager.GetString("whatsnumberHint"));
+
             //txt_active.Text = MainWindow.resourcemanager.GetString("trActive");
             //MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, MainWindow.resourcemanager.GetString("trSearchHint"));
             //txt_programHeader.Text = MainWindow.resourcemanager.GetString("trPrograms");
@@ -123,6 +130,11 @@ namespace DataEntryApp.View.applications
             //tt_update_Button.Content = MainWindow.resourcemanager.GetString("trUpdate");
             //tt_delete_Button.Content = MainWindow.resourcemanager.GetString("trDelete");
 
+            btn_add.Content = MainWindow.resourcemanager.GetString("trAdd");
+            btn_update.Content = MainWindow.resourcemanager.GetString("trUpdate");
+          btn_delete.Content = MainWindow.resourcemanager.GetString("trDelete");
+        
+
             //dg_program.Columns[0].Header = MainWindow.resourcemanager.GetString("trCode");
             //dg_program.Columns[1].Header = MainWindow.resourcemanager.GetString("trName");
             //dg_program.Columns[2].Header = MainWindow.resourcemanager.GetString("trValue");
@@ -132,13 +144,13 @@ namespace DataEntryApp.View.applications
             //tt_startTime.Content = MainWindow.resourcemanager.GetString("trStartTime");
             //tt_endTime.Content = MainWindow.resourcemanager.GetString("trEndTime");
 
-            //tt_clear.Content = MainWindow.resourcemanager.GetString("trClear");
-            //tt_refresh.Content = MainWindow.resourcemanager.GetString("trRefresh");
-            //tt_report.Content = MainWindow.resourcemanager.GetString("trPdf");
-            //tt_print.Content = MainWindow.resourcemanager.GetString("trPrint");
-            //tt_excel.Content = MainWindow.resourcemanager.GetString("trExcel");
+            tt_clear.Content = MainWindow.resourcemanager.GetString("trClear");
+            tt_refresh.Content = MainWindow.resourcemanager.GetString("trRefresh");
+            tt_report.Content = MainWindow.resourcemanager.GetString("trPdf");
+            tt_print.Content = MainWindow.resourcemanager.GetString("trPrint");
+            tt_excel.Content = MainWindow.resourcemanager.GetString("trExcel");
             //tt_pieChart.Content = MainWindow.resourcemanager.GetString("trPieChart");
-            //tt_count.Content = MainWindow.resourcemanager.GetString("trCount");
+            tt_count.Content = MainWindow.resourcemanager.GetString("trCount");
             //btn_items.Content = MainWindow.resourcemanager.GetString("trItems");
 
         }

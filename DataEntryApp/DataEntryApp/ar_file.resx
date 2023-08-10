@@ -2812,4 +2812,22 @@
   <data name="cardData" xml:space="preserve">
     <value>بيانات البطاقة</value>
   </data>
+  <data name="nationality" xml:space="preserve">
+    <value>الجنسية</value>
+  </data>
+  <data name="nationalityHint" xml:space="preserve">
+    <value>الجنسية ...</value>
+  </data>
+  <data name="specialization" xml:space="preserve">
+    <value>الاختصاص</value>
+  </data>
+  <data name="specializationHint" xml:space="preserve">
+    <value>الاختصاص ...</value>
+  </data>
+  <data name="whatsnumber" xml:space="preserve">
+    <value>رقم الواتساب</value>
+  </data>
+  <data name="whatsnumberHint" xml:space="preserve">
+    <value>رقم الواتساب ...</value>
+  </data>
 </root>

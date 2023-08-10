@@ -2827,4 +2827,22 @@ Please add Email in setting</value>
   <data name="cardData" xml:space="preserve">
     <value>Card Informations</value>
   </data>
+  <data name="nationality" xml:space="preserve">
+    <value>nationality</value>
+  </data>
+  <data name="nationalityHint" xml:space="preserve">
+    <value>nationality...</value>
+  </data>
+  <data name="specialization" xml:space="preserve">
+    <value>Specialization</value>
+  </data>
+  <data name="specializationHint" xml:space="preserve">
+    <value>Specialization...</value>
+  </data>
+  <data name="whatsnumber" xml:space="preserve">
+    <value>WhatsApp Number</value>
+  </data>
+  <data name="whatsnumberHint" xml:space="preserve">
+    <value>WhatsApp Number ...</value>
+  </data>
 </root>
