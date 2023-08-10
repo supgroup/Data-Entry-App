@@ -1779,8 +1779,8 @@
   <data name="trCannotDeleteTheMainPos" xml:space="preserve">
     <value>لا يمكن حذف نقطة البيع الرئيسية</value>
   </data>
-  <data name="trCard" xml:space="preserve">
-    <value>بطاقات</value>
+  <data name="trCards" xml:space="preserve">
+    <value>البطاقات</value>
   </data>
   <data name="trGreaterAmmount" xml:space="preserve">
     <value>لا يمكن أن يكون المبلغ أكبر من المبلغ المسستحق للدفع</value>
@@ -2808,5 +2808,8 @@
   </data>
   <data name="book_sales" xml:space="preserve">
     <value>مبيعات انظمة الحجز</value>
+  </data>
+  <data name="cardData" xml:space="preserve">
+    <value>بيانات البطاقة</value>
   </data>
 </root>

@@ -1797,7 +1797,7 @@
   <data name="trCannotDeleteTheMainPos" xml:space="preserve">
     <value>Cannot delete the main Pos</value>
   </data>
-  <data name="trCard" xml:space="preserve">
+  <data name="trCards" xml:space="preserve">
     <value>Cards</value>
   </data>
   <data name="trGreaterAmmount" xml:space="preserve">
@@ -2823,5 +2823,8 @@ Please add Email in setting</value>
   </data>
   <data name="book_sales" xml:space="preserve">
     <value>Book Systems Sales</value>
+  </data>
+  <data name="cardData" xml:space="preserve">
+    <value>Card Informations</value>
   </data>
 </root>
