@@ -99,7 +99,7 @@
                     <Border Margin="5,5,5,17.5"   Grid.Row="1" CornerRadius="10" x:Name="brd_roundDataGrid" BorderThickness="0" 
                             Background="White"/>
                     <DataGrid  Margin="5,5,5,17.5" Grid.Row="1"  IsReadOnly="True"   HeadersVisibility="Column"
-                       x:Name="dg_program"  AutoGenerateColumns="False"   Background="White"
+                       x:Name="dg_customer"  AutoGenerateColumns="False"   Background="White"
                         ColumnWidth="SizeToHeader" SelectionChanged="Dg_program_SelectionChanged"    
                                AlternatingRowBackground="#f3f3f3" AlternationCount="2">
                         <DataGrid.Resources>
@@ -114,7 +114,7 @@
                             <VisualBrush Visual="{Binding ElementName=brd_roundDataGrid}"/>
                         </DataGrid.OpacityMask>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Width="*"  Header="Code" Binding="{Binding Path=programCode}">
+                            <DataGridTextColumn Width="*"  Header="No" Binding="{Binding Path=custId}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="{x:Type TextBlock}">
                                         <Style.Triggers>
@@ -125,7 +125,7 @@
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Width="*"  Header="Name" Binding="{Binding Path=name}">
+                            <DataGridTextColumn Width="*"  Header="Name" Binding="{Binding Path=custname}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="{x:Type TextBlock}">
                                         <Style.Triggers>
@@ -136,7 +136,29 @@
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Width="*"  Header="Details" Binding="{Binding Path=details}">
+                            <DataGridTextColumn Width="*"  Header="Nationality" Binding="{Binding Path=Nationality}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding isActive}" Value="0">
+                                                <Setter Property="TextDecorations" Value="Strikethrough"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Width="*"  Header="department" Binding="{Binding Path=department}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding isActive}" Value="0">
+                                                <Setter Property="TextDecorations" Value="Strikethrough"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Width="*"  Header="Whatsapp" Binding="{Binding Path=mobile}">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="{x:Type TextBlock}">
                                         <Style.Triggers>

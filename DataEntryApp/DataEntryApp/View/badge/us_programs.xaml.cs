@@ -23,7 +23,7 @@ using Microsoft.Reporting.WinForms;
 using Microsoft.Win32;
 using DataEntryApp.View.windows;
 using System.IO;
-
+using DataEntryApp.ApiClasses;
 namespace DataEntryApp.View.applications
 {
     /// <summary>
@@ -52,14 +52,14 @@ namespace DataEntryApp.View.applications
                 return _instance;
             }
         }
-        /*
-        Programs program = new Programs();
+        
+        Customers customer = new Customers();
 
 
-        IEnumerable<Programs> programsQuery;
-        IEnumerable<Programs> programs;
-        */
-        byte tgl_programState;
+        IEnumerable<Customers> customersQuery;
+        IEnumerable<Customers> customersList;
+        
+        byte tgl_customerState;
         string searchText = "";
         public static List<string> requiredControlList;
         private async void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -80,11 +80,11 @@ namespace DataEntryApp.View.applications
                 //}
                 translate();
                 Keyboard.Focus(tb_name);
-                /*
-                await RefreshProgramsList();
+               
+                await RefreshCustomersList();
                 await Search();
                 Clear();
-                */
+                
                 HelpClass.EndAwait(grid_main, "main_loaded");
             }
             catch (Exception ex)
@@ -133,13 +133,13 @@ namespace DataEntryApp.View.applications
             btn_add.Content = MainWindow.resourcemanager.GetString("trAdd");
             btn_update.Content = MainWindow.resourcemanager.GetString("trUpdate");
           btn_delete.Content = MainWindow.resourcemanager.GetString("trDelete");
-        
 
-            //dg_program.Columns[0].Header = MainWindow.resourcemanager.GetString("trCode");
-            //dg_program.Columns[1].Header = MainWindow.resourcemanager.GetString("trName");
-            //dg_program.Columns[2].Header = MainWindow.resourcemanager.GetString("trValue");
-            //dg_program.Columns[3].Header = MainWindow.resourcemanager.GetString("trStartDate");
-            //dg_program.Columns[4].Header = MainWindow.resourcemanager.GetString("trEndDate");
+
+            dg_customer.Columns[0].Header = MainWindow.resourcemanager.GetString("trNo.");
+            dg_customer.Columns[1].Header = MainWindow.resourcemanager.GetString("trName");
+            dg_customer.Columns[2].Header = MainWindow.resourcemanager.GetString("nationality");
+            dg_customer.Columns[3].Header = MainWindow.resourcemanager.GetString("specialization");
+            dg_customer.Columns[4].Header = MainWindow.resourcemanager.GetString("whatsnumber");
 
             //tt_startTime.Content = MainWindow.resourcemanager.GetString("trStartTime");
             //tt_endTime.Content = MainWindow.resourcemanager.GetString("trEndTime");
@@ -246,9 +246,9 @@ namespace DataEntryApp.View.applications
                 HelpClass.StartAwait(grid_main);
                 //selection
                 /*
-                if (dg_program.SelectedIndex != -1)
+                if (dg_customer.SelectedIndex != -1)
                 {
-                    program = dg_program.SelectedItem as Programs;
+                    program = dg_customer.SelectedItem as Programs;
                     this.DataContext = program;
 
                     if (program != null)
@@ -452,23 +452,23 @@ namespace DataEntryApp.View.applications
             //) && s.isActive == tgl_programState);
             //RefreshProgramsView();
         }
-        //async Task<IEnumerable<Programs>> RefreshProgramsList()
-        //{
-        //  //  programs = await program.GetAll();
-        //    return programs;
-        //}
-        //void RefreshProgramsView()
-        //{
-        //    dg_program.ItemsSource = programsQuery;
-        //    txt_count.Text = programsQuery.Count().ToString();
-        //}
+        async Task<IEnumerable<Customers>> RefreshCustomersList()
+        {
+            customersList = await customer.GetAll();
+            return customersList;
+        }
+        void RefreshProgramsView()
+        {
+            dg_customer.ItemsSource = customersQuery;
+            txt_count.Text = customersQuery.Count().ToString();
+        }
         #endregion
         #region validate - clearValidate - textChange - lostFocus - . . . . 
-        //void Clear()
-        //{
-        //    this.DataContext = new Programs();
-        //    clearValidate();
-        //}
+        void Clear()
+        {
+            this.DataContext = new Customers();
+            clearValidate();
+        }
         private void Number_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             try
