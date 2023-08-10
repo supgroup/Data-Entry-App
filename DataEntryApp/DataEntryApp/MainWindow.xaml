@@ -15,7 +15,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="0"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="3"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -83,68 +83,11 @@
                               Grid.Column="1"  Tag="booksales"     Margin="10,0,0,0"/>
                         </Grid>
                     </Button>
-                   
-                    <Rectangle Fill="{StaticResource MainColor}"  Width="7.5" Margin="0,5"  
-                       Grid.Row="3" Tag="accounting"   Visibility="Collapsed"    HorizontalAlignment="Left" x:Name="path_openSales"/>
-                    <Button  Width="220" Height="50" Grid.Row="3"
-                         HorizontalAlignment="Left"  Tag="accounting"
-                 x:Name="btn_accounting"
-                    Background="{x:Null}" BorderBrush="{x:Null}"   
-                    Padding="0" Click="Btn_accounting_Click" VerticalAlignment="Bottom" >
-                        <Grid Width="220" Height="50" >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="50"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Path Fill="{StaticResource LightGrey}" x:Name="path_iconSales" Stretch="Fill"  
-                              HorizontalAlignment="Left" Grid.Column="0"  
-                         VerticalAlignment="Center" Width="20" Height="20" Tag="accounting" 
-                              Data="M22.6,18.9h93.3c6.1,0,5.8,2.5,5.2,8.8l-3.5,44.2c-0.6,7.1-0.1,5.3-7.6,6.4L41.5,87l3.6,10.5
-	c29.8,0,44.2,0,73.9,0c1,3.7,2.4,9.8,3.4,14h-12.3l-1.2-4.3c-24.8,0-34.3,0-59.1,0c-13.5-0.2-12.2,3.4-15.4-8.3L11.2,14.4H0V6.3
-	h19.6C20.5,9.7,21.8,15.4,22.6,18.9L22.6,18.9z M53.7,110.2c5.2,0,9.5,4.3,9.5,9.5c0,5.2-4.2,9.5-9.5,9.5s-9.5-4.2-9.5-9.5
-	C44.2,114.4,48.5,110.2,53.7,110.2L53.7,110.2z M92.8,110.2c5.2,0,9.5,4.3,9.5,9.5c0,5.2-4.3,9.5-9.5,9.5c-5.2,0-9.5-4.2-9.5-9.5
-	C83.3,114.4,87.6,110.2,92.8,110.2L92.8,110.2z M30.8,49.3h15.1l-5.5-22.9c-5.4,0-10.7,0-15.9,0l1.8,6.9l0.1,0L30.8,49.3L30.8,49.3
-	L30.8,49.3z M48.3,26.4l5.5,22.9h14.5l-5.5-22.9L48.3,26.4L48.3,26.4L48.3,26.4z M70.7,26.5l5.5,22.9h13.9l-5.5-22.9L70.7,26.5
-	L70.7,26.5L70.7,26.5z M92.6,26.5l5.5,22.9H112l1.5-18.4c0.4-5.1,1.3-4.5-3.6-4.5C104.2,26.5,98.4,26.5,92.6,26.5L92.6,26.5
-	L92.6,26.5z M111.5,55.1h-12l4,16.6l1-0.1c6.1-0.9,5.7,0.5,6.2-5.2L111.5,55.1L111.5,55.1z M95.8,72.8l-4.2-17.6H77.6l4.7,19.4
-	L95.8,72.8L95.8,72.8L95.8,72.8z M74.7,75.6l-4.9-20.5H55.2l5.4,22.4L74.7,75.6L74.7,75.6L74.7,75.6z M52.9,78.6l-5.6-23.5H32.4
-	l7,25.3L52.9,78.6L52.9,78.6z M71.6,0C71.6,0,71.6,0,71.6,0C71.6,0,71.6,0,71.6,0C71.6,0,71.6,0,71.6,0C71.6,0,71.6,0,71.6,0z
-	 M0,71.9C0,71.9,0,71.9,0,71.9C0,71.9,0,71.9,0,71.9C0,71.9,0,71.9,0,71.9C0,71.9,0,71.9,0,71.9z M71.6,143.8
-	C71.6,143.8,71.6,143.8,71.6,143.8C71.6,143.8,71.6,143.8,71.6,143.8C71.6,143.8,71.6,143.8,71.6,143.8
-	C71.6,143.8,71.6,143.8,71.6,143.8z M143.2,71.9C143.2,71.9,143.2,71.9,143.2,71.9C143.2,71.9,143.2,71.9,143.2,71.9
-	C143.2,71.9,143.3,71.9,143.2,71.9C143.3,71.9,143.2,71.9,143.2,71.9z" Margin="27.5,15,0,15"/>
-                            <TextBlock Text="Accounting" Foreground="{StaticResource LightGrey}" x:Name="txt_accounting"
-                                   HorizontalAlignment="Left" VerticalAlignment="Center" 
-                              Grid.Column="1"  Tag="accounting"     Margin="10,0,0,0"/>
-                        </Grid>
-                    </Button>
+                    
+                    
 
 
-                    <Rectangle Fill="{StaticResource MainColor}"  Width="7.5" Margin="0,5"  
-                       Grid.Row="4" Tag="reports"  Visibility="Collapsed"     HorizontalAlignment="Left" x:Name="path_openReports"/>
-                    <Button  Width="220" Height="50" Grid.Row="4"
-                         HorizontalAlignment="Left"  Tag="reports"
-                 x:Name="btn_reports" Click="Btn_reports_Click"
-                    Background="{x:Null}" BorderBrush="{x:Null}"   
-                    Padding="0" >
-                        <Grid Width="220" Height="50" >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="50"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Path Fill="{StaticResource LightGrey}" x:Name="path_iconReports" Stretch="Fill"  
-                              HorizontalAlignment="Left" Grid.Column="0"  
-                         VerticalAlignment="Center" Width="20" Height="20" Tag="reports" 
-                              Data="M77.3,42.5l26,0.1c0,6.9-2.8,13.6-7.7,18.4c-1.2,1.1-2.4,2.2-3.8,3.1L77.3,42.5z M104.4,35.3
-	c0,0.5-0.4,1-0.9,1.1l-27.8,2c-0.5,0-1-0.4-1.1-0.9c-0.1-0.1-0.1-0.1-0.1-0.1L73.2,9.5c0-0.5,0.4-1,0.9-1.1c0.2,0,0.3,0,0.6,0
-	c0.2,0,0.4,0,0.6,0c7.6-0.1,14.6,2.8,19.9,7.6C100.4,20.9,103.8,27.6,104.4,35.3z M102.3,34.4c-0.7-6.7-3.9-12.6-8.5-16.9
-	c-4.9-4.5-11.4-7.2-18.5-7.1h0l1.3,25.8L102.3,34.4z M67.5,13.7c-13.7,2-23.8,13.7-23.8,27.6c0,15.4,12.5,27.9,27.9,27.9
-	c4.9,0,9.7-1.3,13.9-3.7L71.5,41.3L67.5,13.7z" Margin="27.5,15,0,15"/>
-                            <TextBlock Text="reports" Foreground="{StaticResource LightGrey}" x:Name="txt_reports"
-                                   HorizontalAlignment="Left" VerticalAlignment="Center" 
-                              Grid.Column="1"  Tag="reports"     Margin="10,0,0,0"/>
-                        </Grid>
-                    </Button>
+                    
                     
                     <Rectangle Fill="{StaticResource MainColor}"  Width="7.5" Margin="0,5"  
                        Grid.Row="5" Tag="sectionData"  Visibility="Collapsed"     HorizontalAlignment="Left" x:Name="path_openSectionData"/>                  
@@ -316,24 +259,24 @@
                         HorizontalAlignment="Right"  />
 
             <Grid   x:Name="grid_main" Grid.Row="1" Grid.Column="1"/>
-            <Grid Background="#F1F5F8"  Grid.Row="2" Grid.Column="1">
+            <Grid Background="#F1F5F8"  Grid.Row="2" Grid.Column="1" >
                 <Separator Margin="5 5 5 0" Background="{StaticResource veryLightGrey}" VerticalAlignment="Top" Width="auto" />
-                <StackPanel Orientation="Horizontal" Margin="10 5"
-                           HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                    <TextBlock Text="POS - " Foreground="{StaticResource Grey}"   />
-                    <TextBlock Text="SC Restaurant" Foreground="{StaticResource MainColor}"   />
-                    <TextBlock Text="Version: " Name="tb_versionTitle"
-                               Margin="25 0 5 0"
-                               Foreground="{StaticResource Grey}"/>
-                    <TextBlock Text="" Name="tb_version"
-                               Foreground="{StaticResource Grey}"   />
+                <StackPanel Orientation="Horizontal" Margin="15 15"
+                           HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                    <TextBlock Text="Cards" Foreground="{StaticResource MainColor}"  Margin="5 0 5 0"  />
+                     
                 </StackPanel>
-                <TextBlock Grid.Row="7" Grid.Column="0"  FontSize="12" Grid.ColumnSpan="6" 
-                   FontWeight="Normal" Foreground="#9B9B9B"
-                       VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                           Margin="5,5,25,5"
-                x:Name="txt_rightReserved"
-                           Text="2021 © All Right Reserved for SupClouds"/>
+                <StackPanel Orientation="Horizontal" Margin="10 5"
+                           HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock Text="Aleppo Chamber of Industry" Foreground="{StaticResource MainColor}"   />
+                    <TextBlock Text=" - " Foreground="{StaticResource LightGrey}"  />
+                    <TextBlock Text="Powered By" Foreground="{StaticResource LightGrey}"  />
+
+
+
+                </StackPanel>
+
             </Grid>
             <Grid     Grid.Row="2" Grid.Column="0"  Background="White"/>
         </Grid>

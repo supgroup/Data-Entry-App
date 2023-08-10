@@ -101,8 +101,8 @@ namespace DataEntryApp
         private void translate()
         {
             txt_book_sales.Text = resourcemanager.GetString("book_sales");
-            txt_accounting.Text = resourcemanager.GetString("accounting");
-            txt_reports.Text = resourcemanager.GetString("trReports");
+            //txt_accounting.Text = resourcemanager.GetString("accounting");
+            //txt_reports.Text = resourcemanager.GetString("trReports");
             txt_sectionData.Text = resourcemanager.GetString("trSectionData");
             txt_settings.Text = resourcemanager.GetString("trSettings");
 
