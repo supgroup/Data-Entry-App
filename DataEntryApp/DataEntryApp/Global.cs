@@ -10,8 +10,8 @@ namespace DataEntryApp
     {
         public const string APIKey = "1234";
         //public const string APIUri = "https://192.168.1.5:443/api/";
-        //public const string APIUri = "https://localhost:443/api/";
-        public const string APIUri = "https://51.210.241.73:443/api/";
+        public const string APIUri = "http://localhost:1004/api/";
+        //public const string APIUri = "https://51.210.241.73:443/api/";
 
         public static string ScannedImageLocation = "Thumb/Scan/scan.jpg";
         public const string TMPFolder = "Thumb";

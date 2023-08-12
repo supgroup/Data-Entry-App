@@ -184,9 +184,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="cities.cs">
-      <DependentUpon>DataentryModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Classes\ApiClasses\APIResult.cs" />
     <Compile Include="Classes\ApiClasses\City.cs" />
     <Compile Include="Classes\ApiClasses\Country.cs" />
     <Compile Include="Classes\ApiClasses\Departments.cs" />
@@ -220,48 +218,6 @@
     <Compile Include="converters\permissionsNameConverter.cs" />
     <Compile Include="converters\unlimitedConverter.cs" />
     <Compile Include="converters\unlimitedCountConverter.cs" />
-    <Compile Include="countriesCodes.cs">
-      <DependentUpon>DataentryModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="customers.cs">
-      <DependentUpon>DataentryModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataentryModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataentryModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataentryModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataentryModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataentryModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataentryModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="departments.cs">
-      <DependentUpon>DataentryModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="error.cs">
-      <DependentUpon>DataentryModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="nationalities.cs">
-      <DependentUpon>DataentryModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="setting.cs">
-      <DependentUpon>DataentryModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="setValues.cs">
-      <DependentUpon>DataentryModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="users.cs">
-      <DependentUpon>DataentryModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="userSetValues.cs">
-      <DependentUpon>DataentryModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="View\badge\uc_applications.xaml.cs">
       <DependentUpon>uc_applications.xaml</DependentUpon>
     </Compile>
@@ -419,17 +375,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Content Include="DataentryModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataentryModel.edmx</DependentUpon>
-      <LastGenOutput>DataentryModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DataentryModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataentryModel.edmx</DependentUpon>
-      <LastGenOutput>DataentryModel.cs</LastGenOutput>
-    </Content>
     <Resource Include="pic\champer_industry_logo.png" />
+    <Resource Include="pic\program-login-bg.png" />
     <Content Include="Thumb\users\tmp.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -515,13 +462,6 @@
     <Resource Include="fonts\cairo-font\cairo bold.ttf" />
     <Resource Include="fonts\cairo-font\cairo-light.ttf" />
     <Resource Include="fonts\barcodeFont.ttf" />
-    <EntityDeploy Include="DataentryModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataentryModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="DataentryModel.edmx.diagram">
-      <DependentUpon>DataentryModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\AdministratorApp.ApiClasses.BookSts.datasource" />
     <None Include="Properties\DataSources\AdministratorApp.ApiClasses.Customers.datasource" />

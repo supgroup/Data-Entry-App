@@ -22,7 +22,7 @@ namespace DataEntryApp.ApiClasses
         public string name { get; set; }
         public byte isDefault { get; set; }
 
-       
+        private string urimainpath = "Country/";
         /// <summary>
         /// ///////////////////////////////////////
         /// </summary>
@@ -32,56 +32,42 @@ namespace DataEntryApp.ApiClasses
         {
 
             List<Country> list = new List<Country>();
-            try
-            {
-                using (dedbEntities entity = new dedbEntities())
-                {
-                    list = entity.countriesCodes.ToList()
-                         .Select(c => new Country
-                         {
-                          countryId =  c.countryId,
-                         code  =  c.code,
-                           name = c.name,
-                           currency = c.currency,
-                         isDefault   = c.isDefault,
-                         }).ToList();
+            //  Dictionary<string, string> parameters = new Dictionary<string, string>();
+            //parameters.Add("mainBranchId", mainBranchId.ToString());
+            //parameters.Add("userId", userId.ToString());
+            //parameters.Add("date", date.ToString());
+            //#################
+            IEnumerable<Claim> claims = await APIResult.getList(urimainpath + "GetAll");
 
-                    return list;
+            foreach (Claim c in claims)
+            {
+                if (c.Type == "scopes")
+                {
+                    list.Add(JsonConvert.DeserializeObject<Country>(c.Value, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" }));
                 }
             }
-            catch
-            {
-                return list;
-            }
+            return list;
+
         }
 
         public async Task<List<Country>> GetAllRegion()
         {
             List<Country> list = new List<Country>();
-            try
+            //  Dictionary<string, string> parameters = new Dictionary<string, string>();
+            //parameters.Add("mainBranchId", mainBranchId.ToString());
+            //parameters.Add("userId", userId.ToString());
+            //parameters.Add("date", date.ToString());
+            //#################
+            IEnumerable<Claim> claims = await APIResult.getList(urimainpath + "GetAllRegion");
+
+            foreach (Claim c in claims)
             {
-                using (dedbEntities entity = new dedbEntities())
+                if (c.Type == "scopes")
                 {
-                    list = entity.countriesCodes.ToList()
-                         .Select(c => new Country
-                         {
-                             countryId = c.countryId,
-                             code = c.code,
-                             name = c.name,
-                             currency = c.currency,
-                             isDefault = c.isDefault,
-                         }).ToList();
-                    return list;
-
+                    list.Add(JsonConvert.DeserializeObject<Country>(c.Value, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" }));
                 }
-
             }
-
-            catch
-            {
-                return list;
-            }
-
+            return list;
         }
 
        

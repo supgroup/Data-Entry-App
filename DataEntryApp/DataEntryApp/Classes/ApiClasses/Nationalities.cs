@@ -30,7 +30,7 @@ namespace DataEntryApp.ApiClasses
 
         public bool canDelete { get; set; }
 
-
+        private string urimainpath = "nationalities/";
 
         /// <summary>
         /// ///////////////////////////////////////
@@ -40,305 +40,112 @@ namespace DataEntryApp.ApiClasses
         public async Task<List<Nationalities>> GetAll()
         {
 
-            List<Nationalities> List = new List<Nationalities>();
-            bool canDelete = false;
-            try
+            List<Nationalities> list = new List<Nationalities>();
+
+            IEnumerable<Claim> claims = await APIResult.getList(urimainpath + "GetAll");
+
+            foreach (Claim c in claims)
             {
-                using (dedbEntities entity = new dedbEntities())
+                if (c.Type == "scopes")
                 {
-                    List = (from S in entity.nationalities
-                            select new Nationalities()
-                            {
-                                nationalityId = S.nationalityId,
-                                name = S.name,
-                                notes = S.notes,
-                                isActive = S.isActive,
-                                createUserId = S.createUserId,
-                                updateUserId = S.updateUserId,
-                                createDate = S.createDate,
-                                updateDate = S.updateDate,
-
-
-                                canDelete = true,
-
-                            }).ToList();
-
-                    //if (List.Count > 0)
-                    //{
-                    //    for (int i = 0; i < List.Count; i++)
-                    //    {
-                    //        if (List[i].isActive == 1)
-                    //        {
-                    //            int userId = (int)List[i].userId;
-                    //            var itemsI = entity.packageUser.Where(x => x.userId == userId).Select(b => new { b.userId }).FirstOrDefault();
-
-                    //            if ((itemsI is null))
-                    //                canDelete = true;
-                    //        }
-                    //        List[i].canDelete = canDelete;
-                    //    }
-                    //}
-                    return List;
+                    list.Add(JsonConvert.DeserializeObject<Nationalities>(c.Value, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" }));
                 }
-
             }
-            catch
-            {
-                return List;
-            }
+            return list;
         }
 
         public async Task<decimal> Save(Nationalities newitem)
         {
-            nationalities newObject = new nationalities();
-            newObject = JsonConvert.DeserializeObject<nationalities>(JsonConvert.SerializeObject(newitem));
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            string method = urimainpath + "Save";
 
-            decimal message = 0;
-            if (newObject != null)
-            {
-                if (newObject.updateUserId == 0 || newObject.updateUserId == null)
-                {
-                    Nullable<int> id = null;
-                    newObject.updateUserId = id;
-                }
-                if (newObject.createUserId == 0 || newObject.createUserId == null)
-                {
-                    Nullable<int> id = null;
-                    newObject.createUserId = id;
-                }
-           
-
-
-                try
-                {
-                    using (dedbEntities entity = new dedbEntities())
-                    {
-                        var locationEntity = entity.Set<nationalities>();
-                        if (newObject.nationalityId == 0)
-                        {
-                            newObject.createDate = DateTime.Now;
-                            newObject.updateDate = newObject.createDate;
-                            newObject.updateUserId = newObject.createUserId;
-
-
-                            locationEntity.Add(newObject);
-                            entity.SaveChanges();
-                            message = newObject.nationalityId;
-                        }
-                        else
-                        {
-                            var tmpObject = entity.nationalities.Where(p => p.nationalityId == newObject.nationalityId).FirstOrDefault();
-                            newObject.updateDate = DateTime.Now;
-                            //  tmpObject.nationalityId = newObject.nationalityId;
-                            tmpObject.nationalityId = newObject.nationalityId;
-                            tmpObject.name = newObject.name;
-                            tmpObject.notes = newObject.notes;
-                            tmpObject.isActive = newObject.isActive;
-                           // tmpObject.createUserId = newObject.createUserId;
-                            tmpObject.updateUserId = newObject.updateUserId;
-                            //tmpObject.createDate = newObject.createDate;
-                            //tmpObject.updateDate = newObject.updateDate;
-
-
-                            entity.SaveChanges();
-
-                            message = tmpObject.nationalityId;
-                        }
-                    }
-                    return message;
-                }
-                catch
-                {
-                    return 0;
-                }
-            }
-            else
-            {
-                return 0;
-            }
+            var myContent = JsonConvert.SerializeObject(newitem);
+            parameters.Add("Object", myContent);
+            return await APIResult.post(method, parameters);
         }
-        public async Task<long> FindorSave(Nationalities newitem)
-        {
-            nationalities newObject = new nationalities();
-            newObject = JsonConvert.DeserializeObject<nationalities>(JsonConvert.SerializeObject(newitem));
-            long message = 0;
-            if (newObject != null)
-            {
-                if (newObject.updateUserId == 0 || newObject.updateUserId == null)
-                {
-                    Nullable<int> id = null;
-                    newObject.updateUserId = id;
-                }
-                if (newObject.createUserId == 0 || newObject.createUserId == null)
-                {
-                    Nullable<int> id = null;
-                    newObject.createUserId = id;
-                }
-                try
-                {
-                    using (dedbEntities entity = new dedbEntities())
-                    {
-                        var locationEntity = entity.Set<nationalities>();
-                        string serchval = newitem.name == null ? "" : newitem.name.Trim();
-                            var tmpObject = entity.nationalities.Where(p => p.name == serchval).FirstOrDefault();
-                            if (tmpObject == null)
-                            {
-                                //add
-                                newObject.createDate = DateTime.Now;
-                                newObject.updateDate = newObject.createDate;
-                                newObject.updateUserId = newObject.createUserId;
-                                newObject.name = newitem.name.Trim();
-                            newObject.isActive = true;
-                                locationEntity.Add(newObject);
-                                entity.SaveChanges();
-                                message = newObject.nationalityId;
-                            }
-                            else
-                            {
-                                message = tmpObject.nationalityId;
-                            }
-                    }
-                    return message;
-                }
-                catch
-                {
-                    return 0;
-                }
-            }
-            else
-            {
-                return 0;
-            }
-        }
-        public async Task<Nationalities> GetByID(int itemId)
-        {
-
-
-            Nationalities item = new Nationalities();
-           
-
-            Nationalities row = new Nationalities();
-            try
-            {
-                using (dedbEntities entity = new dedbEntities())
-                {
-                    var list = entity.nationalities.ToList();
-                    row = list.Where(u => u.nationalityId == itemId)
-                     .Select(S => new Nationalities()
-                     {
-                         nationalityId = S.nationalityId,
-                         name = S.name,
-                         notes = S.notes,
-                         isActive = S.isActive,
-                         createUserId = S.createUserId,
-                         updateUserId = S.updateUserId,
-                         createDate = S.createDate,
-                         updateDate = S.updateDate,
-
-
-                     }).FirstOrDefault();
-                    return row;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                row = new Nationalities();
-                //userrow.name = ex.ToString();
-                return row;
-            }
-        }
-        public async Task<decimal> Delete(int id, int signuserId, bool final)
-        {
-
-            decimal message = 0;
-            if (final)
-            {
-                try
-                {
-                    using (dedbEntities entity = new dedbEntities())
-                    {
-                        nationalities objectDelete = entity.nationalities.Find(id);
-
-                        entity.nationalities.Remove(objectDelete);
-                        message = entity.SaveChanges();
-                        return message;
-
-                    }
-                }
-                catch
-                {
-                    return 0;
-
-                }
-            }
-            return message;
-            //else
-            //{
-            //    try
-            //    {
-            //        using (dedbEntities entity = new dedbEntities())
-            //        {
-            //            nationalities objectDelete = entity.nationalities.Find(userId);
-
-            //            objectDelete.isActive = 0;
-            //            objectDelete.updateUserId = signuserId;
-            //        objectDelete.updateDate = DateTime.Now;
-            //            message = entity.SaveChanges() ;
-
-            //            return message;
-            //        }
-            //    }
-            //    catch
-            //    {
-            //        return 0;
-            //    }
-            //}
-
-        }
-
-        //public async Task<string> generateCodeNumber(string type)
-        //{
-        //    int sequence = await GetLastNumOfCode(type);
-        //    sequence++;
-        //    string strSeq = sequence.ToString();
-        //    if (sequence <= 999999)
-        //        strSeq = sequence.ToString().PadLeft(6, '0');
-        //    string transNum = type.ToUpper() + "-" + strSeq;
-        //    return transNum;
-        //}
-
-        //public async Task<int> GetLastNumOfCode(string type)
+        //public async Task<long?> savenationality(customers newObject,Customers newitem)
         //{
 
-        //    try
-        //    {
-        //        List<string> numberList;
-        //        int lastNum = 0;
-        //        using (dedbEntities entity = new dedbEntities())
+        //        Nationalities natmodel = new Nationalities();
+        //        natmodel.createDate = newObject.createDate;
+        //        natmodel.createUserId = newObject.createUserId;
+        //        natmodel.updateUserId = newObject.updateUserId;
+        //        natmodel.name = newitem.Nationality;
+        //        natmodel.nationalityId = newitem.nationalityId==null?0:(long) newitem.nationalityId;
+        //        long nid = await natmodel.FindorSave(natmodel);
+        //        if (nid > 0)
         //        {
-        //            numberList = entity.nationalities.Where(b => b.nu.Contains(type + "-")).Select(b => b.serviceNum).ToList();
-
-        //            for (int i = 0; i < numberList.Count; i++)
-        //            {
-        //                string code = numberList[i];
-        //                string s = code.Substring(code.LastIndexOf("-") + 1);
-        //                numberList[i] = s;
-        //            }
-        //            if (numberList.Count > 0)
-        //            {
-        //                numberList.Sort();
-        //                lastNum = int.Parse(numberList[numberList.Count - 1]);
-        //            }
+        //            newObject.nationalityId = nid;
+        //        }
+        //        else
+        //        {
+        //            newObject.nationalityId = null;
         //        }
 
-        //        return lastNum;
-        //    }
-        //    catch
-        //    {
-        //        return 0;
-        //    }
+        //    return newObject.nationalityId;
         //}
+        //public async Task<long?> savedepartment(customers newObject, Customers newitem)
+        //{
+
+        //    Departments departmentmodel = new Departments();
+
+        //    departmentmodel.name = newitem.department;
+        //    departmentmodel.departmentId = newitem.departmentId == null ? 0 : (long)newitem.departmentId;
+        //    long depid = await departmentmodel.FindorSave(departmentmodel);
+        //    if (depid > 0)
+        //    {
+        //        newObject.departmentId = depid;
+        //    }
+        //    else
+        //    {
+        //        newObject.departmentId = null;
+        //    }
+
+        //    return newObject.departmentId;
+        //}
+        public async Task<Nationalities> GetByID(long itemId)
+        {
+
+            Nationalities item = new Nationalities();
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("itemId", itemId.ToString());
+            //#################
+            IEnumerable<Claim> claims = await APIResult.getList(urimainpath + "GetByID", parameters);
+
+            foreach (Claim c in claims)
+            {
+                if (c.Type == "scopes")
+                {
+                    item = JsonConvert.DeserializeObject<Nationalities>(c.Value, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+                    break;
+                }
+            }
+
+
+            return item;
+
+
+        }
+        public async Task<decimal> Delete(long id, long signuserId, bool final)
+        {
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("userId", id.ToString());
+            parameters.Add("signuserId", signuserId.ToString());
+            parameters.Add("final", final.ToString());
+
+            string method = urimainpath + "Delete";
+            return await APIResult.post(method, parameters);
+        }
+        public async Task<decimal> FindorSave(Nationalities newitem)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            string method = urimainpath + "Save";
+
+            var myContent = JsonConvert.SerializeObject(newitem);
+            parameters.Add("Object", myContent);
+            return await APIResult.post(method, parameters);
+        }
 
     }
 }

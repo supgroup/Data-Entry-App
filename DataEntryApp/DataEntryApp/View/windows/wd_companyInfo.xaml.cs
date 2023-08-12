@@ -430,8 +430,8 @@ namespace DataEntryApp.View.windows
                         //if (!sLogo.Equals(0))
                         //{
                             string tmp = "pic/no-image-icon-125x125.png";
-                        
-                            string b = await setVLogo.saveImage(imgFileName, Md5Encription.MD5Hash("Inc-m" + logoId));
+                        string b = "";
+                          //  string b = await setVLogo.downloadImage(  Md5Encription.MD5Hash("Inc-m" + logoId));
                             setVLogo.value = b;
                             FillCombo.logoImage = b;
                             sLogo = await valueModel.Save(setVLogo);

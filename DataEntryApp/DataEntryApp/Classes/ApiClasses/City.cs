@@ -21,33 +21,28 @@ namespace DataEntryApp.ApiClasses
         public int cityId { get; set; }
         public string cityCode { get; set; }
         public Nullable<int> countryId { get; set; }
+        private string urimainpath = "city/";
 
         public async Task<List<City>> Get()
         {
 
+
             List<City> list = new List<City>();
-            try
+            //  Dictionary<string, string> parameters = new Dictionary<string, string>();
+            //parameters.Add("mainBranchId", mainBranchId.ToString());
+            //parameters.Add("userId", userId.ToString());
+            //parameters.Add("date", date.ToString());
+            //#################
+            IEnumerable<Claim> claims = await APIResult.getList(urimainpath + "Get");
+
+            foreach (Claim c in claims)
             {
-                using (dedbEntities entity = new dedbEntities())
+                if (c.Type == "scopes")
                 {
-
-                    list = entity.cities
-              .Select(c => new City
-              {
-                  cityId = c.cityId,
-                  cityCode = c.cityCode,
-                  countryId = c.countryId
-              })
-              .ToList();
-
-                    return list;
+                    list.Add(JsonConvert.DeserializeObject<City>(c.Value, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" }));
                 }
-
             }
-            catch
-            {
-                return list;
-            }
+            return list;
         }
     }
 }

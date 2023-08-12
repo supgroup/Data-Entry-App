@@ -26,98 +26,50 @@ namespace DataEntryApp.Classes
         {
 
             List<SettingCls> list = new List<SettingCls>();
-            try
+            //  Dictionary<string, string> parameters = new Dictionary<string, string>();
+            //parameters.Add("mainBranchId", mainBranchId.ToString());
+            //parameters.Add("userId", userId.ToString());
+            //parameters.Add("date", date.ToString());
+            //#################
+            IEnumerable<Claim> claims = await APIResult.getList("setting/Get");
+
+            foreach (Claim c in claims)
             {
-                using (dedbEntities entity = new dedbEntities())
+                if (c.Type == "scopes")
                 {
-                     list = entity.setting
-                       .Select(c => new SettingCls
-                       {
-                           settingId=c.settingId,
-                           name=c.name,
-                           notes= c.notes,
-
-                       }).ToList();
-
-                    return list;
-
+                    list.Add(JsonConvert.DeserializeObject<SettingCls>(c.Value, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" }));
                 }
-
             }
-            catch
-            {
-                return list;
-            }
+            return list;
         }
             public async Task<List<SettingCls>> GetByNotes(string notes)
         {
-            List<SettingCls> list = new List<SettingCls>();        
-            using (dedbEntities entity = new dedbEntities())
+            List<SettingCls> list = new List<SettingCls>();
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("notes", notes);
+            //#################
+            IEnumerable<Claim> claims = await APIResult.getList("setting/GetByNotes", parameters);
+
+
+
+            foreach (Claim c in claims)
             {
-
-                List<setting> settingList1 = entity.setting.ToList();
-                 list = settingList1.Where(c => c.notes == notes).Select(c => new SettingCls
+                if (c.Type == "scopes")
                 {
-                    settingId = c.settingId,
-                    name = c.name,
-                    notes = c.notes,
-                }).ToList();
-
-                return list;
+                    list.Add(JsonConvert.DeserializeObject<SettingCls>(c.Value, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" }));
+                }
             }
+            return list;
         }
 
         public async Task<decimal> Save(SettingCls newitem)
         {
-            setting newObject = new setting();
-            newObject = JsonConvert.DeserializeObject<setting>(JsonConvert.SerializeObject(newitem));
-             
-            decimal message = 0;
-            if (newObject != null)
-            {
-                 
-                setting tmpObject; 
-                try
-                {
-                    using (dedbEntities entity = new dedbEntities())
-                    {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            string method = "setting/Save";
 
-                        var sEntity = entity.Set<setting>();
-                        if (newObject.settingId == 0)
-                        {
-
-                            sEntity.Add(newObject);
-                            entity.SaveChanges();
-                            message = newObject.settingId;
-                        }
-                        else
-                        {
-                            tmpObject = entity.setting.Where(p => p.settingId == newObject.settingId).FirstOrDefault();
-                             
-                            tmpObject.settingId = newObject.settingId;
-                            tmpObject.name = newObject.name;
-                            tmpObject.notes = newObject.notes;
-                             
-                            entity.SaveChanges();
-                            message = tmpObject.settingId ;
-                        } 
-                    }
-                    return message;
-
-                }
-                catch
-                {
-                   
-                    return 0;
-                }
-
-
-            }
-            else
-            {
-               
-                return 0;
-            }
+            var myContent = JsonConvert.SerializeObject(newitem);
+            parameters.Add("Object", myContent);
+            return await APIResult.post(method, parameters);
 
         }
 
@@ -126,43 +78,31 @@ namespace DataEntryApp.Classes
         {
 
             SettingCls item = new SettingCls();
-            int Id = 0;
-            
-            using (dedbEntities entity = new dedbEntities())
-            {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("id", settingId.ToString());
+            //#################
+            IEnumerable<Claim> claims = await APIResult.getList("setting/GetByID", parameters);
 
-                item = entity.setting
-               .Where(c => c.settingId == Id)
-               .Select(c => new SettingCls
-               {
-                 settingId=  c.settingId,
-                   name=  c.name,
-                   notes=  c.notes,
-               }).FirstOrDefault();
-                return item;
+            foreach (Claim c in claims)
+            {
+                if (c.Type == "scopes")
+                {
+                    item = JsonConvert.DeserializeObject<SettingCls>(c.Value, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+                    break;
+                }
             }
+            return item;
+
         }
 
         public async Task<decimal> Delete(int Id, int userId)
         {
-            decimal message = 0;
-            try
-            {
-                using (dedbEntities entity = new dedbEntities())
-                {
-                    setting sObj = entity.setting.Find(Id);
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("Id", Id.ToString());
+            parameters.Add("userId", userId.ToString());
 
-                    entity.setting.Remove(sObj);
-                    message = entity.SaveChanges() ;
-
-                    //  return Ok("medal is Deleted Successfully");
-                }
-                return message;
-            }
-            catch
-            {
-                return 0;
-            }
+            string method = "setting/Delete";
+            return await APIResult.post(method, parameters);
         }
     }
 }

@@ -380,14 +380,14 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" x:Name="btn_add"   Click="Btn_add_Click"
-                        materialDesign:ButtonAssist.CornerRadius="10" Background="{StaticResource SecondColor}" BorderBrush="{x:Null}"  
-                        Margin="5"    Content="add"/>
+                        materialDesign:ButtonAssist.CornerRadius="10" Background="{DynamicResource Grey}" BorderBrush="{x:Null}"  
+                        Margin="5"    Content="add" Foreground="{DynamicResource White}"/>
                 <Button Grid.Column="1" x:Name="btn_update" Click="Btn_update_Click"
-                       materialDesign:ButtonAssist.CornerRadius="10" Background="{StaticResource SecondColor}" BorderBrush="{x:Null}" 
-                        Margin="5"    Content="update"/>
+                       materialDesign:ButtonAssist.CornerRadius="10" Background="{DynamicResource Grey}" BorderBrush="{x:Null}" 
+                        Margin="5"    Content="update" Foreground="{DynamicResource White}"/>
                 <Button Grid.Column="2" x:Name="btn_delete"  Click="Btn_delete_Click"
-                       materialDesign:ButtonAssist.CornerRadius="10" Background="{StaticResource SecondColor}" BorderBrush="{x:Null}" 
-                        Margin="5"    Content="delete"/>
+                       materialDesign:ButtonAssist.CornerRadius="10" Background="{DynamicResource Grey}" BorderBrush="{x:Null}" 
+                        Margin="5"    Content="delete" Foreground="{DynamicResource White}"/>
             </Grid>
         </Grid>
     </Grid>

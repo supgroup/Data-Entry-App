@@ -38,7 +38,7 @@ namespace DataEntryApp.ApiClasses
         public Nullable<long> departmentId { get; set; }
         public bool canDelete { get; set; }
 
-
+        private string urimainpath = "customers/";
 
         /// <summary>
         /// ///////////////////////////////////////
@@ -48,279 +48,102 @@ namespace DataEntryApp.ApiClasses
         public async Task<List<Customers>> GetAll()
         {
 
-            List<Customers> List = new List<Customers>();
-            bool canDelete = false;
-            try
+            List<Customers> list = new List<Customers>();
+
+            IEnumerable<Claim> claims = await APIResult.getList(urimainpath + "GetAll");
+
+            foreach (Claim c in claims)
             {
-                using (dedbEntities entity = new dedbEntities())
+                if (c.Type == "scopes")
                 {
-                    List = (from S in entity.customers
-                            join N in entity.nationalities on S.nationalityId equals N.nationalityId into JN
-                            join D in entity.departments on S.departmentId equals D.departmentId into JD
-                            from NAT in JN.DefaultIfEmpty()
-                            from DEP in JD.DefaultIfEmpty()
-                            select new Customers()
-                            {
-                                custId = S.custId,
-                                custname = S.custname,
-                                lastName = S.lastName,
-                                mobile = S.mobile,
-                                department =DEP.name,
-                                barcode = S.barcode,
-                                printDate = S.printDate,
-                                image = S.image,
-                                notes = S.notes,
-                                createUserId = S.createUserId,
-                                updateUserId = S.updateUserId,
-                                createDate = S.createDate,
-                                updateDate = S.updateDate,
-                                isActive = S.isActive,
-                                nationalityId = S.nationalityId,
-                                Nationality = NAT.name,
-                                departmentId = S.departmentId,
-                                canDelete = true,
-
-                            }).ToList();
-
-                    //if (List.Count > 0)
-                    //{
-                    //    for (int i = 0; i < List.Count; i++)
-                    //    {
-                    //        if (List[i].isActive == 1)
-                    //        {
-                    //            int userId = (int)List[i].userId;
-                    //            var itemsI = entity.packageUser.Where(x => x.userId == userId).Select(b => new { b.userId }).FirstOrDefault();
-
-                    //            if ((itemsI is null))
-                    //                canDelete = true;
-                    //        }
-                    //        List[i].canDelete = canDelete;
-                    //    }
-                    //}
-                    return List;
+                    list.Add(JsonConvert.DeserializeObject<Customers>(c.Value, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" }));
                 }
-
             }
-            catch
-            {
-                return List;
-            }
+            return list;
         }
 
         public async Task<decimal> Save(Customers newitem)
         {
-            customers newObject = new customers();
-            newObject = JsonConvert.DeserializeObject<customers>(JsonConvert.SerializeObject(newitem));
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            string method = urimainpath + "Save";
 
-            decimal message = 0;
-            if (newObject != null)
-            {
-                if (newObject.updateUserId == 0 || newObject.updateUserId == null)
-                {
-                    Nullable<int> id = null;
-                    newObject.updateUserId = id;
-                }
-                if (newObject.createUserId == 0 || newObject.createUserId == null)
-                {
-                    Nullable<int> id = null;
-                    newObject.createUserId = id;
-                }
-                departments depmodel = new departments();
-                try
-                {
-                    using (dedbEntities entity = new dedbEntities())
-                    {
-                        var locationEntity = entity.Set<customers>();
-                        if (newObject.custId == 0)
-                        {
-                            newObject.createDate = DateTime.Now;
-                            newObject.updateDate = newObject.createDate;
-                            newObject.updateUserId = newObject.createUserId;
-                            //nat
-                            newObject.nationalityId= await savenationality(newObject, newitem);
-                            newObject.departmentId = await savedepartment(newObject, newitem);
-                            //
-
-                            locationEntity.Add(newObject);
-                            entity.SaveChanges();
-                            message = newObject.custId;
-                        }
-                        else
-                        {
-                            var tmpObject = entity.customers.Where(p => p.custId == newObject.custId).FirstOrDefault();
-                            tmpObject.updateDate = DateTime.Now;
-                          //  tmpObject.custId = newObject.custId;
-                            tmpObject.custname = newObject.custname;
-                            tmpObject.lastName = newObject.lastName;
-                            tmpObject.mobile = newObject.mobile;
-                            tmpObject.department = newObject.department;
-                            tmpObject.barcode = newObject.barcode;
-                            tmpObject.printDate = newObject.printDate;
-                            tmpObject.image = newObject.image;
-                            tmpObject.notes = newObject.notes;
-                          //  tmpObject.createUserId = newObject.createUserId;
-                            tmpObject.updateUserId = newObject.updateUserId;
-                          //  tmpObject.createDate = newObject.createDate;
-                         //   tmpObject.updateDate = newObject.updateDate;
-                            tmpObject.isActive = newObject.isActive;
-                            //nat
-                            //nat
-                            tmpObject.nationalityId = await savenationality(newObject, newitem);
-                            tmpObject.departmentId = await savedepartment(newObject, newitem);
-                            //
-                            //
-
-
-                            entity.SaveChanges();
-
-                            message = tmpObject.custId;
-                        }
-                    }
-                    return message;
-                }
-                catch(Exception ex)
-                {
-                    
-                    return 0;
-                }
-            }
-            else
-            {
-                return 0;
-            }
+            var myContent = JsonConvert.SerializeObject(newitem);
+            parameters.Add("Object", myContent);
+            return await APIResult.post(method, parameters);
         }
-        public async Task<long?> savenationality(customers newObject,Customers newitem)
-        {
+        //public async Task<long?> savenationality(customers newObject,Customers newitem)
+        //{
             
-                Nationalities natmodel = new Nationalities();
-                natmodel.createDate = newObject.createDate;
-                natmodel.createUserId = newObject.createUserId;
-                natmodel.updateUserId = newObject.updateUserId;
-                natmodel.name = newitem.Nationality;
-                natmodel.nationalityId = newitem.nationalityId==null?0:(long) newitem.nationalityId;
-                long nid = await natmodel.FindorSave(natmodel);
-                if (nid > 0)
-                {
-                    newObject.nationalityId = nid;
-                }
-                else
-                {
-                    newObject.nationalityId = null;
-                }
+        //        Nationalities natmodel = new Nationalities();
+        //        natmodel.createDate = newObject.createDate;
+        //        natmodel.createUserId = newObject.createUserId;
+        //        natmodel.updateUserId = newObject.updateUserId;
+        //        natmodel.name = newitem.Nationality;
+        //        natmodel.nationalityId = newitem.nationalityId==null?0:(long) newitem.nationalityId;
+        //        long nid = await natmodel.FindorSave(natmodel);
+        //        if (nid > 0)
+        //        {
+        //            newObject.nationalityId = nid;
+        //        }
+        //        else
+        //        {
+        //            newObject.nationalityId = null;
+        //        }
             
-            return newObject.nationalityId;
-        }
-        public async Task<long?> savedepartment(customers newObject, Customers newitem)
+        //    return newObject.nationalityId;
+        //}
+        //public async Task<long?> savedepartment(customers newObject, Customers newitem)
+        //{
+
+        //    Departments departmentmodel = new Departments();
+
+        //    departmentmodel.name = newitem.department;
+        //    departmentmodel.departmentId = newitem.departmentId == null ? 0 : (long)newitem.departmentId;
+        //    long depid = await departmentmodel.FindorSave(departmentmodel);
+        //    if (depid > 0)
+        //    {
+        //        newObject.departmentId = depid;
+        //    }
+        //    else
+        //    {
+        //        newObject.departmentId = null;
+        //    }
+
+        //    return newObject.departmentId;
+        //}
+        public async Task<Customers> GetByID(long itemId)
         {
-
-            Departments departmentmodel = new Departments();
-
-            departmentmodel.name = newitem.department;
-            departmentmodel.departmentId = newitem.departmentId == null ? 0 : (long)newitem.departmentId;
-            long depid = await departmentmodel.FindorSave(departmentmodel);
-            if (depid > 0)
-            {
-                newObject.departmentId = depid;
-            }
-            else
-            {
-                newObject.departmentId = null;
-            }
-
-            return newObject.departmentId;
-        }
-        public async Task<Customers> GetByID(int itemId)
-        {
-
 
             Customers item = new Customers();
-           
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("itemId", itemId.ToString());
+            //#################
+            IEnumerable<Claim> claims = await APIResult.getList(urimainpath + "GetByID", parameters);
 
-            Customers row = new Customers();
-            try
+            foreach (Claim c in claims)
             {
-                using (dedbEntities entity = new dedbEntities())
+                if (c.Type == "scopes")
                 {
-                    var list = entity.customers.ToList();
-                    row = list.Where(u => u.custId == itemId)
-                     .Select(S => new Customers()
-                     {
-                         custId = S.custId,
-                         custname = S.custname,
-                         lastName = S.lastName,
-                         mobile = S.mobile,
-                         department = S.department,
-                         barcode = S.barcode,
-                         printDate = S.printDate,
-                         image = S.image,
-                         notes = S.notes,
-                         createUserId = S.createUserId,
-                         updateUserId = S.updateUserId,
-                         createDate = S.createDate,
-                         updateDate = S.updateDate,
-                         isActive = S.isActive,
-                         nationalityId = S.nationalityId,
-
-
-                     }).FirstOrDefault();
-                    return row;
+                    item = JsonConvert.DeserializeObject<Customers>(c.Value, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+                    break;
                 }
+            }
 
-            }
-            catch (Exception ex)
-            {
-                row = new Customers();
-                //userrow.name = ex.ToString();
-                return row;
-            }
+
+            return item;
+
+
         }
         public async Task<decimal> Delete(long id, long signuserId, bool final)
         {
 
-            decimal message = 0;
-            if (final)
-            {
-                try
-                {
-                    using (dedbEntities entity = new dedbEntities())
-                    {
-                        customers objectDelete = entity.customers.Find(id);
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("userId", id.ToString());
+            parameters.Add("signuserId", signuserId.ToString());
+            parameters.Add("final", final.ToString());
 
-                        entity.customers.Remove(objectDelete);
-                        message = entity.SaveChanges();
-                        return message;
-
-                    }
-                }
-                catch
-                {
-                    return 0;
-
-                }
-            }
-            return message;
-            //else
-            //{
-            //    try
-            //    {
-            //        using (dedbEntities entity = new dedbEntities())
-            //        {
-            //            customers objectDelete = entity.customers.Find(userId);
-
-            //            objectDelete.isActive = 0;
-            //            objectDelete.updateUserId = signuserId;
-            //        objectDelete.updateDate = DateTime.Now;
-            //            message = entity.SaveChanges() ;
-
-            //            return message;
-            //        }
-            //    }
-            //    catch
-            //    {
-            //        return 0;
-            //    }
-            //}
-
+            string method = urimainpath + "Delete";
+            return await APIResult.post(method, parameters);
         }
 
         //public async Task<string> generateCodeNumber(string type)

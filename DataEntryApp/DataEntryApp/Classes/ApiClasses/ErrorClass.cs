@@ -25,9 +25,9 @@ namespace DataEntryApp.ApiClasses
         public Nullable<System.DateTime> createDate { get; set; }
         public Nullable<long> createUserId { get; set; }
 
-       
 
-        
+        private string urimainpath = "errorController/";
+
         /// <summary>
         /// ///////////////////////////////////////
         /// </summary>
@@ -37,102 +37,32 @@ namespace DataEntryApp.ApiClasses
         public async Task<List<ErrorClass>> GetAll()
         {
             List<ErrorClass> list = new List<ErrorClass>();
-            try
+            //  Dictionary<string, string> parameters = new Dictionary<string, string>();
+            //parameters.Add("mainBranchId", mainBranchId.ToString());
+            //parameters.Add("userId", userId.ToString());
+            //parameters.Add("date", date.ToString());
+            //#################
+            IEnumerable<Claim> claims = await APIResult.getList(urimainpath + "GetAll");
+
+            foreach (Claim c in claims)
             {
-                using (dedbEntities entity = new dedbEntities())
+                if (c.Type == "scopes")
                 {
-                    list = (from S in entity.error
-                                select new ErrorClass()
-                                {
-
-                                    errorId = S.errorId,
-                                    num = S.num,
-                                    msg = S.msg,
-                                    stackTrace = S.stackTrace,
-                                    targetSite = S.targetSite,
-                                    createDate = S.createDate,
-                                    createUserId = S.createUserId,
-
-
-                                }).ToList();
-
-
-                    return list;
-
+                    list.Add(JsonConvert.DeserializeObject<ErrorClass>(c.Value, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" }));
                 }
-
             }
-            catch
-            {
-                return list;
-            }
+            return list;
         }
 
         public async Task<decimal> Save(ErrorClass obj)
         {
 
-            error newObject = new error();
-            newObject = JsonConvert.DeserializeObject<error>(JsonConvert.SerializeObject(obj));
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            string method = urimainpath + "Save";
 
-         decimal   message = 0;
-
-
-
-            if (newObject != null)
-            {
-
-
-                if (newObject.createUserId == 0 || newObject.createUserId == null)
-                {
-                    Nullable<int> id = null;
-                    newObject.createUserId = id;
-                }
-
-
-                try
-                {
-                    using (dedbEntities entity = new dedbEntities())
-                    {
-                        var locationEntity = entity.Set<error>();
-                        if (newObject.errorId == 0)
-                        {
-                            newObject.createDate =  DateTime.Now ;
-
-
-
-                            locationEntity.Add(newObject);
-                            entity.SaveChanges();
-                            message = newObject.errorId ;
-                        }
-                        else
-                        {
-                            var tmpObject = entity.error.Where(p => p.errorId == newObject.errorId).FirstOrDefault();
-
-
-                            tmpObject.errorId = newObject.errorId;
-                            tmpObject.num = newObject.num;
-                            tmpObject.msg = newObject.msg;
-                            tmpObject.stackTrace = newObject.stackTrace;
-                            tmpObject.targetSite = newObject.targetSite;
-
-                            entity.SaveChanges();
-
-                            message = tmpObject.errorId ;
-                        }
-                        return message;
-                    }
-
-
-                }
-                catch
-                {
-                    return 0;
-                }
-            }
-            else
-            {
-                return 0;
-            }
+            var myContent = JsonConvert.SerializeObject(obj);
+            parameters.Add("Object", myContent);
+            return await APIResult.post(method, parameters);
 
 
         }

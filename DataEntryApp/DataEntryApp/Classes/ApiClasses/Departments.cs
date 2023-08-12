@@ -22,7 +22,7 @@ namespace DataEntryApp.ApiClasses
         public long departmentId { get; set; }
         public string name { get; set; }
         public bool canDelete { get; set; }
-
+        private string urimainpath = "departments/";
 
 
         /// <summary>
@@ -33,219 +33,113 @@ namespace DataEntryApp.ApiClasses
         public async Task<List<Departments>> GetAll()
         {
 
-            List<Departments> List = new List<Departments>();
-            bool canDelete = false;
-            try
+            List<Departments> list = new List<Departments>();
+
+            IEnumerable<Claim> claims = await APIResult.getList(urimainpath + "GetAll");
+
+            foreach (Claim c in claims)
             {
-                using (dedbEntities entity = new dedbEntities())
+                if (c.Type == "scopes")
                 {
-                    List = (from S in entity.departments
-                            select new Departments()
-                            {
-                                departmentId = S.departmentId,
-                                name = S.name,
-
-
-
-                                canDelete = true,
-
-                            }).ToList();
-
-                    //if (List.Count > 0)
-                    //{
-                    //    for (int i = 0; i < List.Count; i++)
-                    //    {
-                    //        if (List[i].isActive == 1)
-                    //        {
-                    //            int userId = (int)List[i].userId;
-                    //            var itemsI = entity.packageUser.Where(x => x.userId == userId).Select(b => new { b.userId }).FirstOrDefault();
-
-                    //            if ((itemsI is null))
-                    //                canDelete = true;
-                    //        }
-                    //        List[i].canDelete = canDelete;
-                    //    }
-                    //}
-                    return List;
+                    list.Add(JsonConvert.DeserializeObject<Departments>(c.Value, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" }));
                 }
-
             }
-            catch
-            {
-                return List;
-            }
+            return list;
         }
 
         public async Task<decimal> Save(Departments newitem)
         {
-            departments newObject = new departments();
-            newObject = JsonConvert.DeserializeObject<departments>(JsonConvert.SerializeObject(newitem));
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            string method = urimainpath + "Save";
 
-            decimal message = 0;
-            if (newObject != null)
-            {
-               
-
-
-                try
-                {
-                    using (dedbEntities entity = new dedbEntities())
-                    {
-                        var locationEntity = entity.Set<departments>();
-                        if (newObject.departmentId == 0)
-                        {
-                            
-                            locationEntity.Add(newObject);
-                            entity.SaveChanges();
-                            message = newObject.departmentId;
-                        }
-                        else
-                        {
-                            var tmpObject = entity.departments.Where(p => p.departmentId == newObject.departmentId).FirstOrDefault();
-                           // tmpObject.departmentId = newObject.departmentId;
-                            tmpObject.name = newObject.name;
-
-
-
-                            entity.SaveChanges();
-
-                            message = tmpObject.departmentId;
-                        }
-                    }
-                    return message;
-                }
-                catch
-                {
-                    return 0;
-                }
-            }
-            else
-            {
-                return 0;
-            }
+            var myContent = JsonConvert.SerializeObject(newitem);
+            parameters.Add("Object", myContent);
+            return await APIResult.post(method, parameters);
         }
-        public async Task<Departments> GetByID(int itemId)
-        {
+        //public async Task<long?> savenationality(customers newObject,Customers newitem)
+        //{
 
+        //        Nationalities natmodel = new Nationalities();
+        //        natmodel.createDate = newObject.createDate;
+        //        natmodel.createUserId = newObject.createUserId;
+        //        natmodel.updateUserId = newObject.updateUserId;
+        //        natmodel.name = newitem.Nationality;
+        //        natmodel.nationalityId = newitem.nationalityId==null?0:(long) newitem.nationalityId;
+        //        long nid = await natmodel.FindorSave(natmodel);
+        //        if (nid > 0)
+        //        {
+        //            newObject.nationalityId = nid;
+        //        }
+        //        else
+        //        {
+        //            newObject.nationalityId = null;
+        //        }
+
+        //    return newObject.nationalityId;
+        //}
+        //public async Task<long?> savedepartment(customers newObject, Customers newitem)
+        //{
+
+        //    Departments departmentmodel = new Departments();
+
+        //    departmentmodel.name = newitem.department;
+        //    departmentmodel.departmentId = newitem.departmentId == null ? 0 : (long)newitem.departmentId;
+        //    long depid = await departmentmodel.FindorSave(departmentmodel);
+        //    if (depid > 0)
+        //    {
+        //        newObject.departmentId = depid;
+        //    }
+        //    else
+        //    {
+        //        newObject.departmentId = null;
+        //    }
+
+        //    return newObject.departmentId;
+        //}
+        public async Task<Departments> GetByID(long itemId)
+        {
 
             Departments item = new Departments();
-           
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("itemId", itemId.ToString());
+            //#################
+            IEnumerable<Claim> claims = await APIResult.getList(urimainpath + "GetByID", parameters);
 
-            Departments row = new Departments();
-            try
+            foreach (Claim c in claims)
             {
-                using (dedbEntities entity = new dedbEntities())
+                if (c.Type == "scopes")
                 {
-                    var list = entity.departments.ToList();
-                    row = list.Where(u => u.departmentId == itemId)
-                     .Select(S => new Departments()
-                     {
-                         departmentId = S.departmentId,
-                         name = S.name,
-
-
-                     }).FirstOrDefault();
-                    return row;
+                    item = JsonConvert.DeserializeObject<Departments>(c.Value, new IsoDateTimeConverter { DateTimeFormat = "dd/MM/yyyy" });
+                    break;
                 }
+            }
 
-            }
-            catch (Exception ex)
-            {
-                row = new Departments();
-                //userrow.name = ex.ToString();
-                return row;
-            }
+
+            return item;
+
+
         }
-        public async Task<long> FindorSave(Departments newitem)
-        {
-            departments newObject = new departments();
-            newObject = JsonConvert.DeserializeObject<departments>(JsonConvert.SerializeObject(newitem));
-            long message = 0;
-            if (newObject != null)
-            {
-            
-                try
-                {
-                    using (dedbEntities entity = new dedbEntities())
-                    {
-                        var locationEntity = entity.Set<departments>();
-                        string serchval = newitem.name == null ? "" : newitem.name.Trim();
-                        var tmpObject = entity.departments.Where(p => p.name == serchval).FirstOrDefault();
-                        if (tmpObject == null)
-                        {
-                            //add
-                            
-                            newObject.name = newitem.name.Trim();
-                          //  newObject.isActive = true;
-                            locationEntity.Add(newObject);
-                            entity.SaveChanges();
-                            message = newObject.departmentId;
-                        }
-                        else
-                        {
-                            message = tmpObject.departmentId;
-                        }
-                    }
-                    return message;
-                }
-                catch
-                {
-                    return 0;
-                }
-            }
-            else
-            {
-                return 0;
-            }
-        }
-        public async Task<decimal> Delete(int id, int signuserId, bool final)
+        public async Task<decimal> Delete(long id, long signuserId, bool final)
         {
 
-            decimal message = 0;
-            if (final)
-            {
-                try
-                {
-                    using (dedbEntities entity = new dedbEntities())
-                    {
-                        departments objectDelete = entity.departments.Find(id);
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("userId", id.ToString());
+            parameters.Add("signuserId", signuserId.ToString());
+            parameters.Add("final", final.ToString());
 
-                        entity.departments.Remove(objectDelete);
-                        message = entity.SaveChanges();
-                        return message;
-
-                    }
-                }
-                catch
-                {
-                    return 0;
-
-                }
-            }
-            return message;
-            //else
-            //{
-            //    try
-            //    {
-            //        using (dedbEntities entity = new dedbEntities())
-            //        {
-            //            departments objectDelete = entity.departments.Find(userId);
-
-            //            objectDelete.isActive = 0;
-            //            objectDelete.updateUserId = signuserId;
-            //        objectDelete.updateDate = DateTime.Now;
-            //            message = entity.SaveChanges() ;
-
-            //            return message;
-            //        }
-            //    }
-            //    catch
-            //    {
-            //        return 0;
-            //    }
-            //}
-
+            string method = urimainpath + "Delete";
+            return await APIResult.post(method, parameters);
         }
+        public async Task<decimal> FindorSave(Departments newitem)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            string method = urimainpath + "Save";
+
+            var myContent = JsonConvert.SerializeObject(newitem);
+            parameters.Add("Object", myContent);
+            return await APIResult.post(method, parameters);
+        }
+        
 
         //public async Task<string> generateCodeNumber(string type)
         //{

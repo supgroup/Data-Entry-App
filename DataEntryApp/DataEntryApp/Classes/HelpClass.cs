@@ -1049,26 +1049,26 @@ namespace DataEntryApp.Classes
             // Application.st();
             return messg;
         }
-        public static bool checkConnectionString()
-        {
-            using (dedbEntities entity = new dedbEntities())
-            {
-                if (entity.Database.Exists())
-                {
-                    //MessageBox.Show("ok");
-                    //string db = entity.Database.Connection.Database;
-                    //string ds = entity.Database.Connection.DataSource;
-                    return true;
-                }
-                else
-                {
-                    // AddNewConnectionString(".\\SQLEXPRESS", "bookdb");
-                //    MessageBox.Show("not exist");
-                    return false;
+        //public static bool checkConnectionString()
+        //{
+        //    using (dedbEntities entity = new dedbEntities())
+        //    {
+        //        if (entity.Database.Exists())
+        //        {
+        //            //MessageBox.Show("ok");
+        //            //string db = entity.Database.Connection.Database;
+        //            //string ds = entity.Database.Connection.DataSource;
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            // AddNewConnectionString(".\\SQLEXPRESS", "bookdb");
+        //        //    MessageBox.Show("not exist");
+        //            return false;
                    
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
     }
 
 }
