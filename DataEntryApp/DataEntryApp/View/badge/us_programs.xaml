@@ -100,7 +100,7 @@
                             Background="White"/>
                     <DataGrid  Margin="5,5,5,17.5" Grid.Row="1"  IsReadOnly="True"   HeadersVisibility="Column"
                        x:Name="dg_customer"  AutoGenerateColumns="False"   Background="White"
-                        ColumnWidth="SizeToHeader" SelectionChanged="Dg_program_SelectionChanged"    
+                        ColumnWidth="SizeToHeader" SelectionChanged="Dg_customer_SelectionChanged"    
                                AlternatingRowBackground="#f3f3f3" AlternationCount="2">
                         <DataGrid.Resources>
                             <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"></SolidColorBrush>
@@ -295,7 +295,7 @@
                   <Border Grid.Row="1" CornerRadius="10" x:Name="brd_name" Margin="10,5,10,5"   BorderThickness="1"
                             BorderBrush="{StaticResource MainColor}" >
                             <Grid>
-                            <TextBox x:Name="tb_name"  Text="{Binding name, Mode=OneWay}" Padding="10,5,0,0" 
+                            <TextBox x:Name="tb_name"  Text="{Binding custname, Mode=OneWay}" Padding="10,5,0,0" 
                                       Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                       materialDesign:HintAssist.Hint="name..."  
                                      Foreground="#4E4E4E"  
@@ -318,7 +318,7 @@
                                         materialDesign:HintAssist.Hint="Nationality..."    
                                         VerticalAlignment="Center" BorderThickness="0"
                                         Height="40" 
-                                        SelectedValue="{Binding custlevel, Mode=OneWay}"/>
+                                        SelectedValue="{Binding nationalityId, Mode=OneWay}"/>
                         </Grid>
                     </Border>
                     <Border Grid.Row="1" Grid.Column="0" CornerRadius="10" Margin="10,5,10,5"   BorderThickness="1" BorderBrush="{StaticResource MainColor}">
@@ -329,12 +329,12 @@
                                         materialDesign:HintAssist.Hint="speciality..."    
                                         VerticalAlignment="Center" BorderThickness="0"
                                         Height="40" 
-                                        SelectedValue="{Binding custlevel, Mode=OneWay}"/>
+                                        SelectedValue="{Binding departmentId, Mode=OneWay}"/>
                         </Grid>
                     </Border>
                     <Border Grid.Row="1" CornerRadius="10" Margin="10,5,10,5"   BorderThickness="1" BorderBrush="{StaticResource MainColor}">
                         <Grid   >
-                            <TextBox x:Name="tb_mobileWhatsapp"  Text="{Binding company, Mode=OneWay}" Padding="10,0,5,0" 
+                            <TextBox x:Name="tb_mobileWhatsapp"  Text="{Binding mobile, Mode=OneWay}" Padding="10,0,5,0" 
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                      materialDesign:HintAssist.Hint="Whatsapp Number..."  
                                      Foreground="#4E4E4E"  

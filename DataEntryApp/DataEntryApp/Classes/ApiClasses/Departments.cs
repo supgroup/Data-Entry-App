@@ -156,6 +156,48 @@ namespace DataEntryApp.ApiClasses
                 return row;
             }
         }
+        public async Task<long> FindorSave(Departments newitem)
+        {
+            departments newObject = new departments();
+            newObject = JsonConvert.DeserializeObject<departments>(JsonConvert.SerializeObject(newitem));
+            long message = 0;
+            if (newObject != null)
+            {
+            
+                try
+                {
+                    using (dedbEntities entity = new dedbEntities())
+                    {
+                        var locationEntity = entity.Set<departments>();
+                        string serchval = newitem.name == null ? "" : newitem.name.Trim();
+                        var tmpObject = entity.departments.Where(p => p.name == serchval).FirstOrDefault();
+                        if (tmpObject == null)
+                        {
+                            //add
+                            
+                            newObject.name = newitem.name.Trim();
+                          //  newObject.isActive = true;
+                            locationEntity.Add(newObject);
+                            entity.SaveChanges();
+                            message = newObject.departmentId;
+                        }
+                        else
+                        {
+                            message = tmpObject.departmentId;
+                        }
+                    }
+                    return message;
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                return 0;
+            }
+        }
         public async Task<decimal> Delete(int id, int signuserId, bool final)
         {
 

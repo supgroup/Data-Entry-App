@@ -10,14 +10,36 @@ using System.Threading;
 using System.Windows;
 using System.Threading.Tasks;
 using System;
-
+ 
 namespace DataEntryApp.Classes
 {
     public class FillCombo
     {
         /// <summary>
-        /// Packages
+        /// Nationality
         /// </summary>
+        /// 
+        static Nationalities nationalModel = new Nationalities();
+        static IEnumerable<Nationalities> nationalityList;
+        static public async Task fillNationality(ComboBox combo)
+        {            
+            nationalityList = await nationalModel.GetAll();
+            combo.ItemsSource = nationalityList.Where(x => x.isActive ==true);
+            combo.SelectedValuePath = "nationalityId";
+            combo.DisplayMemberPath = "name";
+            combo.SelectedIndex = -1;
+        }
+        //
+        static Departments departmentModel = new Departments();
+        static IEnumerable<Departments> departmentList;
+        static public async Task fillDepartment(ComboBox combo)
+        {
+            departmentList = await departmentModel.GetAll();
+            combo.ItemsSource = departmentList;
+            combo.SelectedValuePath = "departmentId";
+            combo.DisplayMemberPath = "name";
+            combo.SelectedIndex = -1;
+        }
         //static Packages package = new Packages();
         //static IEnumerable<Packages> packages;
 

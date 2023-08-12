@@ -56,14 +56,16 @@ namespace DataEntryApp.ApiClasses
                 {
                     List = (from S in entity.customers
                             join N in entity.nationalities on S.nationalityId equals N.nationalityId into JN
+                            join D in entity.departments on S.departmentId equals D.departmentId into JD
                             from NAT in JN.DefaultIfEmpty()
+                            from DEP in JD.DefaultIfEmpty()
                             select new Customers()
                             {
                                 custId = S.custId,
                                 custname = S.custname,
                                 lastName = S.lastName,
                                 mobile = S.mobile,
-                                department = S.department,
+                                department =DEP.name,
                                 barcode = S.barcode,
                                 printDate = S.printDate,
                                 image = S.image,
@@ -75,7 +77,7 @@ namespace DataEntryApp.ApiClasses
                                 isActive = S.isActive,
                                 nationalityId = S.nationalityId,
                                 Nationality = NAT.name,
-
+                                departmentId = S.departmentId,
                                 canDelete = true,
 
                             }).ToList();
@@ -123,9 +125,7 @@ namespace DataEntryApp.ApiClasses
                     Nullable<int> id = null;
                     newObject.createUserId = id;
                 }
-           
-
-
+                departments depmodel = new departments();
                 try
                 {
                     using (dedbEntities entity = new dedbEntities())
@@ -136,7 +136,10 @@ namespace DataEntryApp.ApiClasses
                             newObject.createDate = DateTime.Now;
                             newObject.updateDate = newObject.createDate;
                             newObject.updateUserId = newObject.createUserId;
-
+                            //nat
+                            newObject.nationalityId= await savenationality(newObject, newitem);
+                            newObject.departmentId = await savedepartment(newObject, newitem);
+                            //
 
                             locationEntity.Add(newObject);
                             entity.SaveChanges();
@@ -145,7 +148,7 @@ namespace DataEntryApp.ApiClasses
                         else
                         {
                             var tmpObject = entity.customers.Where(p => p.custId == newObject.custId).FirstOrDefault();
-                            newObject.updateDate = DateTime.Now;
+                            tmpObject.updateDate = DateTime.Now;
                           //  tmpObject.custId = newObject.custId;
                             tmpObject.custname = newObject.custname;
                             tmpObject.lastName = newObject.lastName;
@@ -160,7 +163,13 @@ namespace DataEntryApp.ApiClasses
                           //  tmpObject.createDate = newObject.createDate;
                          //   tmpObject.updateDate = newObject.updateDate;
                             tmpObject.isActive = newObject.isActive;
-                            tmpObject.nationalityId = newObject.nationalityId;
+                            //nat
+                            //nat
+                            tmpObject.nationalityId = await savenationality(newObject, newitem);
+                            tmpObject.departmentId = await savedepartment(newObject, newitem);
+                            //
+                            //
+
 
                             entity.SaveChanges();
 
@@ -169,8 +178,9 @@ namespace DataEntryApp.ApiClasses
                     }
                     return message;
                 }
-                catch
+                catch(Exception ex)
                 {
+                    
                     return 0;
                 }
             }
@@ -178,6 +188,46 @@ namespace DataEntryApp.ApiClasses
             {
                 return 0;
             }
+        }
+        public async Task<long?> savenationality(customers newObject,Customers newitem)
+        {
+            
+                Nationalities natmodel = new Nationalities();
+                natmodel.createDate = newObject.createDate;
+                natmodel.createUserId = newObject.createUserId;
+                natmodel.updateUserId = newObject.updateUserId;
+                natmodel.name = newitem.Nationality;
+                natmodel.nationalityId = newitem.nationalityId==null?0:(long) newitem.nationalityId;
+                long nid = await natmodel.FindorSave(natmodel);
+                if (nid > 0)
+                {
+                    newObject.nationalityId = nid;
+                }
+                else
+                {
+                    newObject.nationalityId = null;
+                }
+            
+            return newObject.nationalityId;
+        }
+        public async Task<long?> savedepartment(customers newObject, Customers newitem)
+        {
+
+            Departments departmentmodel = new Departments();
+
+            departmentmodel.name = newitem.department;
+            departmentmodel.departmentId = newitem.departmentId == null ? 0 : (long)newitem.departmentId;
+            long depid = await departmentmodel.FindorSave(departmentmodel);
+            if (depid > 0)
+            {
+                newObject.departmentId = depid;
+            }
+            else
+            {
+                newObject.departmentId = null;
+            }
+
+            return newObject.departmentId;
         }
         public async Task<Customers> GetByID(int itemId)
         {

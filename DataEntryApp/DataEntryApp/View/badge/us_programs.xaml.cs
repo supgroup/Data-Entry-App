@@ -80,9 +80,11 @@ namespace DataEntryApp.View.applications
                 //}
                 translate();
                 Keyboard.Focus(tb_name);
-               
+                await FillCombo.fillNationality(cb_nationality);
+                await FillCombo.fillDepartment(cb_speciality);
                 await RefreshCustomersList();
-                await Search();
+                 
+                 await Search();
                 Clear();
                 
                 HelpClass.EndAwait(grid_main, "main_loaded");
@@ -195,8 +197,8 @@ namespace DataEntryApp.View.applications
             try
             {
                 HelpClass.StartAwait(grid_main);
-                if (customersList is null)
-                    await RefreshCustomersList();
+                //if (customersList is null)
+                //    await RefreshCustomersList();
                 tgl_customerState = true;
                 //await Search();
                 HelpClass.EndAwait(grid_main);
@@ -242,81 +244,78 @@ namespace DataEntryApp.View.applications
                 HelpClass.ExceptionMessage(ex, this);
             }
         }
-        private void Dg_program_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                HelpClass.StartAwait(grid_main);
-                //selection
-                /*
-                if (dg_customer.SelectedIndex != -1)
-                {
-                    program = dg_customer.SelectedItem as Programs;
-                    this.DataContext = program;
+        //private void Dg_program_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        HelpClass.StartAwait(grid_main);
+        //        //selection
+        //        /*
+        //        if (dg_customer.SelectedIndex != -1)
+        //        {
+        //            program = dg_customer.SelectedItem as Programs;
+        //            this.DataContext = program;
 
-                    if (program != null)
-                    {
-                        #region delete
-                        if (program.canDelete)
-                            btn_delete.Content = MainWindow.resourcemanager.GetString("trDelete");
-                        else
-                        {
-                            if (program.isActive == 0)
-                                btn_delete.Content = MainWindow.resourcemanager.GetString("trActive");
-                            else
-                                btn_delete.Content = MainWindow.resourcemanager.GetString("trInActive");
-                        }
-                        #endregion
-                    }
-                }
+        //            if (program != null)
+        //            {
+        //                #region delete
+        //                if (program.canDelete)
+        //                    btn_delete.Content = MainWindow.resourcemanager.GetString("trDelete");
+        //                else
+        //                {
+        //                    if (program.isActive == 0)
+        //                        btn_delete.Content = MainWindow.resourcemanager.GetString("trActive");
+        //                    else
+        //                        btn_delete.Content = MainWindow.resourcemanager.GetString("trInActive");
+        //                }
+        //                #endregion
+        //            }
+        //        }
 
-                clearValidate();
-                */
-                HelpClass.EndAwait(grid_main);
-            }
-            catch (Exception ex)
-            {
+        //        clearValidate();
+        //        */
+        //        HelpClass.EndAwait(grid_main);
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                HelpClass.EndAwait(grid_main);
-                HelpClass.ExceptionMessage(ex, this);
-            }
-        }
+        //        HelpClass.EndAwait(grid_main);
+        //        HelpClass.ExceptionMessage(ex, this);
+        //    }
+        //}
         private async void Btn_add_Click(object sender, RoutedEventArgs e)
         {//add
             try
             {
                 HelpClass.StartAwait(grid_main);
-              /*
-                program = new Programs();
-                if (validate())
+            
+                customer = new Customers();
+                //if (validate())
                 {
-                    string isExist = await program.isExistCode(tb_code.Text.Trim());
-                    if (isExist == "0") { 
-                    program.programCode = tb_code.Text.Trim();
-                    program.name = tb_name.Text;
-                    program.details = tb_details.Text;
-                    program.notes = tb_notes.Text;
-                    program.isActive = 1;
-                    program.createUserId = MainWindow.userLogin.userId;
-                    program.updateUserId = MainWindow.userLogin.userId;
 
-                        decimal s = await program.Save(program);
+                    customer.custname = tb_name.Text.Trim();
+                    customer.Nationality = cb_nationality.Text;
+                    customer.department = cb_speciality.Text;
+                    customer.mobile = tb_mobileWhatsapp.Text;
+                    customer.isActive = true;
+                    customer.createUserId = MainWindow.userLogin.userId;
+                    customer.updateUserId = MainWindow.userLogin.userId;
+
+                        decimal s = await customer.Save(customer);
                     if (s <= 0)
                         Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trPopError"), animation: ToasterAnimation.FadeIn);
                     else
                     {
                         Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trPopAdd"), animation: ToasterAnimation.FadeIn);
                         Clear();
-                        await RefreshProgramsList();
+                        await FillCombo.fillDepartment(cb_speciality);
+                        await FillCombo.fillNationality(cb_nationality);
+                        await RefreshCustomersList();
                         await Search();
                     }
-                    }
-                    else
-                    {
-                        MessageBox.Show("exist ");
-                    }
+                     
                 }
-                */
+               
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
@@ -331,30 +330,35 @@ namespace DataEntryApp.View.applications
             try
             {
                 HelpClass.StartAwait(grid_main);
-                /*
-                if (program.programId > 0)
+             
+                if (customer.custId > 0)
                 {
                     if (validate())
                 {
-                    program.name = tb_name.Text;
-                    program.details = tb_details.Text;
-                    program.notes = tb_notes.Text;
-                    program.updateUserId = MainWindow.userLogin.userId;
+                        customer.custname = tb_name.Text.Trim();
+                        customer.Nationality = cb_nationality.Text;
+                        customer.department = cb_speciality.Text;
+                        customer.mobile = tb_mobileWhatsapp.Text;
+                        //customer.isActive = true;
+                        customer.createUserId = MainWindow.userLogin.userId;
+                        customer.updateUserId = MainWindow.userLogin.userId;
 
-                        decimal s = await program.Save(program);
+                        decimal s = await customer.Save(customer);
                     if (s <= 0)
                         Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trPopError"), animation: ToasterAnimation.FadeIn);
                     else
                     {
                         Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trPopUpdate"), animation: ToasterAnimation.FadeIn);
-                        await RefreshProgramsList();
-                        await Search();
-                    }
+                            await FillCombo.fillDepartment(cb_speciality);
+                            await FillCombo.fillNationality(cb_nationality);
+                            await RefreshCustomersList();
+                            await Search();
+                        }
                 }
                 }
                 else
                     Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trSelectItemFirst"), animation: ToasterAnimation.FadeIn);
-                */
+               
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
@@ -450,22 +454,30 @@ namespace DataEntryApp.View.applications
             if (customersList is null)
                 await RefreshCustomersList();
             searchText = tb_search.Text.ToLower();
-            customersQuery = customersList.Where(s => (s.custname.ToLower().Contains(searchText) ||
-            s.Nationality.ToLower().Contains(searchText) ||
-            s.department.ToLower().Contains(searchText) ||
-            s.mobile.ToLower().Contains(searchText)
-            ) && s.isActive == tgl_customerState);
-            RefreshProgramsView();
+            if (tb_search.Text=="")
+            {
+                customersQuery = customersList.Where(s =>s.isActive == tgl_customerState);
+            }
+            else
+            {
+                customersQuery = customersList.Where(s => ((s.custname==null ?false:s.custname.ToLower().Contains(searchText)) ||
+           (s.Nationality == null ? false : s.Nationality.ToLower().Contains(searchText) )||
+           (s.department == null ? false : s.department.ToLower().Contains(searchText)) ||
+           (s.mobile == null ? false : s.mobile.ToLower().Contains(searchText))
+           ) && s.isActive == tgl_customerState);
+            }
+         
+            RefreshCustomerView(); 
         }
         async Task<IEnumerable<Customers>> RefreshCustomersList()
         {
             customersList = await customer.GetAll();
             return customersList;
         }
-        void RefreshProgramsView()
+        void RefreshCustomerView()
         {
-           // dg_customer.ItemsSource = customersQuery;
-            txt_count.Text = customersQuery.Count().ToString();
+            dg_customer.ItemsSource = customersQuery;
+          txt_count.Text = customersQuery.Count().ToString();
         }
         #endregion
         #region validate - clearValidate - textChange - lostFocus - . . . . 
@@ -768,6 +780,46 @@ namespace DataEntryApp.View.applications
         private void Btn_pdfcard_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Dg_customer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                HelpClass.StartAwait(grid_main);
+                //selection
+               
+                if (dg_customer.SelectedIndex != -1)
+                {
+                    customer = dg_customer.SelectedItem as Customers;
+                    this.DataContext = customer;
+
+                    if (customer != null)
+                    {
+                        #region delete
+                        if (customer.canDelete)
+                            btn_delete.Content = MainWindow.resourcemanager.GetString("trDelete");
+                        else
+                        {
+                            if (customer.isActive == false)
+                                btn_delete.Content = MainWindow.resourcemanager.GetString("trActive");
+                            else
+                                btn_delete.Content = MainWindow.resourcemanager.GetString("trInActive");
+                        }
+                        #endregion
+                    }
+                }
+
+                clearValidate();
+               
+                HelpClass.EndAwait(grid_main);
+            }
+            catch (Exception ex)
+            {
+
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this);
+            }
         }
     }
 }

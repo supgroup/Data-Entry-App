@@ -157,6 +157,59 @@ namespace DataEntryApp.ApiClasses
                 return 0;
             }
         }
+        public async Task<long> FindorSave(Nationalities newitem)
+        {
+            nationalities newObject = new nationalities();
+            newObject = JsonConvert.DeserializeObject<nationalities>(JsonConvert.SerializeObject(newitem));
+            long message = 0;
+            if (newObject != null)
+            {
+                if (newObject.updateUserId == 0 || newObject.updateUserId == null)
+                {
+                    Nullable<int> id = null;
+                    newObject.updateUserId = id;
+                }
+                if (newObject.createUserId == 0 || newObject.createUserId == null)
+                {
+                    Nullable<int> id = null;
+                    newObject.createUserId = id;
+                }
+                try
+                {
+                    using (dedbEntities entity = new dedbEntities())
+                    {
+                        var locationEntity = entity.Set<nationalities>();
+                        string serchval = newitem.name == null ? "" : newitem.name.Trim();
+                            var tmpObject = entity.nationalities.Where(p => p.name == serchval).FirstOrDefault();
+                            if (tmpObject == null)
+                            {
+                                //add
+                                newObject.createDate = DateTime.Now;
+                                newObject.updateDate = newObject.createDate;
+                                newObject.updateUserId = newObject.createUserId;
+                                newObject.name = newitem.name.Trim();
+                            newObject.isActive = true;
+                                locationEntity.Add(newObject);
+                                entity.SaveChanges();
+                                message = newObject.nationalityId;
+                            }
+                            else
+                            {
+                                message = tmpObject.nationalityId;
+                            }
+                    }
+                    return message;
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                return 0;
+            }
+        }
         public async Task<Nationalities> GetByID(int itemId)
         {
 
