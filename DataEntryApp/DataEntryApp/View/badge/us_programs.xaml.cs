@@ -67,7 +67,7 @@ namespace DataEntryApp.View.applications
             try
             {
                 HelpClass.StartAwait(grid_main, "main_loaded");
-                requiredControlList = new List<string> { "name" };
+                requiredControlList = new List<string> { "name", "nationality" , "speciality" , "mobileWhatsapp" };
                 //if (MainWindow.lang.Equals("en"))
                 //{
                 //    MainWindow.resourcemanager = new ResourceManager("DataEntryApp.en_file", Assembly.GetExecutingAssembly());
@@ -197,10 +197,10 @@ namespace DataEntryApp.View.applications
             try
             {
                 HelpClass.StartAwait(grid_main);
-                //if (customersList is null)
-                //    await RefreshCustomersList();
+                if (customersList is null)
+                    await RefreshCustomersList();
                 tgl_customerState = true;
-                //await Search();
+                 await Search();
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
@@ -290,7 +290,7 @@ namespace DataEntryApp.View.applications
                 HelpClass.StartAwait(grid_main);
             
                 customer = new Customers();
-                //if (validate())
+                 if (validate())
                 {
 
                     customer.custname = tb_name.Text.Trim();
@@ -353,6 +353,9 @@ namespace DataEntryApp.View.applications
                             await FillCombo.fillNationality(cb_nationality);
                             await RefreshCustomersList();
                             await Search();
+                            
+                            cb_nationality.Text = customer.Nationality;
+                            cb_speciality.Text = customer.department;
                         }
                 }
                 }
@@ -373,10 +376,10 @@ namespace DataEntryApp.View.applications
             {//delete
 
                 HelpClass.StartAwait(grid_main);
-                /*
-                if (program.programId != 0)
+          
+                if (customer.custId != 0)
                 {
-                    if ((!program.canDelete) && (program.isActive == 0))
+                    if ( (customer.isActive == false))
                     {
                         #region
                         Window.GetWindow(this).Opacity = 0.2;
@@ -393,9 +396,9 @@ namespace DataEntryApp.View.applications
                         #region
                         Window.GetWindow(this).Opacity = 0.2;
                         wd_acceptCancelPopup w = new wd_acceptCancelPopup();
-                        if (program.canDelete)
+                        if (customer.canDelete)
                             w.contentText = MainWindow.resourcemanager.GetString("trMessageBoxDelete");
-                        if (!program.canDelete)
+                        if (!customer.canDelete)
                             w.contentText = MainWindow.resourcemanager.GetString("trMessageBoxDeactivate");
                         w.ShowDialog();
                         Window.GetWindow(this).Opacity = 1;
@@ -403,18 +406,18 @@ namespace DataEntryApp.View.applications
                         if (w.isOk)
                         {
                             string popupContent = "";
-                            if (program.canDelete) popupContent = MainWindow.resourcemanager.GetString("trPopDelete");
-                            if ((!program.canDelete) && (program.isActive == 1)) popupContent = MainWindow.resourcemanager.GetString("trPopInActive");
+                            if (customer.canDelete) popupContent = MainWindow.resourcemanager.GetString("trPopDelete");
+                            if ((!customer.canDelete) && (customer.isActive == true)) popupContent = MainWindow.resourcemanager.GetString("trPopInActive");
 
-                            decimal s = await program.Delete(program.programId, MainWindow.userLogin.userId, program.canDelete);
+                            decimal s = await customer.Delete(customer.custId, MainWindow.userLogin.userId, customer.canDelete);
                             if (s < 0)
                                 Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trPopError"), animation: ToasterAnimation.FadeIn);
                             else
                             {
-                                program.programId = 0;
+                                customer.custId = 0;
                                 Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trPopDelete"), animation: ToasterAnimation.FadeIn);
 
-                                await RefreshProgramsList();
+                                await RefreshCustomersList ();
                                 await Search();
                                 Clear();
 
@@ -423,7 +426,7 @@ namespace DataEntryApp.View.applications
                     }
 
                 }
-                */
+             
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
@@ -434,18 +437,18 @@ namespace DataEntryApp.View.applications
         }
         private async Task activate()
         {//activate
-            /*
-            program.isActive = 1;
-            decimal s = await program.Save(program);
+           
+            customer.isActive = true;
+            decimal s = await customer.Save(customer);
             if (s <= 0)
                 Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trPopError"), animation: ToasterAnimation.FadeIn);
             else
             {
                 Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trPopActive"), animation: ToasterAnimation.FadeIn);
-                await RefreshProgramsList();
+                await RefreshCustomersList();
                 await Search();
             }
-            */
+           
         }
         #region Refresh & Search
         async Task Search()
@@ -484,6 +487,10 @@ namespace DataEntryApp.View.applications
         void Clear()
         {
             this.DataContext = new Customers();
+            cb_nationality.SelectedIndex = -1;
+            cb_nationality.Text = "";
+            cb_speciality.SelectedIndex = -1;
+            cb_speciality.Text = "";
             clearValidate();
         }
         private void Number_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -821,5 +828,9 @@ namespace DataEntryApp.View.applications
                 HelpClass.ExceptionMessage(ex, this);
             }
         }
+
+       
+           
+        
     }
 }
