@@ -56,7 +56,7 @@
                              Width="auto" Height="100"
                              FlowDirection="LeftToRight" >
                         <Border.Background>
-                            <ImageBrush x:Name="img_mainLogo"  Stretch="Uniform"  ImageSource="/pic/supclouds-logo100.png"/>
+                            <ImageBrush x:Name="img_mainLogo"  Stretch="Uniform"  ImageSource="pic/champer_industry_logo.png"/>
                         </Border.Background>
                     </Border>
 

@@ -429,6 +429,7 @@
       <DependentUpon>DataentryModel.edmx</DependentUpon>
       <LastGenOutput>DataentryModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="pic\champer_industry_logo.png" />
     <Content Include="Thumb\users\tmp.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
