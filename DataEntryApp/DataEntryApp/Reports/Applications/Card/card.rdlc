@@ -14,7 +14,7 @@
                   <TextRun>
                     <Value>:الاسم</Value>
                     <Style>
-                      <FontFamily>Montserrat</FontFamily>
+                      <FontFamily>cairo</FontFamily>
                       <FontWeight>Bold</FontWeight>
                       <Color>#e5b922</Color>
                     </Style>
@@ -28,7 +28,7 @@
             <rd:DefaultName>Textbox4</rd:DefaultName>
             <Top>0.23328in</Top>
             <Left>3.20766in</Left>
-            <Height>0.25611in</Height>
+            <Height>0.27in</Height>
             <Width>0.39191in</Width>
             <Style>
               <Border>
@@ -42,10 +42,10 @@
             <Source>External</Source>
             <Value>=Parameters!barcodeimage.Value</Value>
             <Sizing>Fit</Sizing>
-            <Top>3.65408cm</Top>
+            <Top>3.52708cm</Top>
             <Left>0.86cm</Left>
-            <Height>0.99848cm</Height>
-            <Width>8.28289cm</Width>
+            <Height>0.91475cm</Height>
+            <Width>8.28288cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -62,7 +62,7 @@
                   <TextRun>
                     <Value>=Parameters!department.Value</Value>
                     <Style>
-                      <FontFamily>Montserrat</FontFamily>
+                      <FontFamily>cairo</FontFamily>
                       <FontWeight>Bold</FontWeight>
                       <Color>Gray</Color>
                     </Style>
@@ -74,8 +74,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>1.02328in</Top>
-            <Left>1.30687in</Left>
+            <Top>0.96079in</Top>
+            <Left>1.30688in</Left>
             <Height>0.27in</Height>
             <Width>1.49756in</Width>
             <ZIndex>2</ZIndex>
@@ -113,7 +113,7 @@
                   <TextRun>
                     <Value>:الاختصاص</Value>
                     <Style>
-                      <FontFamily>Montserrat</FontFamily>
+                      <FontFamily>cairo</FontFamily>
                       <FontWeight>Bold</FontWeight>
                       <Color>#e5b922</Color>
                     </Style>
@@ -125,7 +125,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>1.02328in</Top>
+            <Top>0.96079in</Top>
             <Left>2.80443in</Left>
             <Height>0.27in</Height>
             <Width>0.79513in</Width>
@@ -147,7 +147,7 @@
                   <TextRun>
                     <Value>:الجنسية</Value>
                     <Style>
-                      <FontFamily>Montserrat</FontFamily>
+                      <FontFamily>cairo</FontFamily>
                       <FontWeight>Bold</FontWeight>
                       <Color>#e5b922</Color>
                     </Style>
@@ -159,8 +159,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.6144in</Top>
-            <Left>2.96404in</Left>
+            <Top>0.59079in</Top>
+            <Left>2.96405in</Left>
             <Height>0.27in</Height>
             <Width>0.63552in</Width>
             <ZIndex>5</ZIndex>
@@ -181,7 +181,7 @@
                   <TextRun>
                     <Value>=Parameters!nationality.Value</Value>
                     <Style>
-                      <FontFamily>Montserrat</FontFamily>
+                      <FontFamily>cairo</FontFamily>
                       <FontWeight>Bold</FontWeight>
                       <Color>Gray</Color>
                     </Style>
@@ -193,7 +193,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.62828in</Top>
+            <Top>0.59078in</Top>
             <Left>1.30687in</Left>
             <Height>0.27in</Height>
             <Width>1.49757in</Width>
@@ -217,7 +217,7 @@
                   <TextRun>
                     <Value>=Parameters!name.Value</Value>
                     <Style>
-                      <FontFamily>Montserrat</FontFamily>
+                      <FontFamily>cairo</FontFamily>
                       <FontWeight>Bold</FontWeight>
                       <Color>Gray</Color>
                     </Style>
