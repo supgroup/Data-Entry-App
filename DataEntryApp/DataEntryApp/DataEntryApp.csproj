@@ -435,6 +435,9 @@
     <Content Include="Reports\Applications\En\EnVersions.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\Applications\Card\card.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\Sale\Book\Ar\ArBook.rdlc" />
     <EmbeddedResource Include="Reports\Sale\Book\En\EnBook.rdlc" />
     <EmbeddedResource Include="Reports\Sale\Book\Serials\Ar\serials.rdlc" />
@@ -572,7 +575,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Reports\Applications\Ar\" />
     <Folder Include="Reports\SectionData\Ar\" />
     <Folder Include="Thumb\customers\" />
     <Folder Include="View\sales\" />

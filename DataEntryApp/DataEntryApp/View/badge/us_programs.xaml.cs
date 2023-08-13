@@ -769,9 +769,40 @@ namespace DataEntryApp.View.applications
             }
         }
 
+        #region print Card
+        public void Buildcard()
+        {
 
 
 
+            List<ReportParameter> paramarr = new List<ReportParameter>();
+
+            string addpath;
+            bool isArabic = ReportCls.checkLang();
+            if (isArabic)
+            {
+                addpath = @"\Reports\Applications\En\EnPrograms.rdlc";
+
+            }
+            else
+            {
+                addpath = @"\Reports\Applications\En\EnPrograms.rdlc";
+            }
+
+            string reppath = reportclass.PathUp(Directory.GetCurrentDirectory(), 2, addpath);
+
+
+
+            //clsReports.programsReport(programsQuery, rep, reppath, paramarr);
+            clsReports.setReportLanguage(paramarr);
+            clsReports.Header(paramarr);
+
+            rep.SetParameters(paramarr);
+
+            rep.Refresh();
+
+        }
+        #endregion
         #endregion
 
         private void Btn_print_card_Click(object sender, RoutedEventArgs e)
