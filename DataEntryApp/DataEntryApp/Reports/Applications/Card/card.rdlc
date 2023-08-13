@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <ReportSections>
@@ -15,7 +15,6 @@
                     <Value>:الاسم</Value>
                     <Style>
                       <FontFamily>Montserrat</FontFamily>
-                      <FontSize>6pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <Color>#e5b922</Color>
                     </Style>
@@ -27,10 +26,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.10203in</Top>
-            <Left>1.42184in</Left>
-            <Height>0.16677in</Height>
-            <Width>0.44231in</Width>
+            <Top>0.23328in</Top>
+            <Left>3.20766in</Left>
+            <Height>0.25611in</Height>
+            <Width>0.39191in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -41,12 +40,12 @@
           </Textbox>
           <Image Name="barcode">
             <Source>External</Source>
-            <Value>=Parameters!barcodepath.Value</Value>
-            <Sizing>FitProportional</Sizing>
-            <Top>2.33237cm</Top>
-            <Left>0.12775cm</Left>
-            <Height>0.63574cm</Height>
-            <Width>4.6072cm</Width>
+            <Value>=Parameters!barcodeimage.Value</Value>
+            <Sizing>Fit</Sizing>
+            <Top>3.65408cm</Top>
+            <Left>0.86cm</Left>
+            <Height>0.99848cm</Height>
+            <Width>8.28289cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -61,10 +60,9 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>:الاسم</Value>
+                    <Value>=Parameters!department.Value</Value>
                     <Style>
                       <FontFamily>Montserrat</FontFamily>
-                      <FontSize>6pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <Color>Gray</Color>
                     </Style>
@@ -76,10 +74,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.10204in</Top>
-            <Left>0.60449in</Left>
-            <Height>0.16677in</Height>
-            <Width>0.80346in</Width>
+            <Top>1.02328in</Top>
+            <Left>1.30687in</Left>
+            <Height>0.27in</Height>
+            <Width>1.49756in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -94,11 +92,11 @@
           <Image Name="logo">
             <Source>Embedded</Source>
             <Value>champer_industry_logo</Value>
-            <Sizing>FitProportional</Sizing>
-            <Top>0.65599cm</Top>
-            <Left>0.12775cm</Left>
-            <Height>1.1cm</Height>
-            <Width>1.1cm</Width>
+            <Sizing>Fit</Sizing>
+            <Top>0.23328in</Top>
+            <Left>0.86cm</Left>
+            <Height>2cm</Height>
+            <Width>2cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -106,80 +104,6 @@
               </Border>
             </Style>
           </Image>
-          <Textbox Name="Textbox32">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>:الاسم</Value>
-                    <Style>
-                      <FontFamily>Montserrat</FontFamily>
-                      <FontSize>6pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <Color>Gray</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Right</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.40397in</Top>
-            <Left>0.60449in</Left>
-            <Height>0.16677in</Height>
-            <Width>0.80346in</Width>
-            <ZIndex>4</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox34">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>:الاسم</Value>
-                    <Style>
-                      <FontFamily>Montserrat</FontFamily>
-                      <FontSize>6pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                      <Color>Gray</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Right</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.70982in</Top>
-            <Left>0.60449in</Left>
-            <Height>0.16677in</Height>
-            <Width>0.80346in</Width>
-            <ZIndex>5</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Textbox Name="Textbox35">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
@@ -190,7 +114,6 @@
                     <Value>:الاختصاص</Value>
                     <Style>
                       <FontFamily>Montserrat</FontFamily>
-                      <FontSize>6pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <Color>#e5b922</Color>
                     </Style>
@@ -202,11 +125,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.70982in</Top>
-            <Left>1.42184in</Left>
-            <Height>0.16677in</Height>
-            <Width>0.44231in</Width>
-            <ZIndex>6</ZIndex>
+            <Top>1.02328in</Top>
+            <Left>2.80443in</Left>
+            <Height>0.27in</Height>
+            <Width>0.79513in</Width>
+            <ZIndex>4</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -225,7 +148,6 @@
                     <Value>:الجنسية</Value>
                     <Style>
                       <FontFamily>Montserrat</FontFamily>
-                      <FontSize>6pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <Color>#e5b922</Color>
                     </Style>
@@ -237,11 +159,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.40397in</Top>
-            <Left>1.42184in</Left>
-            <Height>0.16677in</Height>
-            <Width>0.44231in</Width>
-            <ZIndex>7</ZIndex>
+            <Top>0.6144in</Top>
+            <Left>2.96404in</Left>
+            <Height>0.27in</Height>
+            <Width>0.63552in</Width>
+            <ZIndex>5</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -250,18 +172,90 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="Textbox31">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!nationality.Value</Value>
+                    <Style>
+                      <FontFamily>Montserrat</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>Gray</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox4</rd:DefaultName>
+            <Top>0.62828in</Top>
+            <Left>1.30687in</Left>
+            <Height>0.27in</Height>
+            <Width>1.49757in</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox32">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!name.Value</Value>
+                    <Style>
+                      <FontFamily>Montserrat</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>Gray</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox4</rd:DefaultName>
+            <Top>0.23328in</Top>
+            <Left>1.30687in</Left>
+            <Height>0.27in</Height>
+            <Width>1.49756in</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>3.11078cm</Height>
+        <Height>5cm</Height>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Body>
-      <Width>5cm</Width>
+      <Width>10cm</Width>
       <Page>
-        <PageHeight>2cm</PageHeight>
-        <PageWidth>5cm</PageWidth>
+        <PageHeight>5cm</PageHeight>
+        <PageWidth>10cm</PageWidth>
         <LeftMargin>0cm</LeftMargin>
         <RightMargin>0cm</RightMargin>
         <TopMargin>0cm</TopMargin>
@@ -295,19 +289,31 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="dateForm">
-      <DataType>String</DataType>
-      <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
     <ReportParameter Name="trName">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="barcodepath">
+    <ReportParameter Name="name">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="nationality">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="department">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="barcodeimage">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>
@@ -317,7 +323,7 @@
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>7</NumberOfRows>
+      <NumberOfRows>8</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
@@ -336,18 +342,28 @@
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>2</ColumnIndex>
-          <RowIndex>5</RowIndex>
-          <ParameterName>dateForm</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>2</ColumnIndex>
           <RowIndex>6</RowIndex>
           <ParameterName>trName</ParameterName>
         </CellDefinition>
         <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>7</RowIndex>
+          <ParameterName>name</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>7</RowIndex>
+          <ParameterName>nationality</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>7</RowIndex>
+          <ParameterName>department</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
           <ColumnIndex>3</ColumnIndex>
-          <RowIndex>6</RowIndex>
-          <ParameterName>barcodepath</ParameterName>
+          <RowIndex>7</RowIndex>
+          <ParameterName>barcodeimage</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataEntryApp.ApiClasses;
+
 //using POS.View.storage;
 namespace DataEntryApp.Classes
 {
@@ -176,21 +177,86 @@ namespace DataEntryApp.Classes
 
         //    DateFormConv(paramarr);
         //}
-        //public static void programsReport(IEnumerable<Programs> Query, LocalReport rep, string reppath, List<ReportParameter> paramarr)
-        //{
-        //    rep.ReportPath = reppath;
-        //    rep.EnableExternalImages = true;
-        //    rep.DataSources.Clear();
-        //    rep.DataSources.Add(new ReportDataSource("DataSet", Query));
-        //    //title
-        //    paramarr.Add(new ReportParameter("trTitle", MainWindow.resourcemanagerreport.GetString("trPrograms")));
-        //    //table columns
-        //    paramarr.Add(new ReportParameter("trCode", MainWindow.resourcemanagerreport.GetString("trCode")));
-        //    paramarr.Add(new ReportParameter("trName", MainWindow.resourcemanagerreport.GetString("trName")));
-        //    paramarr.Add(new ReportParameter("trProgram", MainWindow.resourcemanagerreport.GetString("trProgram")));
 
-        //    DateFormConv(paramarr);
-        //}
+        public List<ReportParameter> Cardfill( LocalReport rep, string reppath, List<ReportParameter> paramarr,Customers customer)
+        {
+            rep.ReportPath = reppath;
+            rep.EnableExternalImages = true;
+           
+        
+            //title
+            paramarr.Add(new ReportParameter("name", customer.custname));
+            //table columns
+            paramarr.Add(new ReportParameter("nationality",customer.Nationality));
+            paramarr.Add(new ReportParameter("department", customer.department));
+       
+            paramarr.Add(new ReportParameter("barcodeimage", "file:\\" + BarcodeToImage(customer.barcode==null?"-":customer.barcode, "cardnum")));
+            return paramarr;
+        }
+        public string PathUp(string path, int levelnum, string addtopath)
+        {
+            int pos1 = 0;
+            levelnum = 0;
+            //for (int i = 1; i <= levelnum; i++)
+            //{
+            //    //pos1 = path.LastIndexOf("\\");
+            //    //path = path.Substring(0, pos1);
+            //}
+
+            string newPath = path + addtopath;
+            try
+            {
+                FileAttributes attr = File.GetAttributes(newPath);
+                if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                { }
+                else
+                {
+                    string finalDir = Path.GetDirectoryName(newPath);
+                    if (!Directory.Exists(finalDir))
+                        Directory.CreateDirectory(finalDir);
+                    if (!File.Exists(newPath))
+                        File.Create(newPath);
+                }
+            }
+            catch { }
+            return newPath;
+        }
+        public string BarcodeToImage(string barcodeStr, string imagename)
+        {
+            // create encoding object
+            Zen.Barcode.Code128BarcodeDraw barcode = Zen.Barcode.BarcodeDrawFactory.Code128WithChecksum;
+            string addpath = @"\Thumb\" + imagename + ".png";
+            string imgpath = this.PathUp(Directory.GetCurrentDirectory(), 2, addpath);
+            if (File.Exists(imgpath))
+            {
+                File.Delete(imgpath);
+            }
+            if (barcodeStr != "")
+            {
+                System.Drawing.Bitmap serial_bitmap = (System.Drawing.Bitmap)barcode.Draw(barcodeStr, 60);
+                // System.Drawing.ImageConverter ic = new System.Drawing.ImageConverter();
+
+                serial_bitmap.Save(imgpath);
+
+                //  generate bitmap
+                //  img_barcode.Source = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(serial_bitmap.GetHbitmap(), IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            }
+            else
+            {
+
+                imgpath = "";
+            }
+            if (File.Exists(imgpath))
+            {
+                return imgpath;
+            }
+            else
+            {
+                return "";
+            }
+
+
+        }
         public static void PaymentsReport(IEnumerable<PaymentsSts> Query, LocalReport rep, string reppath, List<ReportParameter> paramarr)
         {
             rep.ReportPath = reppath;

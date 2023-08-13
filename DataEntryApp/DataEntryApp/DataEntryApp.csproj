@@ -178,6 +178,9 @@
     <Reference Include="WPFTabTip">
       <HintPath>..\packages\WPFTabTip.1.2.2\lib\net45\WPFTabTip.dll</HintPath>
     </Reference>
+    <Reference Include="Zen.Barcode.Core">
+      <HintPath>Classes\printClass\Zen.Barcode.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

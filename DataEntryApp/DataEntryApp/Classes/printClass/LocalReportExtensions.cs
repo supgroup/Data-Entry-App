@@ -177,19 +177,19 @@ namespace Microsoft.Reporting.WinForms
           "<DeviceInfo>" +
               "<OutputFormat>PDF</OutputFormat>" +
 
-   /*
-   "<PageWidth>{5}</PageWidth>" +
-   "<PageHeight>{4}</PageHeight>" +
+          /*
+          "<PageWidth>{5}</PageWidth>" +
+          "<PageHeight>{4}</PageHeight>" +
 
-   "<MarginTop>{0}</MarginTop>" +
-   "<MarginLeft>{1}</MarginLeft>" +
-   "<MarginRight>{2}</MarginRight>" +
-   "<MarginBottom>{3}</MarginBottom>" +
+          "<MarginTop>{0}</MarginTop>" +
+          "<MarginLeft>{1}</MarginLeft>" +
+          "<MarginRight>{2}</MarginRight>" +
+          "<MarginBottom>{3}</MarginBottom>" +
+       */
 
-*/
-   "<EmbedFonts>None</EmbedFonts>" +
           "</DeviceInfo>");
             /*
+             *    "<EmbedFonts>None</EmbedFonts>" +
             string mimeType;
             string encoding;
             string fileNameExtension;
@@ -200,24 +200,25 @@ namespace Microsoft.Reporting.WinForms
 
             byte[] Bytes = report.Render(format: "PDF", deviceInfo);
             // File.SetAttributes(savePath, FileAttributes.Normal);
-            try { 
-            using (FileStream stream = new FileStream(FullPath, FileMode.Create))
+            try
             {
-                try
+                using (FileStream stream = new FileStream(FullPath, FileMode.Create))
                 {
-                    stream.Write(Bytes, 0, Bytes.Length);
-                    stream.Close();
+                    try
+                    {
+                        stream.Write(Bytes, 0, Bytes.Length);
+                        stream.Close();
 
-                }
-                catch
-                {
+                    }
+                    catch
+                    {
 
+                    }
+                    finally
+                    {
+                        stream.Close();
+                    }
                 }
-                finally
-                {
-                    stream.Close();
-                }
-            }
             }
             catch { }
 
@@ -259,26 +260,27 @@ namespace Microsoft.Reporting.WinForms
 
             //  byte[] Bytes = report.Render(format: "EXCEL", deviceInfo: deviceInfo);
             // File.SetAttributes(savePath, FileAttributes.Normal);
-            try { 
-            using (FileStream stream = new FileStream(FullPath, FileMode.Create))
+            try
             {
-                try
+                using (FileStream stream = new FileStream(FullPath, FileMode.Create))
                 {
-                    stream.Write(Bytes, 0, Bytes.Length);
-                    stream.Close();
+                    try
+                    {
+                        stream.Write(Bytes, 0, Bytes.Length);
+                        stream.Close();
+
+                    }
+                    catch
+                    {
+
+                    }
+                    finally
+                    {
+                        stream.Close();
+                    }
 
                 }
-                catch
-                {
-
-                }
-                finally
-                {
-                    stream.Close();
-                }
-
             }
-        }
             catch { }
         }
         // Handler for PrintPageEvents
@@ -614,38 +616,39 @@ namespace Microsoft.Reporting.WinForms
                       "<OutputFormat>EMF</OutputFormat>" +
                       "<PageWidth>{1}</PageWidth>" +
                       "<PageHeight>{0}</PageHeight>" +
-                       "<EmbedFonts>None</EmbedFonts>" +
-                  "</DeviceInfo>",
 
+                  "</DeviceInfo>",
+                  //"<EmbedFonts>None</EmbedFonts>" +
                   ToInches(height + 100),
                   ToInches(width));
             byte[] Bytes = report.Render(format: "PDF", deviceInfo: deviceInfo);
             // File.SetAttributes(savePath, FileAttributes.Normal);
-            try { 
-            using (FileStream stream = new FileStream(FullPath, FileMode.Create))
+            try
             {
-                try
+                using (FileStream stream = new FileStream(FullPath, FileMode.Create))
                 {
-                    stream.Write(Bytes, 0, Bytes.Length);
-                    stream.Close();
+                    try
+                    {
+                        stream.Write(Bytes, 0, Bytes.Length);
+                        stream.Close();
 
-                }
-                catch
-                {
+                    }
+                    catch
+                    {
 
+                    }
+                    finally
+                    {
+                        stream.Close();
+                    }
                 }
-                finally
-                {
-                    stream.Close();
-                }
+
             }
-
-        }
             catch { }
 
         }
 
-   
+
         public static void customExportToPDFwh(LocalReport report, String FullPath, int width, int height)
         {/*
            /*
@@ -678,18 +681,18 @@ namespace Microsoft.Reporting.WinForms
 
                   ToInches(height),
                   ToInches(width));
-       //   System.Drawing.Image img2 = System.Drawing.Image.FromFile(@"D:\mailtemp\images\image-122.png");
-         //   img2.PhysicalDimension.Width; 
-       
+            //   System.Drawing.Image img2 = System.Drawing.Image.FromFile(@"D:\mailtemp\images\image-122.png");
+            //   img2.PhysicalDimension.Width; 
 
-         byte[] Bytes = report.Render(format: "PDF", deviceInfo: deviceInfo);
-           //byte[] Bytes = ImageToByteArray(img2);
 
-       
-           // BinaryFormatter bf = new BinaryFormatter();
-        
-           
-          //  System.IO.File.WriteAllBytes(FullPath, Bytes);
+            byte[] Bytes = report.Render(format: "PDF", deviceInfo: deviceInfo);
+            //byte[] Bytes = ImageToByteArray(img2);
+
+
+            // BinaryFormatter bf = new BinaryFormatter();
+
+
+            //  System.IO.File.WriteAllBytes(FullPath, Bytes);
 
             try
             {

@@ -356,6 +356,7 @@ namespace DataEntryApp.View.applications
                             
                             cb_nationality.Text = customer.Nationality;
                             cb_speciality.Text = customer.department;
+                            customer = customersList.Where(x => x.custId == customer.custId).FirstOrDefault();
                         }
                 }
                 }
@@ -608,7 +609,7 @@ namespace DataEntryApp.View.applications
 
 
         #region reports
-
+        clsReports clr = new clsReports();
         ReportCls reportclass = new ReportCls();
         LocalReport rep = new LocalReport();
         SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -778,24 +779,18 @@ namespace DataEntryApp.View.applications
             List<ReportParameter> paramarr = new List<ReportParameter>();
 
             string addpath;
-            bool isArabic = ReportCls.checkLang();
-            if (isArabic)
-            {
-                addpath = @"\Reports\Applications\En\EnPrograms.rdlc";
+            
+            
+                addpath = @"\Reports\Applications\Card\card.rdlc";
 
-            }
-            else
-            {
-                addpath = @"\Reports\Applications\En\EnPrograms.rdlc";
-            }
+          
 
             string reppath = reportclass.PathUp(Directory.GetCurrentDirectory(), 2, addpath);
 
 
-
-            //clsReports.programsReport(programsQuery, rep, reppath, paramarr);
-            clsReports.setReportLanguage(paramarr);
-            clsReports.Header(paramarr);
+            paramarr= clr.Cardfill( rep, reppath, paramarr,customer);
+            //clsReports.setReportLanguage(paramarr);
+          //  clsReports.Header(paramarr);
 
             rep.SetParameters(paramarr);
 
@@ -807,16 +802,102 @@ namespace DataEntryApp.View.applications
 
         private void Btn_print_card_Click(object sender, RoutedEventArgs e)
         {
+            //print
+            try
+            {
+                if (customer.custId > 0)
+                {
+                    HelpClass.StartAwait(grid_main);
 
+                    #region
+                    Buildcard();
+                   // LocalReportExtensions.PrintToPrinterbyNameAndCopy(rep, FillCombo.getdefaultPrinters(), FillCombo.rep_print_count == null ? short.Parse("1") : short.Parse(FillCombo.rep_print_count));
+                    LocalReportExtensions.customPrintToPrinterwh(rep, FillCombo.getdefaultPrinters(), FillCombo.rep_print_count == null ? short.Parse("1") : short.Parse(FillCombo.rep_print_count),400,200);
+                    #endregion
+
+                    HelpClass.EndAwait(grid_main);
+                }
+            }
+            catch (Exception ex)
+            {
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this);
+            }
         }
 
         private void Btn_previewcard_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                HelpClass.StartAwait(grid_main);
 
+                #region
+                if(customer.custId>0){
+                    Window.GetWindow(this).Opacity = 0.2;
+
+                    string pdfpath = "";
+                    //
+                    pdfpath = @"\Thumb\report\temp.pdf";
+                    pdfpath = reportclass.PathUp(Directory.GetCurrentDirectory(), 2, pdfpath);
+
+                    Buildcard();
+
+                    LocalReportExtensions.ExportToPDF(rep, pdfpath);
+                    wd_previewPdf w = new wd_previewPdf();
+                    w.pdfPath = pdfpath;
+                    if (!string.IsNullOrEmpty(w.pdfPath))
+                    {
+                        w.ShowDialog();
+                        w.wb_pdfWebViewer.Dispose();
+
+
+                    }
+                    Window.GetWindow(this).Opacity = 1;
+                    #endregion
+
+                    HelpClass.EndAwait(grid_main);
+                }
+                else
+                {
+
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this);
+            }
         }
 
         private void Btn_pdfcard_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (customer.custId > 0)
+                {
+                    HelpClass.StartAwait(grid_main);
+
+                    #region
+                    Buildcard();
+
+                    saveFileDialog.Filter = "PDF|*.pdf;";
+
+                    if (saveFileDialog.ShowDialog() == true)
+                    {
+                        string filepath = saveFileDialog.FileName;
+                        LocalReportExtensions.ExportToPDF(rep, filepath);
+                    }
+                    #endregion
+
+                    HelpClass.EndAwait(grid_main);
+                }
+            }
+            catch (Exception ex)
+            {
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this);
+            }
 
         }
 
