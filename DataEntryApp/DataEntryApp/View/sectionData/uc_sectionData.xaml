@@ -22,15 +22,15 @@
             <Button   Grid.Column="0"
              Background="{StaticResource MainColor}" BorderBrush="{x:Null}" 
                  Content="Users" FontWeight="Bold"      Margin="5" materialDesign:ButtonAssist.CornerRadius="10"
-                      x:Name="btn_users" Click="Btn_users_Click" Tag="users"/>
-            <Button   Grid.Column="1"
+                      x:Name="btn_users" Click="Btn_users_Click" Tag="users" Foreground="{StaticResource White}"/>
+            <Button   Grid.Column="1" Foreground="{StaticResource White}"
              Background="{StaticResource SecondColor}" BorderBrush="{x:Null}" 
-                 Content="Office" FontWeight="Bold"      Margin="5" materialDesign:ButtonAssist.CornerRadius="10"
-                       x:Name="btn_office" Click="Btn_office_Click" Tag="office"/>
-            <Button   Grid.Column="2"
+                 Content="Nationalities" FontWeight="Bold"      Margin="5" materialDesign:ButtonAssist.CornerRadius="10"
+                       x:Name="btn_nationalities" Click="Btn_nationalities_Click" Tag="nationalities"/>
+            <Button   Grid.Column="2" Foreground="{StaticResource White}"
              Background="{StaticResource SecondColor}" BorderBrush="{x:Null}" 
-                 Content="Customers" FontWeight="Bold"      Margin="5" materialDesign:ButtonAssist.CornerRadius="10"   
-                       x:Name="btn_customers" Click="Btn_customers_Click" Tag="customers"/>
+                 Content="specialties" FontWeight="Bold"      Margin="5" materialDesign:ButtonAssist.CornerRadius="10"   
+                       x:Name="btn_specialties" Click="Btn_specialties_Click" Tag="specialties"/>
 
         </Grid>
         <Grid Grid.Row="1" x:Name="grid_main"/>

@@ -44,7 +44,7 @@ namespace DataEntryApp.View.sectionData
             {
                 HelpClass.StartAwait(grid_mainGrid);
 
-                menuList = new List<string> { "users", "agents", "customers" };
+                menuList = new List<string> { "users", "nationalities", "specialties" };
 
                 #region translate
                 if (MainWindow.lang.Equals("en"))
@@ -74,8 +74,9 @@ namespace DataEntryApp.View.sectionData
         private void translate()
         {
             btn_users.Content = MainWindow.resourcemanager.GetString("trUsers");
-            btn_office.Content = MainWindow.resourcemanager.GetString("trOffices");
-            btn_customers.Content = MainWindow.resourcemanager.GetString("trCustomers");
+            btn_nationalities.Content = MainWindow.resourcemanager.GetString("nationalities");
+            btn_specialties.Content = MainWindow.resourcemanager.GetString("specialties");
+            //specialties specialty nationality nationalities 
         }
 
         void colorButtonRefreash(string str)
@@ -153,6 +154,36 @@ namespace DataEntryApp.View.sectionData
         private void Btn_office_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Btn_specialties_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                colorButtonRefreash(button.Tag.ToString());
+                grid_main.Children.Clear();
+              //  grid_main.Children.Add(uc_users.Instance);
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this);
+            }
+        }
+
+        private void Btn_nationalities_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                colorButtonRefreash(button.Tag.ToString());
+                grid_main.Children.Clear();
+                //grid_main.Children.Add(uc_users.Instance);
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this);
+            }
         }
     }
 }

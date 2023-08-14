@@ -2845,4 +2845,19 @@
   <data name="thePrint" xml:space="preserve">
     <value>الطباعة</value>
   </data>
+  <data name="contactNumber" xml:space="preserve">
+    <value>رقم الاتصال</value>
+  </data>
+  <data name="contactNumberHint" xml:space="preserve">
+    <value>رقم الاتصال ...</value>
+  </data>
+  <data name="nationalities" xml:space="preserve">
+    <value>الجنسيات</value>
+  </data>
+  <data name="specialties" xml:space="preserve">
+    <value>التخصصات</value>
+  </data>
+  <data name="specialty" xml:space="preserve">
+    <value>التخصص</value>
+  </data>
 </root>

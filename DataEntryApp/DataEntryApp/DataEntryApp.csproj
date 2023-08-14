@@ -392,6 +392,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Content Include="Reports\SectionData\Ar\ArUsers.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="pic\champer_industry_logo.png" />
     <Resource Include="pic\program-login-bg.png" />
     <Content Include="Thumb\setting\champer_industry_logo.png">
@@ -598,7 +601,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Reports\SectionData\Ar\" />
     <Folder Include="Thumb\customers\" />
     <Folder Include="View\sales\" />
     <Folder Include="View\settings\emailGeneral\" />

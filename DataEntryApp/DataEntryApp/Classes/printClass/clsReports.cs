@@ -137,13 +137,15 @@ namespace DataEntryApp.Classes
             rep.ReportPath = reppath;
             rep.EnableExternalImages = true;
             rep.DataSources.Clear();
-            rep.DataSources.Add(new ReportDataSource("DataSet", Query));
+            List<Users> cList = JsonConvert.DeserializeObject<List<Users>>(JsonConvert.SerializeObject(Query));
+            rep.DataSources.Add(new ReportDataSource("DataSet", cList));
             //title
-            paramarr.Add(new ReportParameter("trTitle", MainWindow.resourcemanagerreport.GetString("trAgents")));
-            //table columns
-            paramarr.Add(new ReportParameter("trCode", MainWindow.resourcemanagerreport.GetString("trCode")));
+            paramarr.Add(new ReportParameter("trTitle", MainWindow.resourcemanagerreport.GetString("trUsers")));
+            //table columns trNO trAccountName
+            paramarr.Add(new ReportParameter("trNO", MainWindow.resourcemanagerreport.GetString("trNo.")));
+            paramarr.Add(new ReportParameter("trAccountName", MainWindow.resourcemanagerreport.GetString("trUserName")));
             paramarr.Add(new ReportParameter("trName", MainWindow.resourcemanagerreport.GetString("trName")));
-            paramarr.Add(new ReportParameter("trMobile", MainWindow.resourcemanagerreport.GetString("trMobile")));
+            paramarr.Add(new ReportParameter("trMobile", MainWindow.resourcemanagerreport.GetString("contactNumber")));
 
 
             DateFormConv(paramarr);

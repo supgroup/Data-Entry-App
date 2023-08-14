@@ -64,7 +64,7 @@ namespace DataEntryApp.View.sectionData
             {
                 HelpClass.StartAwait(grid_main);
                 //   requiredControlList = new List<string> { "name", "lastName", "AccountName",  "type", "mobile" , "country" };
-                requiredControlList = new List<string> { "name", "lastName", "AccountName", "type", "mobile" };
+                requiredControlList = new List<string> { "name", "AccountName", "mobile"  };
                 #region translate
                 //if (MainWindow.lang.Equals("en"))
                 //{
@@ -79,13 +79,13 @@ namespace DataEntryApp.View.sectionData
                 translate();
                 #endregion
 
-                await FillCombo.fillCountries(cb_areaMobile);
-                await FillCombo.fillCountries(cb_areaPhone);
-                await FillCombo.fillCountries(cb_areaFax);
-                await FillCombo.fillCountriesNames(cb_country);
-                FillCombo.fillUserType(cb_type);
+                //await FillCombo.fillCountries(cb_areaMobile);
+                //await FillCombo.fillCountries(cb_areaPhone);
+                //await FillCombo.fillCountries(cb_areaFax);
+                //await FillCombo.fillCountriesNames(cb_country);
+                //FillCombo.fillUserType(cb_type);
 
-                Keyboard.Focus(tb_code);
+                Keyboard.Focus(tb_name);
 
                 await Search();
                 Clear();
@@ -100,31 +100,21 @@ namespace DataEntryApp.View.sectionData
         }
         private void translate()
         {
+
+            txt_title.Text = MainWindow.resourcemanager.GetString("trUsers");
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, MainWindow.resourcemanager.GetString("trSearchHint"));
-            txt_baseInformation.Text = MainWindow.resourcemanager.GetString("trBaseInformation");
             txt_active.Text = MainWindow.resourcemanager.GetString("trActive");
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_code, MainWindow.resourcemanager.GetString("trCodeHint"));
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_name, MainWindow.resourcemanager.GetString("trNameHint"));
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_lastName, MainWindow.resourcemanager.GetString("trLastNameHint"));
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(cb_country, MainWindow.resourcemanager.GetString("trCountryHint"));
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_email, MainWindow.resourcemanager.GetString("trEmailHint"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(pb_password, MainWindow.resourcemanager.GetString("trPasswordHint"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_passwordMirror, MainWindow.resourcemanager.GetString("trPasswordHint"));
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_mobile, MainWindow.resourcemanager.GetString("trMobileHint"));
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_phone, MainWindow.resourcemanager.GetString("trPhoneHint"));
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_fax, MainWindow.resourcemanager.GetString("trFaxHint"));
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_address, MainWindow.resourcemanager.GetString("trAdressHint"));
-            txt_workInformation.Text = MainWindow.resourcemanager.GetString("trWorkInformation");
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(cb_type, MainWindow.resourcemanager.GetString("trJobHint"));
-            txt_loginInformation.Text = MainWindow.resourcemanager.GetString("trLoginInformation");
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_mobile, MainWindow.resourcemanager.GetString("contactNumberHint"));
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_name, MainWindow.resourcemanager.GetString("trNameHint"));
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_AccountName, MainWindow.resourcemanager.GetString("trUserNameHint"));
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_notes, MainWindow.resourcemanager.GetString("trNoteHint"));
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_address, MainWindow.resourcemanager.GetString("trAdressHint"));
 
-            dg_user.Columns[0].Header = MainWindow.resourcemanager.GetString("trCode");
+            dg_user.Columns[0].Header = MainWindow.resourcemanager.GetString("trNo.");
             dg_user.Columns[1].Header = MainWindow.resourcemanager.GetString("trName");
-            dg_user.Columns[2].Header = MainWindow.resourcemanager.GetString("trMobile");
-
+            dg_user.Columns[2].Header = MainWindow.resourcemanager.GetString("trUserName");
+            dg_user.Columns[2].Header = MainWindow.resourcemanager.GetString("contactNumber");
+            //contactNumberHint
             tt_clear.Content = MainWindow.resourcemanager.GetString("trClear");
             tt_report.Content = MainWindow.resourcemanager.GetString("trPdf");
             tt_preview.Content = MainWindow.resourcemanager.GetString("trPreview");
@@ -135,6 +125,26 @@ namespace DataEntryApp.View.sectionData
             btn_add.Content = MainWindow.resourcemanager.GetString("trAdd");
             btn_update.Content = MainWindow.resourcemanager.GetString("trUpdate");
             btn_delete.Content = MainWindow.resourcemanager.GetString("trDelete");
+            //  txt_baseInformation.Text = MainWindow.resourcemanager.GetString("trBaseInformation");
+
+
+            //  MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_code, MainWindow.resourcemanager.GetString("trCodeHint"));
+
+            //MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_lastName, MainWindow.resourcemanager.GetString("trLastNameHint"));
+            //MaterialDesignThemes.Wpf.HintAssist.SetHint(cb_country, MainWindow.resourcemanager.GetString("trCountryHint"));
+            //MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_email, MainWindow.resourcemanager.GetString("trEmailHint"));
+
+            //MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_phone, MainWindow.resourcemanager.GetString("trPhoneHint"));
+            //MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_fax, MainWindow.resourcemanager.GetString("trFaxHint"));
+            //MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_address, MainWindow.resourcemanager.GetString("trAdressHint"));
+            //txt_workInformation.Text = MainWindow.resourcemanager.GetString("trWorkInformation");
+            //MaterialDesignThemes.Wpf.HintAssist.SetHint(cb_type, MainWindow.resourcemanager.GetString("trJobHint"));
+            //txt_loginInformation.Text = MainWindow.resourcemanager.GetString("trLoginInformation");
+
+            //MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_notes, MainWindow.resourcemanager.GetString("trNoteHint"));
+            //MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_address, MainWindow.resourcemanager.GetString("trAdressHint"));
+
+
 
         }
         #region Add - Update - Delete - Search - Tgl - Clear - DG_SelectionChanged - refresh
@@ -146,35 +156,35 @@ namespace DataEntryApp.View.sectionData
 
                 //chk duplicate userName
                 bool duplicateUserName = false;
-                duplicateUserName = await chkIfUserNameIsExists(tb_name.Text, 0);
+                duplicateUserName = await chkIfUserNameIsExists(tb_AccountName.Text, 0);
                 //chk password length
                 bool passLength = false;
                 passLength = chkPasswordLength(pb_password.Password);
 
                 user = new Users();
-                if (HelpClass.validate(requiredControlList, this) && duplicateUserName && passLength && HelpClass.IsValidEmail(this))
+                if (HelpClass.validate(requiredControlList, this) && duplicateUserName && passLength  )
                 {
-                    if (cb_type.SelectedValue != null)
-                    {
+                    //if (cb_type.SelectedValue != null)
+                    //{
                         //tb_code.Text = await user.generateCodeNumber(cb_type.SelectedValue.ToString());
-                        tb_code.Text = await HelpClass.generateRandomString(3, "us", "Users", 0);
-                        user.code = tb_code.Text;
-                    }
+                        user.code = await HelpClass.generateRandomString(3, "us", "Users", 0);
+                      
+                    //}
                     user.name = tb_name.Text;
-                    user.lastName = tb_lastName.Text;
-                    user.countryId = Convert.ToInt32(cb_country.SelectedValue);
+                    //user.lastName = tb_lastName.Text;
+                    //user.countryId = Convert.ToInt32(cb_country.SelectedValue);
                     user.AccountName = tb_AccountName.Text;
                     user.password = Md5Encription.MD5Hash("Inc-m" + pb_password.Password); ;
-                    user.email = tb_email.Text;
-                    user.mobile = cb_areaMobile.Text + "-" + tb_mobile.Text; ;
-                    if (!tb_phone.Text.Equals(""))
-                        user.phone = cb_areaPhone.Text + "-" + cb_areaPhoneLocal.Text + "-" + tb_phone.Text;
-                    if (!tb_fax.Text.Equals(""))
-                        user.fax = cb_areaFax.Text + "-" + cb_areaFaxLocal.Text + "-" + tb_fax.Text;
-                    if (cb_type.SelectedValue != null)
-                        user.type = cb_type.SelectedValue.ToString();
-                    user.address = tb_address.Text;
-                    user.notes = tb_notes.Text;
+                    //user.email = tb_email.Text;
+                    user.mobile =  tb_mobile.Text; ;
+                    //if (!tb_phone.Text.Equals(""))
+                    //    user.phone = cb_areaPhone.Text + "-" + cb_areaPhoneLocal.Text + "-" + tb_phone.Text;
+                    //if (!tb_fax.Text.Equals(""))
+                    //    user.fax = cb_areaFax.Text + "-" + cb_areaFaxLocal.Text + "-" + tb_fax.Text;
+                    //if (cb_type.SelectedValue != null)
+                    //    user.type = cb_type.SelectedValue.ToString();
+                    //user.address = tb_address.Text;
+                    //user.notes = tb_notes.Text;
                     user.isActive = 1;
                     user.createUserId = MainWindow.userLogin.userId;
                     user.updateUserId = MainWindow.userLogin.userId;
@@ -224,20 +234,20 @@ namespace DataEntryApp.View.sectionData
                     {
                         //user.code = user.code;
                         user.name = tb_name.Text;
-                        user.lastName = tb_lastName.Text;
-                        user.countryId = Convert.ToInt32(cb_country.SelectedValue);
+                        //user.lastName = tb_lastName.Text;
+                        //user.countryId = Convert.ToInt32(cb_country.SelectedValue);
                         user.AccountName = tb_AccountName.Text;
                         //user.password = Md5Encription.MD5Hash("Inc-m" + pb_password.Password); ;
-                        user.email = tb_email.Text;
-                        user.mobile = cb_areaMobile.Text + "-" + tb_mobile.Text; ;
-                        if (!tb_phone.Text.Equals(""))
-                            user.phone = cb_areaPhone.Text + "-" + cb_areaPhoneLocal.Text + "-" + tb_phone.Text;
-                        if (!tb_fax.Text.Equals(""))
-                            user.fax = cb_areaFax.Text + "-" + cb_areaFaxLocal.Text + "-" + tb_fax.Text;
-                        if (cb_type.SelectedValue != null)
-                            user.type = cb_type.SelectedValue.ToString();
-                        user.address = tb_address.Text;
-                        user.notes = tb_notes.Text;
+                        //user.email = tb_email.Text;
+                        user.mobile =  tb_mobile.Text; ;
+                        //if (!tb_phone.Text.Equals(""))
+                        //    user.phone = cb_areaPhone.Text + "-" + cb_areaPhoneLocal.Text + "-" + tb_phone.Text;
+                        //if (!tb_fax.Text.Equals(""))
+                        //    user.fax = cb_areaFax.Text + "-" + cb_areaFaxLocal.Text + "-" + tb_fax.Text;
+                        //if (cb_type.SelectedValue != null)
+                        //    user.type = cb_type.SelectedValue.ToString();
+                        //user.address = tb_address.Text;
+                        //user.notes = tb_notes.Text;
                         //user.isActive = 1;
                         user.createUserId = MainWindow.userLogin.userId;
                         user.updateUserId = MainWindow.userLogin.userId;
@@ -249,21 +259,21 @@ namespace DataEntryApp.View.sectionData
                         {
                             Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trPopUpdate"), animation: ToasterAnimation.FadeIn);
 
-                            if (isImgPressed)
-                            {
-                                int userId = (int)s;
-                                string b = await user.uploadImage(imgFileName, Md5Encription.MD5Hash("Inc-m" + userId.ToString()), userId);
-                                user.image = b;
-                                isImgPressed = false;
-                                if (!b.Equals(""))
-                                {
-                                    await getImg();
-                                }
-                                else
-                                {
-                                    HelpClass.clearImg(btn_image);
-                                }
-                            }
+                            //if (isImgPressed)
+                            //{
+                            //    int userId = (int)s;
+                            //    string b = await user.uploadImage(imgFileName, Md5Encription.MD5Hash("Inc-m" + userId.ToString()), userId);
+                            //    user.image = b;
+                            //    isImgPressed = false;
+                            //    if (!b.Equals(""))
+                            //    {
+                            //        await getImg();
+                            //    }
+                            //    else
+                            //    {
+                            //        HelpClass.clearImg(btn_image);
+                            //    }
+                            //}
 
                             await RefreshUsersList();
                             await Search();
@@ -416,7 +426,7 @@ namespace DataEntryApp.View.sectionData
 
                 Clear();
                 p_error_password.Visibility = Visibility.Collapsed;
-                p_error_email.Visibility = Visibility.Collapsed;
+                //p_error_email.Visibility = Visibility.Collapsed;
 
                 HelpClass.EndAwait(grid_main);
             }
@@ -439,8 +449,8 @@ namespace DataEntryApp.View.sectionData
                     this.DataContext = user;
                     if (user != null)
                     {
-                        tb_code.Text = user.code;
-                        cb_country.SelectedValue = user.countryId;
+                        //tb_code.Text = user.code;
+                        //cb_country.SelectedValue = user.countryId;
                         this.DataContext = user;
                         await getImg();
                         #region delete
@@ -454,14 +464,14 @@ namespace DataEntryApp.View.sectionData
                                 btn_delete.Content = MainWindow.resourcemanager.GetString("trInActive");
                         }
                         #endregion
-                        HelpClass.getMobile(user.mobile, cb_areaMobile, tb_mobile);
-                        HelpClass.getPhone(user.phone, cb_areaPhone, cb_areaPhoneLocal, tb_phone);
-                        HelpClass.getPhone(user.fax, cb_areaFax, cb_areaFaxLocal, tb_fax);
+                        HelpClass.getMobile(user.mobile, tb_mobile);
+                        //HelpClass.getPhone(user.phone, cb_areaPhone, cb_areaPhoneLocal, tb_phone);
+                        //HelpClass.getPhone(user.fax, cb_areaFax, cb_areaFaxLocal, tb_fax);
                     }
                 }
 
                 HelpClass.clearValidate(requiredControlList, this);
-                p_error_email.Visibility = Visibility.Collapsed;
+                //p_error_email.Visibility = Visibility.Collapsed;
 
                 HelpClass.EndAwait(grid_main);
             }
@@ -520,9 +530,9 @@ namespace DataEntryApp.View.sectionData
         {//select country
             try
             {
-                cb_areaMobile.SelectedIndex = cb_country.SelectedIndex;
-                cb_areaFax.SelectedIndex = cb_country.SelectedIndex;
-                cb_areaPhone.SelectedIndex = cb_country.SelectedIndex;
+                //    cb_areaMobile.SelectedIndex = cb_country.SelectedIndex;
+                //    cb_areaFax.SelectedIndex = cb_country.SelectedIndex;
+                //    cb_areaPhone.SelectedIndex = cb_country.SelectedIndex;
             }
             catch (Exception ex)
             {
@@ -537,30 +547,30 @@ namespace DataEntryApp.View.sectionData
             #region password-code
             pb_password.Clear();
             tb_passwordMirror.Clear();
-            tb_code.Text = "";
+            //tb_code.Text = "";
             #endregion
             #region mobile-Phone-fax-country
             //cb_areaMobile.SelectedValue = MainWindow.Region.countryId;
             //cb_areaPhone.SelectedValue = MainWindow.Region.countryId;
             //cb_areaFax.SelectedValue = MainWindow.Region.countryId;
-            cb_country.SelectedIndex = -1;
-            cb_areaMobile.SelectedIndex = -1;
-            cb_areaPhone.SelectedIndex = -1;
-            cb_areaFax.SelectedIndex = -1;
-            cb_areaPhoneLocal.SelectedIndex = -1;
-            cb_areaFaxLocal.SelectedIndex = -1;
+            //cb_country.SelectedIndex = -1;
+            //cb_areaMobile.SelectedIndex = -1;
+            //cb_areaPhone.SelectedIndex = -1;
+            //cb_areaFax.SelectedIndex = -1;
+            //cb_areaPhoneLocal.SelectedIndex = -1;
+            //cb_areaFaxLocal.SelectedIndex = -1;
             tb_mobile.Clear();
-            tb_phone.Clear();
-            tb_fax.Clear();
-            tb_email.Clear();
+            //tb_phone.Clear();
+            //tb_fax.Clear();
+            //tb_email.Clear();
             #endregion
             #region image
-            HelpClass.clearImg(btn_image);
+            //HelpClass.clearImg(btn_image);
             #endregion
 
             // last 
             HelpClass.clearValidate(requiredControlList, this);
-            p_error_email.Visibility = Visibility.Collapsed;
+            //p_error_email.Visibility = Visibility.Collapsed;
         }
 
         private void Number_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -634,7 +644,7 @@ namespace DataEntryApp.View.sectionData
             bool isValid = true;
             if (users == null)
                 await RefreshUsersList();
-            if (users.Any(i => i.name == username && i.userId != uId && i.type != "ag"))
+            if (users.Any(i => i.AccountName == username && i.userId != uId  ))
                 isValid = false;
             if (!isValid)
                 Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trErrorDuplicateUserNameToolTip"), animation: ToasterAnimation.FadeIn);
@@ -701,45 +711,45 @@ namespace DataEntryApp.View.sectionData
         int? countryid;
         private async void Cb_areaPhone_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            try
-            {
-                HelpClass.StartAwait(grid_main);
-                if (cb_areaPhone.SelectedValue != null)
-                {
-                    if (cb_areaPhone.SelectedIndex >= 0)
-                    {
-                        countryid = int.Parse(cb_areaPhone.SelectedValue.ToString());
-                        await FillCombo.fillCountriesLocal(cb_areaPhoneLocal, (int)countryid, brd_areaPhoneLocal);
-                    }
-                }
-                HelpClass.EndAwait(grid_main);
-            }
-            catch (Exception ex)
-            {
-                HelpClass.EndAwait(grid_main);
-                HelpClass.ExceptionMessage(ex, this);
-            }
+            //try
+            //{
+            //    HelpClass.StartAwait(grid_main);
+            //    if (cb_areaPhone.SelectedValue != null)
+            //    {
+            //        if (cb_areaPhone.SelectedIndex >= 0)
+            //        {
+            //            countryid = int.Parse(cb_areaPhone.SelectedValue.ToString());
+            //            await FillCombo.fillCountriesLocal(cb_areaPhoneLocal, (int)countryid, brd_areaPhoneLocal);
+            //        }
+            //    }
+            //    HelpClass.EndAwait(grid_main);
+            //}
+            //catch (Exception ex)
+            //{
+            //    HelpClass.EndAwait(grid_main);
+            //    HelpClass.ExceptionMessage(ex, this);
+            //}
         }
         private async void Cb_areaFax_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            try
-            {
-                HelpClass.StartAwait(grid_main);
-                if (cb_areaFax.SelectedValue != null)
-                {
-                    if (cb_areaFax.SelectedIndex >= 0)
-                    {
-                        countryid = int.Parse(cb_areaFax.SelectedValue.ToString());
-                        await FillCombo.fillCountriesLocal(cb_areaFaxLocal, (int)countryid, brd_areaFaxLocal);
-                    }
-                }
-                HelpClass.EndAwait(grid_main);
-            }
-            catch (Exception ex)
-            {
-                HelpClass.EndAwait(grid_main);
-                HelpClass.ExceptionMessage(ex, this);
-            }
+            //    try
+            //    {
+            //        HelpClass.StartAwait(grid_main);
+            //        if (cb_areaFax.SelectedValue != null)
+            //        {
+            //            if (cb_areaFax.SelectedIndex >= 0)
+            //            {
+            //                countryid = int.Parse(cb_areaFax.SelectedValue.ToString());
+            //                await FillCombo.fillCountriesLocal(cb_areaFaxLocal, (int)countryid, brd_areaFaxLocal);
+            //            }
+            //        }
+            //        HelpClass.EndAwait(grid_main);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        HelpClass.EndAwait(grid_main);
+            //        HelpClass.ExceptionMessage(ex, this);
+            //    }
         }
 
         #endregion
@@ -760,7 +770,7 @@ namespace DataEntryApp.View.sectionData
                 if (openFileDialog.ShowDialog() == true)
                 {
                     HelpClass.imageBrush.ImageSource = new BitmapImage(new Uri(openFileDialog.FileName, UriKind.Relative));
-                    btn_image.Background = HelpClass.imageBrush;
+                    //btn_image.Background = HelpClass.imageBrush;
                     imgFileName = openFileDialog.FileName;
                 }
                 else
@@ -809,44 +819,44 @@ namespace DataEntryApp.View.sectionData
         private async Task getImg()
         {
 
-            try
-            {
-                if (string.IsNullOrEmpty(user.image))
-                {
-                    HelpClass.clearImg(btn_image);
-                }
-                else
-                {
+            //try
+            //{
+            //    if (string.IsNullOrEmpty(user.image))
+            //    {
+            //        HelpClass.clearImg(btn_image);
+            //    }
+            //    else
+            //    {
                      
-                    var bitmapImage = new BitmapImage();
+            //        var bitmapImage = new BitmapImage();
                     
 
-                    string dir = Directory.GetCurrentDirectory();
-                    string tmpPath = System.IO.Path.Combine(dir, Global.TMPUsersFolder);
-                    tmpPath = System.IO.Path.Combine(tmpPath, user.image);
-                    byte[] imageBuffer = System.IO.File.ReadAllBytes(tmpPath);
-                    if (imageBuffer != null)
-                    {
-                        using (var memoryStream = new MemoryStream(imageBuffer))
-                        {
-                            bitmapImage.BeginInit();
-                            bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                            bitmapImage.StreamSource = memoryStream;
-                            bitmapImage.EndInit();
-                        }
-                    }
+            //        string dir = Directory.GetCurrentDirectory();
+            //        string tmpPath = System.IO.Path.Combine(dir, Global.TMPUsersFolder);
+            //        tmpPath = System.IO.Path.Combine(tmpPath, user.image);
+            //        byte[] imageBuffer = System.IO.File.ReadAllBytes(tmpPath);
+            //        if (imageBuffer != null)
+            //        {
+            //            using (var memoryStream = new MemoryStream(imageBuffer))
+            //            {
+            //                bitmapImage.BeginInit();
+            //                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+            //                bitmapImage.StreamSource = memoryStream;
+            //                bitmapImage.EndInit();
+            //            }
+            //        }
 
                      
-                    btn_image.Background = new ImageBrush(bitmapImage);
-                    //   openFileDialog.FileName = tmpPath;
+            //        btn_image.Background = new ImageBrush(bitmapImage);
+            //        //   openFileDialog.FileName = tmpPath;
 
 
-                    //}
-                    //    else
-                    //        HelpClass.clearImg(img_customer);
-                }
-            }
-            catch (Exception ex) { }
+            //        //}
+            //        //    else
+            //        //        HelpClass.clearImg(img_customer);
+            //    }
+            //}
+            //catch (Exception ex) { }
 
         }
         #endregion
@@ -874,15 +884,15 @@ namespace DataEntryApp.View.sectionData
 
             string addpath;
             bool isArabic = ReportCls.checkLang();
-            if (isArabic)
-            {
-                addpath = @"\Reports\SectionData\En\EnAgents.rdlc";
+            //if (isArabic)
+            //{
+                addpath = @"\Reports\SectionData\Ar\ArUsers.rdlc";
 
-            }
-            else
-            {
-                addpath = @"\Reports\SectionData\En\EnAgents.rdlc";
-            }
+            //}
+            //else
+            //{
+            //    addpath = @"\Reports\SectionData\En\EnAgents.rdlc";
+            //}
             //D:\myproj\posproject3\DataEntryApp\DataEntryApp\Reports\statisticReports\En\EnBook.rdlc
             string reppath = reportclass.PathUp(Directory.GetCurrentDirectory(), 2, addpath);
             //     subTitle = clsReports.ReportTabTitle(firstTitle, secondTitle);
@@ -1025,5 +1035,9 @@ namespace DataEntryApp.View.sectionData
 
         #endregion
 
+        private void Btn_pieChart_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

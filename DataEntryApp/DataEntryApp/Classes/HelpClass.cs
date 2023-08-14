@@ -616,35 +616,36 @@ namespace DataEntryApp.Classes
             tb.Background = (Brush)brushConverter.ConvertFrom("#15FF0000");
         }
 
-        public static void getMobile(string _mobile , ComboBox _area , TextBox _tb)
+        public static void getMobile(string _mobile , TextBox _tb)
         {//mobile
             if ((_mobile != null))
             {
-                string area = _mobile;
-                string[] pharr = area.Split('-');
-                int j = 0;
-                string phone = "";
+                //string area = _mobile;
+                //string[] pharr = area.Split('-');
+                //int j = 0;
+                //string phone = "";
 
-                foreach (string strpart in pharr)
-                {
-                    if (j == 0)
-                    {
-                        area = strpart;
-                    }
-                    else
-                    {
-                        phone = phone + strpart;
-                    }
-                    j++;
-                }
+                //foreach (string strpart in pharr)
+                //{
+                //    if (j == 0)
+                //    {
+                //        area = strpart;
+                //    }
+                //    else
+                //    {
+                //        phone = phone + strpart;
+                //    }
+                //    j++;
+                //}
 
-                _area.Text = area;
+                //_area.Text = area;
 
-                _tb.Text = phone.ToString();
+                //_tb.Text = phone.ToString();
+                _tb.Text = _mobile.ToString();
             }
             else
             {
-                _area.SelectedIndex = -1;
+             //   _area.SelectedIndex = -1;
                 _tb.Clear();
             }
         }

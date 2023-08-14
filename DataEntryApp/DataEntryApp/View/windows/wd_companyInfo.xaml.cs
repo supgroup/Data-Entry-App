@@ -150,13 +150,13 @@ namespace DataEntryApp.View.windows
                     //get company email
                     tb_email.Text = setVEmail.value;
                     //get company mobile
-                    HelpClass.getMobile(setVMobile.value, cb_areaMobile, tb_mobile);
+                    HelpClass.getMobile(setVMobile.value, tb_mobile);
                     //get company phone
-                    HelpClass.getPhone(setVPhone.value, cb_areaPhone, cb_areaPhoneLocal, tb_phone);
-                    //get company fax
-                    HelpClass.getPhone(setVFax.value, cb_areaFax, cb_areaFaxLocal, tb_fax);
+                    //HelpClass.getPhone(setVPhone.value, cb_areaPhone, cb_areaPhoneLocal, tb_phone);
+                    ////get company fax
+                    //HelpClass.getPhone(setVFax.value, cb_areaFax, cb_areaFaxLocal, tb_fax);
                     //get company logo
-                    await getImg();
+                    //await getImg();
                     #endregion
 
                 }

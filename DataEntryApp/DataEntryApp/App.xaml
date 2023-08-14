@@ -373,7 +373,8 @@
             <SolidColorBrush x:Key="MainColorGrey" Color="#4E4E4E"/>
             <SolidColorBrush x:Key="MainColorlightGrey" Color="#DFDFDF"/>
             <SolidColorBrush x:Key="MainColorRed" Color="#D22A17"/>
-            <SolidColorBrush x:Key="GridHeaderColor" Color="#F7EABC"/> 
+            <SolidColorBrush x:Key="GridHeaderColor" Color="#F7EABC"/>  
+            <SolidColorBrush x:Key="GridHeaderTextColor" Color="#FF6B6551"/>
             <!--#endregion-->
 
             <ResourceDictionary.MergedDictionaries>
