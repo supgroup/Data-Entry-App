@@ -721,7 +721,7 @@ namespace DataEntryApp.View.applications
 
                 #region
                 BuildReport();
-                LocalReportExtensions.PrintToPrinterbyNameAndCopy(rep, FillCombo.getdefaultPrinters(), FillCombo.rep_print_count == null ? short.Parse("1") : short.Parse(FillCombo.rep_print_count));
+                LocalReportExtensions.PrintToPrinterbyNameAndCopy(rep, FillCombo.getsettingPrinter(), FillCombo.rep_copy_count == null ? short.Parse("1") : short.Parse(FillCombo.rep_copy_count));
                 #endregion
 
                 HelpClass.EndAwait(grid_main);
@@ -810,7 +810,7 @@ namespace DataEntryApp.View.applications
                     #region
                     Buildcard();
                    // LocalReportExtensions.PrintToPrinterbyNameAndCopy(rep, FillCombo.getdefaultPrinters(), FillCombo.rep_print_count == null ? short.Parse("1") : short.Parse(FillCombo.rep_print_count));
-                    LocalReportExtensions.customPrintToPrinterwh(rep, FillCombo.getdefaultPrinters(), FillCombo.rep_print_count == null ? short.Parse("1") : short.Parse(FillCombo.rep_print_count),400,200);
+                    LocalReportExtensions.customPrintToPrinterwh(rep, FillCombo.getsettingPrinter(), FillCombo.rep_copy_count == null ? short.Parse("1") : short.Parse(FillCombo.rep_copy_count),400,200);
                     #endregion
 
                     HelpClass.EndAwait(grid_main);

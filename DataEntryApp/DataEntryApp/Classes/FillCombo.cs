@@ -419,6 +419,19 @@ namespace DataEntryApp.Classes
 
             return defaultPrinterName;
         }
+        static public string getsettingPrinter()
+        {
+            string printer = "";
+            if (Properties.Settings.Default.reportPrinter==null || Properties.Settings.Default.reportPrinter=="")
+            {
+                printer = getdefaultPrinters();
+            }
+            else
+            {
+                printer = Properties.Settings.Default.reportPrinter;
+            }
+            return printer;
+        }
 
         public static async Task Getprintparameter()
         {
@@ -467,6 +480,7 @@ namespace DataEntryApp.Classes
             #endregion
 
         }
+
 
         static SettingCls setModel = new SettingCls();
         static SetValues valueModel = new SetValues();
