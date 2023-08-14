@@ -322,7 +322,7 @@
     <value>أدخل هنا للبدء بالبحث...</value>
   </data>
   <data name="trSectionData" xml:space="preserve">
-    <value>البيانات</value>
+    <value>البيانات الاساسية</value>
   </data>
   <data name="trSelectBankNameHint" xml:space="preserve">
     <value>اختر اسم البنك</value>

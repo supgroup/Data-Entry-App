@@ -108,7 +108,7 @@ namespace DataEntryApp
 
             mi_changePassword.Header = resourcemanager.GetString("trChangePassword");
             BTN_logOut.Header = resourcemanager.GetString("trLogOut");
-
+            tb_navigation.Text = resourcemanager.GetString("trCards");
             //txt_notifications.Text = resourcemanager.GetString("trNotifications");
             //txt_noNoti.Text = resourcemanager.GetString("trNoNotifications");
             //btn_showAll.Content = resourcemanager.GetString("trShowAll");
@@ -453,6 +453,7 @@ namespace DataEntryApp
                 openVisible(button.Tag.ToString());
                 grid_main.Children.Clear();
                 grid_main.Children.Add(uc_sectionData.Instance);
+                tb_navigation.Text = resourcemanager.GetString("trSectionData");
             }
             catch (Exception ex)
             {
@@ -486,6 +487,7 @@ namespace DataEntryApp
                 openVisible(button.Tag.ToString());
                 grid_main.Children.Clear();
                 grid_main.Children.Add(uc_settings.Instance);
+                tb_navigation.Text = resourcemanager.GetString("trSettings");
             }
             catch (Exception ex)
             {
@@ -561,6 +563,8 @@ namespace DataEntryApp
                 grid_main.Children.Clear();
                 //   grid_main.Children.Add(uc_customers.Instance);
                 grid_main.Children.Add(uc_applications.Instance);
+                tb_navigation.Text= resourcemanager.GetString("trCards");
+
             }
             catch (Exception ex)
             {

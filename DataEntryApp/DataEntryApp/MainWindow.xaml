@@ -260,7 +260,7 @@
                 <StackPanel Orientation="Horizontal" Margin="15 15"
                            HorizontalAlignment="Left" VerticalAlignment="Center">
 
-                    <TextBlock Text="Cards" Foreground="{StaticResource MainColor}"  Margin="5 0 5 0"  />
+                    <TextBlock Name="tb_navigation" Text="Cards" Foreground="{StaticResource MainColor}"  Margin="5 0 5 0"  />
                      
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="10 5"
