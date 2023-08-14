@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataEntryApp.ApiClasses;
+using Newtonsoft.Json;
 
 //using POS.View.storage;
 namespace DataEntryApp.Classes
@@ -24,11 +25,11 @@ namespace DataEntryApp.Classes
         {
 
             ReportCls rep = new ReportCls();
-            paramarr.Add(new ReportParameter("companyName", FillCombo.companyName));
-            paramarr.Add(new ReportParameter("Fax", FillCombo.Fax));
-            paramarr.Add(new ReportParameter("Tel", FillCombo.Mobile));
-            paramarr.Add(new ReportParameter("Address", FillCombo.Address));
-            paramarr.Add(new ReportParameter("Email", FillCombo.Email));
+            //paramarr.Add(new ReportParameter("companyName", FillCombo.companyName));
+            //paramarr.Add(new ReportParameter("Fax", FillCombo.Fax));
+            //paramarr.Add(new ReportParameter("Tel", FillCombo.Mobile));
+            //paramarr.Add(new ReportParameter("Address", FillCombo.Address));
+            //paramarr.Add(new ReportParameter("Email", FillCombo.Email));
             paramarr.Add(new ReportParameter("logoImage", "file:\\" + rep.GetLogoImagePath()));
 
         }
@@ -61,7 +62,7 @@ namespace DataEntryApp.Classes
         //  //  paramarr.Add(new ReportParameter("trVendor", MainWindow.resourcemanagerreport.GetString("trVendor")));
         //    rep.DataSources.Add(new ReportDataSource("DataSetSerials", Query));
 
-      
+
 
         //}
         //public static void serialsMailReport(IEnumerable<PosSerials> Query, LocalReport rep, string reppath, List<ReportParameter> paramarr)
@@ -76,6 +77,26 @@ namespace DataEntryApp.Classes
 
 
         //}
+
+        public static void cardsReport(IEnumerable<Customers> Query, LocalReport rep, string reppath, List<ReportParameter> paramarr)
+        {
+            rep.ReportPath = reppath;
+            rep.EnableExternalImages = true;
+            rep.DataSources.Clear();
+            List<Customers> cList = JsonConvert.DeserializeObject<List<Customers>>(JsonConvert.SerializeObject(Query));
+            rep.DataSources.Add(new ReportDataSource("DataSet", Query));
+            //title
+            paramarr.Add(new ReportParameter("trTitle", MainWindow.resourcemanagerreport.GetString("trCards")));
+            //table columns
+            paramarr.Add(new ReportParameter("trNo", MainWindow.resourcemanagerreport.GetString("trNo.")));
+            paramarr.Add(new ReportParameter("trName", MainWindow.resourcemanagerreport.GetString("trName")));
+            paramarr.Add(new ReportParameter("nationality", MainWindow.resourcemanagerreport.GetString("nationality")));
+            paramarr.Add(new ReportParameter("specialization", MainWindow.resourcemanagerreport.GetString("specialization")));
+            paramarr.Add(new ReportParameter("whatsnumber", MainWindow.resourcemanagerreport.GetString("whatsnumber")));
+
+         //   DateFormConv(paramarr);
+        }
+
         public static void BookReport(IEnumerable<BookSts> Query, LocalReport rep, string reppath, List<ReportParameter> paramarr)
         {
             rep.ReportPath = reppath;
@@ -363,4 +384,6 @@ namespace DataEntryApp.Classes
 
  
     }
-}
+    
+
+    }

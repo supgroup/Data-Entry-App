@@ -11,5 +11,8 @@
     <Setting Name="Lang" Type="System.String" Scope="User">
       <Value Profile="(Default)">ar</Value>
     </Setting>
+    <Setting Name="reportPrinter" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

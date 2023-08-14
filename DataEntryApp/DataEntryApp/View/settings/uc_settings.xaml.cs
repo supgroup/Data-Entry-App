@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using DataEntryApp.View.windows;
 namespace DataEntryApp.View.settings
 {
     /// <summary>
@@ -60,7 +60,7 @@ namespace DataEntryApp.View.settings
 
 
 
-                Btn_general_Click(btn_general, null);
+               // Btn_general_Click(btn_general, null);
 
                 if (sender != null)
                     HelpClass.EndAwait(grid_mainGrid);
@@ -74,9 +74,10 @@ namespace DataEntryApp.View.settings
         }
         public void translate()
         {
-            btn_general.Content = MainWindow.resourcemanager.GetString("trGeneral");
-            btn_reportsSettings.Content = MainWindow.resourcemanager.GetString("trPrint");
-            btn_emails.Content = MainWindow.resourcemanager.GetString("trEmail");
+            //btn_general.Content = MainWindow.resourcemanager.GetString("trGeneral");
+            //btn_reportsSettings.Content = MainWindow.resourcemanager.GetString("trPrint");
+            //btn_emails.Content = MainWindow.resourcemanager.GetString("trEmail");
+
         }
         void colorButtonRefreash(string str)
         {
@@ -143,6 +144,62 @@ namespace DataEntryApp.View.settings
             }
             catch (Exception ex)
             {
+                HelpClass.ExceptionMessage(ex, this);
+            }
+        }
+
+      
+
+        private void Btn_printSetting_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (sender != null)
+                    HelpClass.StartAwait(grid_main);
+                //if (MainWindow.groupObject.HasPermissionAction(companySettingsPermission, MainWindow.groupObjects, "one") || SectionData.isAdminPermision())
+                //{
+                Window.GetWindow(this).Opacity = 0.2;
+                wd_printers w = new wd_printers();
+                //w.windowType = "r";
+                w.ShowDialog();
+                Window.GetWindow(this).Opacity = 1;
+                //}
+                //else
+                //    Toaster.ShowInfo(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trdontHavePermission"), animation: ToasterAnimation.FadeIn);
+                if (sender != null)
+                    HelpClass.EndAwait(grid_main);
+            }
+            catch (Exception ex)
+            {
+                if (sender != null)
+                    HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this);
+            }
+        }
+
+        private void Btn_printcount_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (sender != null)
+                    HelpClass.StartAwait(grid_main);
+                //if (MainWindow.groupObject.HasPermissionAction(companySettingsPermission, MainWindow.groupObjects, "one") || SectionData.isAdminPermision())
+                //{
+                Window.GetWindow(this).Opacity = 0.2;
+                wd_CopyCountSetting w = new wd_CopyCountSetting();
+                //w.windowType = "r";
+                w.ShowDialog();
+                Window.GetWindow(this).Opacity = 1;
+                //}
+                //else
+                //    Toaster.ShowInfo(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trdontHavePermission"), animation: ToasterAnimation.FadeIn);
+                if (sender != null)
+                    HelpClass.EndAwait(grid_main);
+            }
+            catch (Exception ex)
+            {
+                if (sender != null)
+                    HelpClass.EndAwait(grid_main);
                 HelpClass.ExceptionMessage(ex, this);
             }
         }

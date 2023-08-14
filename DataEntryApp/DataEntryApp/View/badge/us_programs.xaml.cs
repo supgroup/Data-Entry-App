@@ -617,28 +617,26 @@ namespace DataEntryApp.View.applications
         public void BuildReport()
         {
 
-             
-
             List<ReportParameter> paramarr = new List<ReportParameter>();
 
             string addpath;
             bool isArabic = ReportCls.checkLang();
-            if (isArabic)
-            {
-                addpath = @"\Reports\Applications\En\EnPrograms.rdlc";
+            //if (isArabic)
+            //{
+                addpath = @"\Reports\Applications\Card\cardreport.rdlc";
 
-            }
-            else
-            {
-                addpath = @"\Reports\Applications\En\EnPrograms.rdlc";
-            }
+            //}
+            //else
+            //{
+            //    addpath = @"\Reports\Applications\En\EnPrograms.rdlc";
+            //}
           
             string reppath = reportclass.PathUp(Directory.GetCurrentDirectory(), 2, addpath);
    
            
 
-            //clsReports.programsReport(programsQuery, rep, reppath, paramarr);
-            clsReports.setReportLanguage(paramarr);
+            clsReports.cardsReport(customersQuery, rep, reppath, paramarr);
+           // clsReports.setReportLanguage(paramarr);
             clsReports.Header(paramarr);
 
             rep.SetParameters(paramarr);
@@ -941,8 +939,20 @@ namespace DataEntryApp.View.applications
             }
         }
 
-       
-           
-        
+        private void Tb_mobileWhatsapp_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            try
+            {
+                //only  digits
+                TextBox textBox = sender as TextBox;
+                HelpClass.InputJustNumber(ref textBox);
+                Regex regex = new Regex("[^0-9]+");
+                e.Handled = regex.IsMatch(e.Text);
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this);
+            }
+        }
     }
 }

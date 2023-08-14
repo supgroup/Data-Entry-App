@@ -2830,4 +2830,10 @@
   <data name="whatsnumberHint" xml:space="preserve">
     <value>رقم الواتساب ...</value>
   </data>
+  <data name="printername" xml:space="preserve">
+    <value>الطابعة </value>
+  </data>
+  <data name="printCopyCount" xml:space="preserve">
+    <value>عدد النسخ</value>
+  </data>
 </root>

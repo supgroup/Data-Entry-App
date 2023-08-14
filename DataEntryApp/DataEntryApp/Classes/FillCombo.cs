@@ -471,7 +471,7 @@ namespace DataEntryApp.Classes
         static SettingCls setModel = new SettingCls();
         static SetValues valueModel = new SetValues();
         static int nameId, addressId, emailId, mobileId, phoneId, faxId, logoId, taxId;
-        public static string logoImage;
+        public static string logoImage= "champer_industry_logo.png";
         public static string companyName;
         public static string Email;
         public static string Fax;
@@ -571,7 +571,7 @@ namespace DataEntryApp.Classes
                 setV = settingsValues.Where(i => i.settingId == logoId).FirstOrDefault();
                 if (setV != null)
                 {
-                    logoImage = setV.value;
+                   // logoImage = setV.value;
                     //await setV.getImg(logoImage);
                 }
              

@@ -2845,4 +2845,10 @@ Please add Email in setting</value>
   <data name="whatsnumberHint" xml:space="preserve">
     <value>WhatsApp Number ...</value>
   </data>
+  <data name="printername" xml:space="preserve">
+    <value>Printer</value>
+  </data>
+  <data name="printCopyCount" xml:space="preserve">
+    <value>Print Copy Count</value>
+  </data>
 </root>

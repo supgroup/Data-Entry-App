@@ -266,8 +266,14 @@
     <Compile Include="View\windows\wd_previewPdf.xaml.cs">
       <DependentUpon>wd_previewPdf.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\windows\wd_CopyCountSetting.xaml.cs">
+      <DependentUpon>wd_CopyCountSetting.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\windows\wd_reportSystmSetting.xaml.cs">
       <DependentUpon>wd_reportSystmSetting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\windows\wd_printers.xaml.cs">
+      <DependentUpon>wd_printers.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\windows\wd_saleNote.xaml.cs">
       <DependentUpon>wd_saleNote.xaml</DependentUpon>
@@ -355,7 +361,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\windows\wd_CopyCountSetting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\windows\wd_reportSystmSetting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\windows\wd_printers.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -380,6 +394,9 @@
     </Compile>
     <Resource Include="pic\champer_industry_logo.png" />
     <Resource Include="pic\program-login-bg.png" />
+    <Content Include="Thumb\setting\champer_industry_logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Thumb\users\tmp.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -439,6 +456,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Reports\Applications\Card\card.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\Applications\Card\cardreport.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\Sale\Book\Ar\ArBook.rdlc" />

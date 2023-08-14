@@ -292,12 +292,12 @@ namespace DataEntryApp.Classes
         public static bool checkLang()
         {
             bool isArabic;
-            if (MainWindow.Reportlang.Equals("en"))
-            {
-                MainWindow.resourcemanagerreport = new ResourceManager("DataEntryApp.en_file", Assembly.GetExecutingAssembly());
-                isArabic = false;
-            }
-            else
+            //if (MainWindow.Reportlang.Equals("en"))
+            //{
+            //    MainWindow.resourcemanagerreport = new ResourceManager("DataEntryApp.en_file", Assembly.GetExecutingAssembly());
+            //    isArabic = false;
+            //}
+            //else
             {
                 MainWindow.resourcemanagerreport = new ResourceManager("DataEntryApp.ar_file", Assembly.GetExecutingAssembly());
                 isArabic = true;

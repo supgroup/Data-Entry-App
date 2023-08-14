@@ -19,13 +19,15 @@ using System.Windows.Resources;
 using System.Windows.Shapes;
 using Tulpep.NotificationWindow;
 using System.Configuration;
+using System.Drawing.Printing;
 namespace DataEntryApp.Classes
 {
     class HelpClass
     {
        static public BrushConverter brushConverter = new BrushConverter();
         public static ImageBrush imageBrush = new ImageBrush();
-
+        public static BrushConverter bc = new BrushConverter();
+        public static ImageBrush brush = new ImageBrush();
         static Users userModel = new Users();
         //static Customers customerModel = new Customers();
         //static Packages packageModel = new Packages();
@@ -129,7 +131,25 @@ namespace DataEntryApp.Classes
             p_error.Visibility = Visibility.Collapsed;
         }
         #region validateEmpty 
-        /*
+
+        public static bool validateEmptyTextBox(TextBox tb, Path p_error, ToolTip tt_error, string tr)
+        {
+            bool isValid = true;
+            if (string.IsNullOrWhiteSpace(tb.Text))
+            {
+                p_error.Visibility = Visibility.Visible;
+                tt_error.Content = MainWindow.resourcemanager.GetString(tr);
+                tb.Background = (Brush)bc.ConvertFrom("#15FF0000");
+                isValid = false;
+            }
+            else
+            {
+                tb.Background = (Brush)bc.ConvertFrom("#f8f8f8");
+                p_error.Visibility = Visibility.Collapsed;
+            }
+            return isValid;
+        }
+
         public static bool validateEmptyTextBox(TextBox tb, Path p_error)
         {
             bool isValid = true;
@@ -150,6 +170,7 @@ namespace DataEntryApp.Classes
             }
             return isValid;
         }
+        /*
         public static bool validateEmptyComboBox(ComboBox cb, Path p_error, ToolTip tt_error, string tr)
         {
             bool isValid = true;
@@ -1065,10 +1086,52 @@ namespace DataEntryApp.Classes
         //            // AddNewConnectionString(".\\SQLEXPRESS", "bookdb");
         //        //    MessageBox.Show("not exist");
         //            return false;
-                   
+
         //        }
         //    }
         //}
+        public static List<string> getsystemPrinters()
+        {
+            List<string> printerList = new List<string>();
+
+            for (int i = 0; i < PrinterSettings.InstalledPrinters.Count; i++)
+            {            
+
+                string printername = (string)PrinterSettings.InstalledPrinters[i];
+
+                printerList.Add(printername);
+
+            }
+            return printerList;
+        }
+        public string getdefaultPrinters()
+        {
+
+            PrinterSettings settings = new PrinterSettings();
+            string defaultPrinterName = settings.PrinterName;
+
+            
+            return defaultPrinterName;
+        }
+
+
+        public static string getfromConfig(string parName)
+        {
+            string par = "";
+
+            System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+            if (config.AppSettings.Settings[parName] == null)
+            {
+                par = "";
+            }
+            else
+            {
+                par = config.AppSettings.Settings[parName].Value;
+           //  par= Properties.Settings.Default.reportPrinter;
+            }
+            return par;
+        }
     }
 
 }

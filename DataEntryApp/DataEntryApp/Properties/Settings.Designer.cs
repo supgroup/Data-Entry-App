@@ -58,5 +58,17 @@ namespace DataEntryApp.Properties {
                 this["Lang"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string reportPrinter {
+            get {
+                return ((string)(this["reportPrinter"]));
+            }
+            set {
+                this["reportPrinter"] = value;
+            }
+        }
     }
 }

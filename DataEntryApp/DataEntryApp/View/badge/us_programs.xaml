@@ -350,10 +350,10 @@
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                      materialDesign:HintAssist.Hint="Whatsapp Number..."  materialDesign:HintAssist.Foreground="{StaticResource MainColor}" materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource MainColor}"
                                      Foreground="#4E4E4E"  
-                                     MaxLength="50" BorderThickness="0"
+                                     MaxLength="15" BorderThickness="0"
                                      materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
-                                     Height="40"  Margin="4,0"  
-                                     LostFocus="validateEmpty_LostFocus" TextChanged="ValidateEmpty_TextChange"/>
+                                     Height="40"  Margin="4,0"      
+                                     LostFocus="validateEmpty_LostFocus" TextChanged="ValidateEmpty_TextChange" PreviewTextInput="Tb_mobileWhatsapp_PreviewTextInput"/>
                             <Path x:Name="p_error_mobileWhatsapp"
                                   Fill="#E81123"   Stretch="Fill" Margin="5,5,15,5" 
                                   HorizontalAlignment="Right" Visibility="Collapsed"   
