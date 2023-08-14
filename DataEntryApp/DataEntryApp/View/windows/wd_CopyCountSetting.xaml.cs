@@ -58,23 +58,25 @@ namespace DataEntryApp.View.windows
             {
                 if (sender != null)
                     HelpClass.StartAwait(grid_main);
-
-             //   string barcode = cb_repname.Text;
-
-               //   Properties.Settings.Default.reportPrinter=cb_repname.Text;
-                Properties.Settings.Default.Save();
-                Properties.Settings.Default.Reload();
-                System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                config.AppSettings.Settings.Remove("reportPrinter");
-           //     config.AppSettings.Settings.Add("reportPrinter", cb_repname.Text);
-
-                config.Save(ConfigurationSaveMode.Modified);
-
-                // Force a reload of a changed section.
-                ConfigurationManager.RefreshSection("appSettings");
+                SettingCls set = new SettingCls();
+                SetValues setV = new SetValues();
+                set = FillCombo.settingList.Where(s => s.name == "rep_copy_count").FirstOrDefault<SettingCls>();
+               int nameId = set.settingId;
+                setV = FillCombo.setValueList.Where(i => i.settingId == nameId).FirstOrDefault();
+                setV.value = tb_repPrintCount.Text;
+                decimal res = await setV.Save(setV);
+                if (res>0)
+                {
+                    Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trPopSave"), animation: ToasterAnimation.FadeIn);
+                    await Task.Delay(1000);
+                  await  FillCombo.loading_getDefaultSystemInfo();
+                }
+                else
+                {
+                    Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trPopError"), animation: ToasterAnimation.FadeIn);
+                }
                 
-                Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trPopSave"), animation: ToasterAnimation.FadeIn);
-                await Task.Delay(1000);
+             
                 this.Close();
                 if (sender != null)
                     HelpClass.EndAwait(grid_main);
@@ -89,15 +91,9 @@ namespace DataEntryApp.View.windows
             }
         }
 
-        public void fillcb_repname()
+        public void fill_repPrintCount()
         {
-            
-            printersList = HelpClass.getsystemPrinters();
-           // cb_repname.ItemsSource = printersList;
-            //cb_repname.DisplayMemberPath = "name";
-            //cb_repname.SelectedValuePath = "name";
-            string n= HelpClass.getfromConfig("reportPrinter");
-          //  cb_repname.SelectedValue = n;
+            tb_repPrintCount.Text = FillCombo.rep_copy_count;
         }
 
         void windowFlowDirection()
@@ -116,7 +112,7 @@ namespace DataEntryApp.View.windows
             }
             #endregion
         }
-        private  void Window_Loaded(object sender, RoutedEventArgs e)
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
        
             try
@@ -134,8 +130,10 @@ namespace DataEntryApp.View.windows
                 //    MainWindow.resourcemanager = new ResourceManager("POS.ar_file", Assembly.GetExecutingAssembly());
                 //}
                 windowFlowDirection();
-                fillcb_repname();
                 translate();
+                await FillCombo.loading_getDefaultSystemInfo();
+                fill_repPrintCount();
+               
                 #endregion
 
                
@@ -185,29 +183,15 @@ namespace DataEntryApp.View.windows
 
 
 
-                if (textBox.Name == "tb_purCopyCount" || textBox.Name == "tb_saleCopyCount" || textBox.Name == "tb_repPrintCount" || textBox.Name == "tb_directEntry")
+                if (  textBox.Name == "tb_repPrintCount"  )
                     HelpClass.InputJustNumber(ref textBox);
 
-                if (textBox.Name == "tb_purCopyCount")
-                {
-                    if (int.TryParse(textBox.Text, out _numPurCopyCount))
-                        numPurCopyCount = int.Parse(textBox.Text);
-                }
-                else if (textBox.Name == "tb_saleCopyCount")
-                {
-                    if (int.TryParse(textBox.Text, out _numSaleCopyCount))
-                        numSaleCopyCount = int.Parse(textBox.Text);
-                }
-                else if (textBox.Name == "tb_repPrintCount")
+                 if (textBox.Name == "tb_repPrintCount")
                 {
                     if (int.TryParse(textBox.Text, out _numRepPrintCount))
                         numRepPrintCount = int.Parse(textBox.Text);
                 }
-                else if (textBox.Name == "tb_directEntry")
-                {
-                    if (int.TryParse(textBox.Text, out _numDirectEntry))
-                        numDirectEntry = int.Parse(textBox.Text);
-                }
+                
 
             }
             catch (Exception ex)
@@ -295,14 +279,10 @@ namespace DataEntryApp.View.windows
             try
             {
                 Button button = sender as Button;
-                if (button.Tag.ToString() == "purCopyCount")
-                    numPurCopyCount++;
-                else if (button.Tag.ToString() == "saleCopyCount")
-                    numSaleCopyCount++;
-                else if (button.Tag.ToString() == "repPrintCount")
+                 
+                  if (button.Tag.ToString() == "repPrintCount")
                     numRepPrintCount++;
-                else if (button.Tag.ToString() == "directEntry")
-                    numDirectEntry++;
+ 
             }
             catch (Exception ex)
             {
@@ -317,14 +297,10 @@ namespace DataEntryApp.View.windows
             {
                 Button button = sender as Button;
 
-                if (button.Tag.ToString() == "purCopyCount" && numPurCopyCount > 1)
-                    numPurCopyCount--;
-                else if (button.Tag.ToString() == "saleCopyCount" && numSaleCopyCount > 1)
-                    numSaleCopyCount--;
-                else if (button.Tag.ToString() == "repPrintCount" && numRepPrintCount > 1)
+              
+               if (button.Tag.ToString() == "repPrintCount" && numRepPrintCount > 1)
                     numRepPrintCount--;
-                else if (button.Tag.ToString() == "directEntry" && numDirectEntry > 1)
-                    numDirectEntry--;
+                 
             }
             catch (Exception ex)
             {

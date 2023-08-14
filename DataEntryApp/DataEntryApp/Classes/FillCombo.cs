@@ -479,12 +479,34 @@ namespace DataEntryApp.Classes
         public static string Address;
         public static string Phone;
 
-       public static async Task< int> loading_getDefaultSystemInfo()
+        public static List<SettingCls> settingList = new List<SettingCls>();
+        public static List<SetValues> setValueList = new List<SetValues>();
+
+        static public async Task getsettingList()
+        {
+
+            SettingCls settingModel = new SettingCls();
+            settingList = await settingModel.GetAll();
+
+            //return country;
+        }
+        static public async Task getsetValueList()
+        {
+
+            SetValues setValuesModel = new SetValues();
+            setValueList = await setValuesModel.GetAll();
+
+
+        }
+        public static string rep_copy_count = "1";
+        public static async Task< int> loading_getDefaultSystemInfo()
         {
             try
             {
-                List<SettingCls> settingsCls = await setModel.GetAll();
-                List<SetValues> settingsValues = await valueModel.GetAll();
+                await getsettingList();
+                await getsetValueList ();
+                List<SettingCls> settingsCls = settingList;
+                List<SetValues> settingsValues = setValueList;
                 SettingCls set = new SettingCls();
                 SetValues setV = new SetValues();
                 List<char> charsToRemove = new List<char>() { '@', '_', ',', '.', '-' };
@@ -574,9 +596,34 @@ namespace DataEntryApp.Classes
                    // logoImage = setV.value;
                     //await setV.getImg(logoImage);
                 }
-             
-                return 1;
+
+
                 #endregion
+                #region get repcopy count
+
+                //get company name
+                set = settingsCls.Where(s => s.name == "rep_copy_count").FirstOrDefault<SettingCls>();
+                nameId = set.settingId;
+                setV = settingsValues.Where(i => i.settingId == nameId).FirstOrDefault();
+                if (setV != null)
+                {
+                    if (setV.value!=null && setV.value !="")
+                    {
+                        rep_copy_count = setV.value;
+                    }
+                    else
+                    {
+                        rep_copy_count ="1";
+                    }
+                   
+                }
+                else
+                {
+                    rep_copy_count ="1";
+                }
+                #endregion
+                return 1;
+           
             }
             catch (Exception)
             { return 0; }

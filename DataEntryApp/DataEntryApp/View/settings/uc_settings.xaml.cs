@@ -77,7 +77,11 @@ namespace DataEntryApp.View.settings
             //btn_general.Content = MainWindow.resourcemanager.GetString("trGeneral");
             //btn_reportsSettings.Content = MainWindow.resourcemanager.GetString("trPrint");
             //btn_emails.Content = MainWindow.resourcemanager.GetString("trEmail");
-
+            txt_printSetting.Text   = MainWindow.resourcemanager.GetString("thePrint");
+            txt_printcount.Text = MainWindow.resourcemanager.GetString("printCopyCount");
+            txt_printSettingHint.Text = MainWindow.resourcemanager.GetString("selectprint");
+            txt_printcountHint.Text = MainWindow.resourcemanager.GetString("enterCopyCount");
+            //enterCopyCount selectprint
         }
         void colorButtonRefreash(string str)
         {

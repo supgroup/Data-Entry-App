@@ -2836,4 +2836,13 @@
   <data name="printCopyCount" xml:space="preserve">
     <value>عدد النسخ</value>
   </data>
+  <data name="enterCopyCount" xml:space="preserve">
+    <value>ادخال عدد نسخ الطباعة</value>
+  </data>
+  <data name="selectprint" xml:space="preserve">
+    <value>تحديد الطابعة</value>
+  </data>
+  <data name="thePrint" xml:space="preserve">
+    <value>الطباعة</value>
+  </data>
 </root>

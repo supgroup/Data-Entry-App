@@ -2851,4 +2851,13 @@ Please add Email in setting</value>
   <data name="printCopyCount" xml:space="preserve">
     <value>Print Copy Count</value>
   </data>
+  <data name="enterCopyCount" xml:space="preserve">
+    <value>Enter Copies Count</value>
+  </data>
+  <data name="selectprint" xml:space="preserve">
+    <value>Select Printer</value>
+  </data>
+  <data name="thePrint" xml:space="preserve">
+    <value>Print</value>
+  </data>
 </root>
