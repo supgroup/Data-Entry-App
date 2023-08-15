@@ -222,6 +222,9 @@
     <Compile Include="converters\permissionsNameConverter.cs" />
     <Compile Include="converters\unlimitedConverter.cs" />
     <Compile Include="converters\unlimitedCountConverter.cs" />
+    <Compile Include="View\archive\uc_attendance.xaml.cs">
+      <DependentUpon>uc_attendance.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\badge\uc_applications.xaml.cs">
       <DependentUpon>uc_applications.xaml</DependentUpon>
     </Compile>
@@ -308,6 +311,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\archive\uc_attendance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\badge\uc_applications.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
