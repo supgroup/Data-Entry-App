@@ -190,6 +190,7 @@
     <Compile Include="Classes\ApiClasses\APIResult.cs" />
     <Compile Include="Classes\ApiClasses\City.cs" />
     <Compile Include="Classes\ApiClasses\Country.cs" />
+    <Compile Include="Classes\ApiClasses\CustomersLogs.cs" />
     <Compile Include="Classes\ApiClasses\Departments.cs" />
     <Compile Include="Classes\ApiClasses\Nationalities.cs" />
     <Compile Include="Classes\ApiClasses\ErrorClass.cs" />
