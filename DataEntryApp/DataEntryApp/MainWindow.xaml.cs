@@ -26,6 +26,7 @@ using DataEntryApp.View.settings;
 using System.Windows.Resources;
 using DataEntryApp.View.windows;
 using DataEntryApp.View.reports;
+using DataEntryApp.View.archive;
 
 namespace DataEntryApp
 {
@@ -589,7 +590,7 @@ namespace DataEntryApp
                 openVisible(button.Tag.ToString());
                 grid_main.Children.Clear();
              
-                grid_main.Children.Add(uc_applications.Instance);
+                grid_main.Children.Add(uc_attendance.Instance);
                 txt_firstPath.Text = resourcemanager.GetString("attendancearchive");
                 txt_secondPath.Text = "";
             }

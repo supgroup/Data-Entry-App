@@ -87,7 +87,8 @@
 
 
                     <Rectangle Fill="{StaticResource MainColor}"  Width="7.5" Margin="0,5"  
-                       Grid.Row="3" Tag="archive"  Visibility="Collapsed"    HorizontalAlignment="Left" x:Name="path_openarchive"/>
+                       Grid.Row="3" Tag="archive"  Visibility="Collapsed"    HorizontalAlignment="Left" 
+                               x:Name="path_openarchive"/>
                     <Button  Width="220" Height="50" Grid.Row="3"
                          HorizontalAlignment="Left"  Tag="archive"
                  x:Name="btn_archive"
