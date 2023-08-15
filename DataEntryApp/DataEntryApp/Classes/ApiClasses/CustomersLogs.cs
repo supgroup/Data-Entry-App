@@ -63,7 +63,16 @@ namespace DataEntryApp.ApiClasses
             parameters.Add("Object", myContent);
             return await APIResult.post(method, parameters);
         }
-      
+        public async Task<decimal> savelog(string barcode, string type)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            string method = urimainpath + "savelog";
+            parameters.Add("barcode", barcode);
+            parameters.Add("type", type);
+          
+            return await APIResult.post(method, parameters);
+        }
+
         public async Task<CustomersLogs> GetByID(long itemId)
         {
 
