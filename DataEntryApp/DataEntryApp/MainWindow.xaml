@@ -46,6 +46,7 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
@@ -83,15 +84,35 @@
                               Grid.Column="1"  Tag="cards"     Margin="10,0,0,0"/>
                         </Grid>
                     </Button>
-                    
-                    
 
 
-                    
-                    
                     <Rectangle Fill="{StaticResource MainColor}"  Width="7.5" Margin="0,5"  
-                       Grid.Row="5" Tag="sectionData"  Visibility="Collapsed"     HorizontalAlignment="Left" x:Name="path_openSectionData"/>                  
-                    <Button  Width="220" Height="50" Grid.Row="5"
+                       Grid.Row="3" Tag="archive"  Visibility="Collapsed"    HorizontalAlignment="Left" x:Name="path_openarchive"/>
+                    <Button  Width="220" Height="50" Grid.Row="3"
+                         HorizontalAlignment="Left"  Tag="archive"
+                 x:Name="btn_archive"
+                    Background="{x:Null}" BorderBrush="{x:Null}"   
+                    Padding="0" Click="Btn_archive_Click" >
+                        <Grid Width="220" Height="50" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path  Fill="{StaticResource LightGrey}" x:Name="path_iconArchive" Stretch="Fill"  
+                              HorizontalAlignment="Left" Grid.Column="0"  
+                         VerticalAlignment="Center" Width="20" Height="20" Tag="archive" 
+                              Data= "{StaticResource cardmenu}" Margin="27.5,15,0,15"/>
+                            <TextBlock Text="archive" Foreground="{StaticResource LightGrey}" x:Name="txt_archive"
+                                   HorizontalAlignment="Left" VerticalAlignment="Center" 
+                              Grid.Column="1"  Tag="archive"     Margin="10,0,0,0"/>
+                        </Grid>
+                    </Button>
+
+
+
+                    <Rectangle Fill="{StaticResource MainColor}"  Width="7.5" Margin="0,5"  
+                       Grid.Row="4" Tag="sectionData"  Visibility="Collapsed"     HorizontalAlignment="Left" x:Name="path_openSectionData"/>                  
+                    <Button  Width="220" Height="50" Grid.Row="4"
                          HorizontalAlignment="Left"  Tag="sectionData"
                  x:Name="btn_sectionData" Click="Btn_sectionData_Click"
                     Background="{x:Null}" BorderBrush="{x:Null}"   
@@ -129,8 +150,8 @@
                     </Button>
                    
                     <Rectangle Fill="{StaticResource MainColor}"  Width="7.5" Margin="0,5"  
-                           Grid.Row="6"  Tag="settings"  Visibility="Collapsed"   HorizontalAlignment="Left" x:Name="path_openSettings"/>                   
-                    <Button  Width="220" Height="50" Grid.Row="6" HorizontalAlignment="Left"
+                           Grid.Row="5"  Tag="settings"  Visibility="Collapsed"   HorizontalAlignment="Left" x:Name="path_openSettings"/>                   
+                    <Button  Width="220" Height="50" Grid.Row="5" HorizontalAlignment="Left"
                     Background="{x:Null}" BorderBrush="{x:Null}"    Tag="settings"
                     Padding="0" x:Name="btn_settings" Click="Btn_settings_Click"  >
                         <Grid Width="220" Height="50" >
@@ -257,12 +278,22 @@
             <Grid   x:Name="grid_main" Grid.Row="1" Grid.Column="1"/>
             <Grid Background="#F1F5F8"  Grid.Row="2" Grid.Column="1" >
                 <Separator Margin="5 5 5 0" Background="{StaticResource veryLightGrey}" VerticalAlignment="Top" Width="auto" />
-                <StackPanel Orientation="Horizontal" Margin="15 15"
-                           HorizontalAlignment="Left" VerticalAlignment="Center">
-
-                    <TextBlock Name="tb_navigation" Text="Cards" Foreground="{StaticResource MainColor}"  Margin="5 0 5 0"  />
-                     
+              
+                <StackPanel Orientation="Horizontal" Grid.Row="1"
+                             HorizontalAlignment="Left" VerticalAlignment="Center" >
+                    <TextBlock Foreground="{StaticResource LightGrey}"
+                               x:Name="txt_firstPath"
+                               FontSize="14"
+                                Text="Cards"
+                             Margin="10 10 0 10"/>
+                    <TextBlock Foreground="{StaticResource MainColor}"
+                               Name="txt_secondPath"
+                               FontSize="14"
+                                Text= "" 
+                             Margin="5 10 10 10"/>
                 </StackPanel>
+
+             
                 <StackPanel Orientation="Horizontal" Margin="10 5"
                            HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="Aleppo Chamber of Industry" Foreground="{StaticResource MainColor}"   />

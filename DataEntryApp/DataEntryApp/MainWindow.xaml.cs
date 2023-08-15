@@ -101,14 +101,15 @@ namespace DataEntryApp
         private void translate()
         {
             txt_cards.Text = resourcemanager.GetString("trCards");
+            txt_archive.Text = resourcemanager.GetString("attendancearchive");
             //txt_accounting.Text = resourcemanager.GetString("accounting");
             //txt_reports.Text = resourcemanager.GetString("trReports");
             txt_sectionData.Text = resourcemanager.GetString("trSectionData");
             txt_settings.Text = resourcemanager.GetString("trSettings");
-
+            
             mi_changePassword.Header = resourcemanager.GetString("trChangePassword");
             BTN_logOut.Header = resourcemanager.GetString("trLogOut");
-            tb_navigation.Text = resourcemanager.GetString("trCards");
+            txt_firstPath.Text = resourcemanager.GetString("trCards");
             //txt_notifications.Text = resourcemanager.GetString("trNotifications");
             //txt_noNoti.Text = resourcemanager.GetString("trNoNotifications");
             //btn_showAll.Content = resourcemanager.GetString("trShowAll");
@@ -217,7 +218,7 @@ namespace DataEntryApp
                 if (sender != null)
                     HelpClass.StartAwait(grid_mainGrid);
                 //windowFlowDirection();
-                menuList = new List<string> { "cards", "accounting", "reports",
+                menuList = new List<string> { "cards", "archive", "reports",
                    "sectionData","settings"};
                 //menuList = new List<string> { "applications", "sales", "reports",
                 //   "sectionData","settings"};
@@ -453,7 +454,8 @@ namespace DataEntryApp
                 openVisible(button.Tag.ToString());
                 grid_main.Children.Clear();
                 grid_main.Children.Add(uc_sectionData.Instance);
-                tb_navigation.Text = resourcemanager.GetString("trSectionData");
+                txt_firstPath.Text = resourcemanager.GetString("trSectionData");
+                txt_secondPath.Text = "";
             }
             catch (Exception ex)
             {
@@ -477,6 +479,7 @@ namespace DataEntryApp
                 HelpClass.ExceptionMessage(ex, this);
             }
         }
+    
         private void Btn_settings_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -487,7 +490,12 @@ namespace DataEntryApp
                 openVisible(button.Tag.ToString());
                 grid_main.Children.Clear();
                 grid_main.Children.Add(uc_settings.Instance);
-                tb_navigation.Text = resourcemanager.GetString("trSettings");
+                txt_firstPath.Text = resourcemanager.GetString("trSettings");
+                txt_secondPath.Text = "";
+              
+
+
+
             }
             catch (Exception ex)
             {
@@ -561,15 +569,35 @@ namespace DataEntryApp
                 ColorIconRefreash(button.Tag.ToString());
                  openVisible(button.Tag.ToString());
                 grid_main.Children.Clear();
-                //   grid_main.Children.Add(uc_customers.Instance);
+                
                 grid_main.Children.Add(uc_applications.Instance);
-                tb_navigation.Text= resourcemanager.GetString("trCards");
-
+                txt_firstPath.Text= resourcemanager.GetString("trCards");
+                txt_secondPath.Text = "";
             }
             catch (Exception ex)
             {
                 HelpClass.ExceptionMessage(ex, this);
             }
         }
+        private void Btn_archive_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+                colorTextRefreash(button.Tag.ToString());
+                ColorIconRefreash(button.Tag.ToString());
+                openVisible(button.Tag.ToString());
+                grid_main.Children.Clear();
+             
+                grid_main.Children.Add(uc_applications.Instance);
+                txt_firstPath.Text = resourcemanager.GetString("attendancearchive");
+                txt_secondPath.Text = "";
+            }
+            catch (Exception ex)
+            {
+                HelpClass.ExceptionMessage(ex, this);
+            }
+        }
+
     }
 }

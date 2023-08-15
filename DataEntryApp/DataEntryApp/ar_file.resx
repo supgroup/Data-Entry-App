@@ -2863,4 +2863,7 @@
   <data name="cannotdelete" xml:space="preserve">
     <value>لايمكن حذف هذا السجل</value>
   </data>
+  <data name="attendancearchive" xml:space="preserve">
+    <value>ارشيف الحضور</value>
+  </data>
 </root>

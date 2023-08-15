@@ -21,6 +21,7 @@ namespace DataEntryApp.ApiClasses
     {
         public long departmentId { get; set; }
         public string name { get; set; }
+        public Nullable<bool> isActive { get; set; }
         public bool canDelete { get; set; }
         private string urimainpath = "departments/";
 

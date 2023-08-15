@@ -59,7 +59,7 @@ namespace DataEntryApp.View.sectionData
                 }
                 translate();
                 #endregion
-
+                
                 Btn_users_Click(btn_users , null);
 
                 HelpClass.EndAwait(grid_mainGrid);
@@ -106,6 +106,9 @@ namespace DataEntryApp.View.sectionData
             {
                 Button button = sender as Button;
                 colorButtonRefreash(button.Tag.ToString());
+               MainWindow mainWindow = new MainWindow()  ;
+                mainWindow.txt_secondPath.Text = "userr";
+               // mainWindow.ChangeText(">Users");
                 grid_main.Children.Clear();
                 grid_main.Children.Add(uc_users.Instance);
             }
@@ -163,7 +166,7 @@ namespace DataEntryApp.View.sectionData
                 Button button = sender as Button;
                 colorButtonRefreash(button.Tag.ToString());
                 grid_main.Children.Clear();
-              //  grid_main.Children.Add(uc_users.Instance);
+               grid_main.Children.Add(uc_specialties.Instance);
             }
             catch (Exception ex)
             {
