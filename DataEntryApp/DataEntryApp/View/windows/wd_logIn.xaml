@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:badge="clr-namespace:DataEntryApp.View.badge" x:Class="DataEntryApp.View.windows.wd_logIn"
-       Title="Increase-SCM" mc:Ignorable="d"
+       Title="Chamber of Industry" mc:Ignorable="d"
         Height="400"
         Width="700" KeyDown="HandleKeyPress"
         WindowStartupLocation="CenterScreen"

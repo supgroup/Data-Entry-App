@@ -149,6 +149,8 @@ namespace DataEntryApp.View.sectionData
         { //add
             try
             {
+                CustomersLogs cl = new CustomersLogs();
+                decimal res = await cl.savelog("17-10-6-8-","out");
                 HelpClass.StartAwait(grid_main);
 
                 //chk duplicate userName

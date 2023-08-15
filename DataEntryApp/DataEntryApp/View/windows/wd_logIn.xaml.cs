@@ -142,6 +142,7 @@ namespace DataEntryApp.View.windows
         {//log in
             try
             {
+              
              // AddNewConnectionString();
                
                 //using (dedbEntities entity = new dedbEntities())
