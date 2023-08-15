@@ -2872,4 +2872,7 @@ Please add Email in setting</value>
   <data name="specialty" xml:space="preserve">
     <value>Specialty</value>
   </data>
+  <data name="cannotdelete" xml:space="preserve">
+    <value>Can not delete this record!</value>
+  </data>
 </root>

@@ -2860,4 +2860,7 @@
   <data name="specialty" xml:space="preserve">
     <value>التخصص</value>
   </data>
+  <data name="cannotdelete" xml:space="preserve">
+    <value>لايمكن حذف هذا السجل</value>
+  </data>
 </root>

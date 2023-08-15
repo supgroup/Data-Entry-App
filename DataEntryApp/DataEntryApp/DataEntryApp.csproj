@@ -236,6 +236,9 @@
     <Compile Include="View\sectionData\uc_sectionData.xaml.cs">
       <DependentUpon>uc_sectionData.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\sectionData\uc_nationality.xaml.cs">
+      <DependentUpon>uc_nationality.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\sectionData\uc_users.xaml.cs">
       <DependentUpon>uc_users.xaml</DependentUpon>
     </Compile>
@@ -320,6 +323,10 @@
     <Page Include="View\sectionData\uc_sectionData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\sectionData\uc_nationality.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\sectionData\uc_users.xaml">
       <SubType>Designer</SubType>

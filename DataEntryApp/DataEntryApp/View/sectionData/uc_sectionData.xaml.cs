@@ -178,7 +178,7 @@ namespace DataEntryApp.View.sectionData
                 Button button = sender as Button;
                 colorButtonRefreash(button.Tag.ToString());
                 grid_main.Children.Clear();
-                //grid_main.Children.Add(uc_users.Instance);
+                 grid_main.Children.Add(uc_nationality.Instance);
             }
             catch (Exception ex)
             {
