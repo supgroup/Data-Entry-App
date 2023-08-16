@@ -818,12 +818,40 @@ namespace DataEntryApp.View.archive
 
         private void Btn_login_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+               btn_login.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+               btn_login.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
 
+               btn_logout.Background = Application.Current.Resources["White"] as SolidColorBrush;
+               btn_logout.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+
+
+            }
+            catch (Exception ex)
+            {
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this);
+            }
         }
 
         private void Btn_logout_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                btn_logout.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                btn_logout.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
 
+                btn_login.Background = Application.Current.Resources["White"] as SolidColorBrush;
+                btn_login.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+
+
+            }
+            catch (Exception ex)
+            {
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this);
+            }
         }
     }
 }
