@@ -156,7 +156,7 @@
 
             <!--Main-->
             <Grid Grid.Column="1">
-                <Border x:Name="bdr_image" FlowDirection="LeftToRight"  CornerRadius="0,10,10,0">
+                <Border x:Name="bdr_image" FlowDirection="LeftToRight"  CornerRadius="10,0,0,10">
                     <Border.Background>
                         <ImageBrush x:Name="img_En"  Stretch="Fill"  ImageSource="/pic/program-login-bg.png"/>
                     </Border.Background>
