@@ -473,7 +473,7 @@
                                        Margin="10 5" Foreground="{StaticResource MainColor}"
                                        HorizontalAlignment="Left"  VerticalAlignment="Center"  />
                                 <TextBlock Grid.Row="0" Grid.Column="1" 
-                                       x:Name="tb_custname" Text="custname"
+                                       x:Name="tb_custname" Text=""
                                        Margin="10 5" Foreground="#6e6e6e"
                                        HorizontalAlignment="Left"  VerticalAlignment="Center"  />
 
@@ -483,7 +483,7 @@
                                        Margin="10 5" Foreground="{StaticResource MainColor}"
                                        HorizontalAlignment="Left"  VerticalAlignment="Center"  />
                                 <TextBlock Grid.Row="1" Grid.Column="1" 
-                                       x:Name="tb_nationality" Text="nationality"
+                                       x:Name="tb_nationality" Text="-"
                                        Margin="10 5" Foreground="#6e6e6e"
                                        HorizontalAlignment="Left"  VerticalAlignment="Center"  />
 
@@ -493,7 +493,7 @@
                                        Margin="10 5" Foreground="{StaticResource MainColor}"
                                        HorizontalAlignment="Left"  VerticalAlignment="Center"  />
                                 <TextBlock Grid.Row="2" Grid.Column="1" 
-                                       x:Name="tb_department" Text="department"
+                                       x:Name="tb_department" Text="-"
                                        Margin="10 5" Foreground="#6e6e6e"
                                        HorizontalAlignment="Left"  VerticalAlignment="Center"  />
 
@@ -503,7 +503,7 @@
                                        Margin="10 5" Foreground="{StaticResource MainColor}"
                                        HorizontalAlignment="Left"  VerticalAlignment="Center"  />
                                 <TextBlock Grid.Row="3" Grid.Column="1" 
-                                       x:Name="tb_attendanceDays" Text="attendanceDays"
+                                       x:Name="tb_attendanceDays" Text="-"
                                        Margin="10 5" Foreground="#6e6e6e"
                                        HorizontalAlignment="Left"  VerticalAlignment="Center"  />
 
@@ -514,7 +514,7 @@
                                        Margin="10 5" Foreground="{StaticResource MainColor}"
                                        HorizontalAlignment="Left"  VerticalAlignment="Center"  />
                                 <TextBlock Grid.Row="4" Grid.Column="1" 
-                                       x:Name="tb_attendanceHour" Text="attendanceHour"
+                                       x:Name="tb_attendanceHour" Text="-"
                                        Margin="10 5" Foreground="#6e6e6e"
                                        HorizontalAlignment="Left"  VerticalAlignment="Center"  />
                             </Grid>

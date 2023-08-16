@@ -470,35 +470,28 @@ namespace DataEntryApp.View.archive
             try
             {
                 HelpClass.StartAwait(grid_main);
-                /*
+                
                 if (dg_customersLog.SelectedIndex != -1)
                 {
                     customersLog = dg_customersLog.SelectedItem as CustomersLogs;
-                    this.DataContext = customersLog;
+                  
                     if (customersLog != null)
                     {
                         //tb_code.Text = customersLog.code;
                         //cb_country.SelectedValue = customersLog.countryId;
-                        this.DataContext = customersLog;
-                        await getImg();
-                        #region delete
-                        if (customersLog.canDelete)
-                            btn_delete.Content = MainWindow.resourcemanager.GetString("trDelete");
-                        else
-                        {
-                            if (customersLog.isActive == 0)
-                                btn_delete.Content = MainWindow.resourcemanager.GetString("trActive");
-                            else
-                                btn_delete.Content = MainWindow.resourcemanager.GetString("trInActive");
-                        }
-                        #endregion
-                        HelpClass.getMobile(customersLog.mobile, tb_mobile);
+                        //this.DataContext = customersLog;
+                        tb_custname.Text = customersLog.custname;
+                        tb_nationality.Text = customersLog.Nationality;
+                        tb_department.Text = customersLog.department;
+                        tb_attendanceDays.Text = calcDays().ToString();
+                        tb_attendanceHour.Text = calcHours().ToString(@"hh\:mm\:ss");
+
                         //HelpClass.getPhone(customersLog.phone, cb_areaPhone, cb_areaPhoneLocal, tb_phone);
                         //HelpClass.getPhone(customersLog.fax, cb_areaFax, cb_areaFaxLocal, tb_fax);
                     }
                 }
-                */
-                HelpClass.clearValidate(requiredControlList, this);
+              
+                //HelpClass.clearValidate(requiredControlList, this);
                 //p_error_email.Visibility = Visibility.Collapsed;
 
                 HelpClass.EndAwait(grid_main);
@@ -508,6 +501,28 @@ namespace DataEntryApp.View.archive
                 HelpClass.EndAwait(grid_main);
                 HelpClass.ExceptionMessage(ex, this);
             }
+        }
+        private long calcDays( )
+        {
+            long days = 0;
+          //  customersLog
+            var list = customersLogs.Where(s => s.custId == customersLog.custId && s.sInDate != null && s.sOutDate != null).
+                GroupBy(g => ((DateTime) g.sInDate).Date).Select(g => new Customers { custId = g.FirstOrDefault().custId.Value}).ToList();
+            days = list.Count();
+            return days;
+        }
+        private TimeSpan calcHours()
+        {
+             
+            //  customersLog
+            List<CustomersLogs> list = customersLogs.Where(s => s.custId == customersLog.custId && s.sInDate != null && s.sOutDate != null).ToList();
+            TimeSpan total = new TimeSpan();
+            foreach (CustomersLogs row in list)
+            {
+                total += (DateTime)row.sOutDate - (DateTime)row.sInDate;
+
+            }
+            return total;
         }
         private async void Btn_refresh_Click(object sender, RoutedEventArgs e)
         {//refresh
