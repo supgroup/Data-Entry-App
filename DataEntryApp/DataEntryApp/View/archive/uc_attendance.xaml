@@ -473,7 +473,7 @@
                                        Margin="10 5" Foreground="{StaticResource MainColor}"
                                        HorizontalAlignment="Left"  VerticalAlignment="Center"  />
                                 <TextBlock Grid.Row="0" Grid.Column="1" 
-                                       x:Name="tb_custname" Text=""
+                                       x:Name="tb_custname" Text="-"
                                        Margin="10 5" Foreground="#6e6e6e"
                                        HorizontalAlignment="Left"  VerticalAlignment="Center"  />
 

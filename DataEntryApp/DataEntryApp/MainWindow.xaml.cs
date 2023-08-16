@@ -360,38 +360,38 @@ namespace DataEntryApp
                 HelpClass.ExceptionMessage(ex, this);
             }
         }
-        private void Btn_applications_Click(object sender, RoutedEventArgs e)
-        {//application
-            try
-            {
-                Button button = sender as Button;
-                colorTextRefreash(button.Tag.ToString());
-                ColorIconRefreash(button.Tag.ToString());
-                openVisible(button.Tag.ToString());
-                grid_main.Children.Clear();
-              //  grid_main.Children.Add(uc_applications.Instance);
-            }
-            catch (Exception ex)
-            {
-                HelpClass.ExceptionMessage(ex, this);
-            }
-        }
-        public void show_applications( )
-        {//application
-            try
-            {
-              //  Button button = sender as Button;
-                //colorTextRefreash(button.Tag.ToString());
-                //ColorIconRefreash(button.Tag.ToString());
-              // openVisible(button.Tag.ToString());
-                grid_main.Children.Clear();
-                grid_main.Children.Add(uc_applications.Instance);
-            }
-            catch (Exception ex)
-            {
-                HelpClass.ExceptionMessage(ex, this);
-            }
-        }
+        //private void Btn_applications_Click(object sender, RoutedEventArgs e)
+        //{//application
+        //    //try
+        //    //{
+        //    //    Button button = sender as Button;
+        //    //    colorTextRefreash(button.Tag.ToString());
+        //    //    ColorIconRefreash(button.Tag.ToString());
+        //    //    openVisible(button.Tag.ToString());
+        //    //    grid_main.Children.Clear();
+        //    //  //  grid_main.Children.Add(uc_applications.Instance);
+        //    //}
+        //    //catch (Exception ex)
+        //    //{
+        //    //    HelpClass.ExceptionMessage(ex, this);
+        //    //}
+        //}
+        //public void show_applications( )
+        //{//application
+        //    try
+        //    {
+        //      //  Button button = sender as Button;
+        //        //colorTextRefreash(button.Tag.ToString());
+        //        //ColorIconRefreash(button.Tag.ToString());
+        //      // openVisible(button.Tag.ToString());
+        //        grid_main.Children.Clear();
+        //        grid_main.Children.Add(uc_applications.Instance);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        HelpClass.ExceptionMessage(ex, this);
+        //    }
+        //}
         //private void Btn_book_sales_Click(object sender, RoutedEventArgs e)
         //{
         //    try
@@ -427,21 +427,21 @@ namespace DataEntryApp
         //    }
         //}
         private void Btn_accounting_Click(object sender, RoutedEventArgs e)
-        { 
-            try
-            {
-                Button button = sender as Button;
-                colorTextRefreash(button.Tag.ToString());
-                ColorIconRefreash(button.Tag.ToString());
-                openVisible(button.Tag.ToString());
-                grid_main.Children.Clear();
-                //grid_main.Children.Add(uc_sales.Instance);
-                //uc_sales.Instance.Btn_sale_Click(uc_sales.Instance.btn_sale, null);
-            }
-            catch (Exception ex)
-            {
-                HelpClass.ExceptionMessage(ex, this);
-            }
+        {
+            //    try
+            //    {
+            //        Button button = sender as Button;
+            //        colorTextRefreash(button.Tag.ToString());
+            //        ColorIconRefreash(button.Tag.ToString());
+            //        openVisible(button.Tag.ToString());
+            //        grid_main.Children.Clear();
+            //        //grid_main.Children.Add(uc_sales.Instance);
+            //        //uc_sales.Instance.Btn_sale_Click(uc_sales.Instance.btn_sale, null);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        HelpClass.ExceptionMessage(ex, this);
+            //    }
 
         }
 
@@ -454,6 +454,7 @@ namespace DataEntryApp
                 ColorIconRefreash(button.Tag.ToString());
                 openVisible(button.Tag.ToString());
                 first = button.Tag.ToString();
+
                 setMainPath();
                 grid_main.Children.Clear();
                 grid_main.Children.Add(uc_sectionData.Instance);
@@ -464,22 +465,22 @@ namespace DataEntryApp
             }
         }
 
-        private void Btn_reports_Click(object sender, RoutedEventArgs e)
-        {//reports
-            try
-            {
-                Button button = sender as Button;
-                colorTextRefreash(button.Tag.ToString());
-                ColorIconRefreash(button.Tag.ToString());
-                openVisible(button.Tag.ToString());
-                grid_main.Children.Clear();
-                grid_main.Children.Add(uc_reports.Instance);
-            }
-            catch (Exception ex)
-            {
-                HelpClass.ExceptionMessage(ex, this);
-            }
-        }
+        //private void Btn_reports_Click(object sender, RoutedEventArgs e)
+        //{//reports
+        //    try
+        //    {
+        //        Button button = sender as Button;
+        //        colorTextRefreash(button.Tag.ToString());
+        //        ColorIconRefreash(button.Tag.ToString());
+        //        openVisible(button.Tag.ToString());
+        //        grid_main.Children.Clear();
+        //        grid_main.Children.Add(uc_reports.Instance);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        HelpClass.ExceptionMessage(ex, this);
+        //    }
+        //}
     
         private void Btn_settings_Click(object sender, RoutedEventArgs e)
         {
@@ -490,6 +491,7 @@ namespace DataEntryApp
                 ColorIconRefreash(button.Tag.ToString());
                 openVisible(button.Tag.ToString());
                 first = button.Tag.ToString();
+                second = "";
                 setMainPath();
                 grid_main.Children.Clear();
                 grid_main.Children.Add(uc_settings.Instance);
@@ -567,6 +569,7 @@ namespace DataEntryApp
                 ColorIconRefreash(button.Tag.ToString());
                  openVisible(button.Tag.ToString());
                 first = button.Tag.ToString();
+                second ="";
                 setMainPath();
                 grid_main.Children.Clear();
                 
@@ -586,6 +589,7 @@ namespace DataEntryApp
                 ColorIconRefreash(button.Tag.ToString());
                 openVisible(button.Tag.ToString());
                 first = button.Tag.ToString();
+                second ="";
                 setMainPath();
 
                 grid_main.Children.Clear();
@@ -652,6 +656,10 @@ namespace DataEntryApp
                         txt_secondPath.Text = "";
                         break;
                 }
+            }
+            else
+            {
+                txt_secondPath.Text = "";
             }
             #endregion
         }
