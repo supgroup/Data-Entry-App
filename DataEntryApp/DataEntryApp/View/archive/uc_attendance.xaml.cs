@@ -100,31 +100,32 @@ namespace DataEntryApp.View.archive
         }
         private void translate()
         {
-            /*
-            txt_title.Text = MainWindow.resourcemanager.GetString("trCustomersLogs");
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, MainWindow.resourcemanager.GetString("trSearchHint"));
-            txt_active.Text = MainWindow.resourcemanager.GetString("trActive");
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(pb_password, MainWindow.resourcemanager.GetString("trPasswordHint"));
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_passwordMirror, MainWindow.resourcemanager.GetString("trPasswordHint"));
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_mobile, MainWindow.resourcemanager.GetString("contactNumberHint"));
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_name, MainWindow.resourcemanager.GetString("trNameHint"));
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_AccountName, MainWindow.resourcemanager.GetString("trCustomersLogNameHint"));
+
+            //txt_title.Text = MainWindow.resourcemanager.GetString("trCustomersLogs");
+           MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, MainWindow.resourcemanager.GetString("trSearchHint"));
+         txt_active.Text = MainWindow.resourcemanager.GetString("trActive");
+            //MaterialDesignThemes.Wpf.HintAssist.SetHint(pb_password, MainWindow.resourcemanager.GetString("trPasswordHint"));
+            //MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_passwordMirror, MainWindow.resourcemanager.GetString("trPasswordHint"));
+            //MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_mobile, MainWindow.resourcemanager.GetString("contactNumberHint"));
+            //MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_name, MainWindow.resourcemanager.GetString("trNameHint"));
+            //MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_AccountName, MainWindow.resourcemanager.GetString("trCustomersLogNameHint"));
 
             dg_customersLog.Columns[0].Header = MainWindow.resourcemanager.GetString("trNo.");
             dg_customersLog.Columns[1].Header = MainWindow.resourcemanager.GetString("trName");
-            dg_customersLog.Columns[2].Header = MainWindow.resourcemanager.GetString("trCustomersLogName");
-            dg_customersLog.Columns[2].Header = MainWindow.resourcemanager.GetString("contactNumber");
-            //contactNumberHint
-            tt_clear.Content = MainWindow.resourcemanager.GetString("trClear");
-            tt_report.Content = MainWindow.resourcemanager.GetString("trPdf");
-            tt_preview.Content = MainWindow.resourcemanager.GetString("trPreview");
-            tt_print.Content = MainWindow.resourcemanager.GetString("trPrint");
-            tt_excel.Content = MainWindow.resourcemanager.GetString("trExcel");
-            tt_count.Content = MainWindow.resourcemanager.GetString("trCount");
+            dg_customersLog.Columns[2].Header = MainWindow.resourcemanager.GetString("trDate");
+            dg_customersLog.Columns[3].Header = MainWindow.resourcemanager.GetString("loginTime");
+            dg_customersLog.Columns[4].Header = MainWindow.resourcemanager.GetString("logoutTime");
+            ////contactNumberHint
+            //tt_clear.Content = MainWindow.resourcemanager.GetString("trClear");
+            //tt_report.Content = MainWindow.resourcemanager.GetString("trPdf");
+            //tt_preview.Content = MainWindow.resourcemanager.GetString("trPreview");
+            //tt_print.Content = MainWindow.resourcemanager.GetString("trPrint");
+            //tt_excel.Content = MainWindow.resourcemanager.GetString("trExcel");
+            //tt_count.Content = MainWindow.resourcemanager.GetString("trCount");
 
-            btn_add.Content = MainWindow.resourcemanager.GetString("trAdd");
-            btn_update.Content = MainWindow.resourcemanager.GetString("trUpdate");
-            btn_delete.Content = MainWindow.resourcemanager.GetString("trDelete");
+            //btn_add.Content = MainWindow.resourcemanager.GetString("trAdd");
+            //btn_update.Content = MainWindow.resourcemanager.GetString("trUpdate");
+            //btn_delete.Content = MainWindow.resourcemanager.GetString("trDelete");
             //  txt_baseInformation.Text = MainWindow.resourcemanager.GetString("trBaseInformation");
 
 
@@ -144,7 +145,6 @@ namespace DataEntryApp.View.archive
             //MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_notes, MainWindow.resourcemanager.GetString("trNoteHint"));
             //MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_address, MainWindow.resourcemanager.GetString("trAdressHint"));
 
-            */
 
         }
         #region Add - Update - Delete - Search - Tgl - Clear - DG_SelectionChanged - refresh
