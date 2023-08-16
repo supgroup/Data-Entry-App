@@ -432,7 +432,7 @@
                                         TextBlock.Foreground="#4E4E4E" 
                                          SelectedDate="{Binding reservationDate, Mode=OneWay}" Padding="10,0,5,0"  
                                         materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
-                                        materialDesign:HintAssist.Hint="InDate..."  materialDesign:HintAssist.Foreground="{StaticResource MainColor}" materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource MainColor}"
+                                        materialDesign:HintAssist.Hint="InDate..."   materialDesign:HintAssist.Foreground="{StaticResource MainColor}" materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource MainColor}"
                                         Foreground="#4E4E4E"   Height="40"    />
                                         </Grid>
                                     </Border>

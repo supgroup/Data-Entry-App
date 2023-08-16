@@ -90,6 +90,10 @@ namespace DataEntryApp.View.archive
                 await Search();
                 Clear();
 
+                fillcustomers();
+                fillnationalities();
+                filldepartments();
+
                 HelpClass.EndAwait(grid_main);
             }
             catch (Exception ex)
@@ -103,7 +107,7 @@ namespace DataEntryApp.View.archive
             //barcodeNum attendenceRecord signIn signOut attendenceFilter attendanceDays attendanceHours
             //txt_title.Text = MainWindow.resourcemanager.GetString("trCustomersLogs");
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, MainWindow.resourcemanager.GetString("trSearchHint"));
-         txt_active.Text = MainWindow.resourcemanager.GetString("trActive");
+            txt_active.Text = MainWindow.resourcemanager.GetString("trActive");
             //MaterialDesignThemes.Wpf.HintAssist.SetHint(pb_password, MainWindow.resourcemanager.GetString("trPasswordHint"));
             //MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_passwordMirror, MainWindow.resourcemanager.GetString("trPasswordHint"));
             //MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_mobile, MainWindow.resourcemanager.GetString("contactNumberHint"));
@@ -130,7 +134,7 @@ namespace DataEntryApp.View.archive
             //
             txt_custname.Text = MainWindow.resourcemanager.GetString("trName");
             txt_nationality.Text = MainWindow.resourcemanager.GetString("nationality");
-            txt_department.Text = MainWindow.resourcemanager.GetString("specialization");       
+            txt_department.Text = MainWindow.resourcemanager.GetString("specialization");
             txt_attendanceDays.Text = MainWindow.resourcemanager.GetString("attendanceDays");
             txt_attendanceHour.Text = MainWindow.resourcemanager.GetString("attendanceHours");
             ////contactNumberHint
@@ -528,22 +532,22 @@ namespace DataEntryApp.View.archive
         async Task Search()
         {
             //search
-         
+
             if (customersLogs is null)
                 await RefreshCustomersLogsList();
             searchText = tb_search.Text.ToLower();
             customersLogsQuery = customersLogs.Where(s => (s.custname.ToLower().Contains(searchText))
 
             );
-         
+
             RefreshCustomersLogsView();
         }
         async Task<IEnumerable<CustomersLogs>> RefreshCustomersLogsList()
         {
-            
+
             customersLogs = await customersLog.GetAll();
-           // customersLogs = customersLogs.Where(x => x.type != "ag");
-            
+            // customersLogs = customersLogs.Where(x => x.type != "ag");
+
             return customersLogs;
         }
         void RefreshCustomersLogsView()
@@ -552,13 +556,47 @@ namespace DataEntryApp.View.archive
         }
         #endregion
 
+        #region filter
+        List<Customers> customers = new List<Customers>();
+        private void fillcustomers()
+        {
+            customers = customersLogs.GroupBy(g => g.custId).Select(g => new Customers { custId = g.FirstOrDefault().custId.Value, custname = g.FirstOrDefault().custname }).ToList();
+            //if (vendors.Where(x => x.name == "unknown").Count() > 0)
+            //    vendors.Where(x => x.name == "unknown").FirstOrDefault().name = AppSettings.resourcemanager.GetString("trUnKnown");
+            cb_custname.SelectedValuePath = "custId";
+            cb_custname.DisplayMemberPath = "custname";
+            cb_custname.ItemsSource = customers;
+        }
+
+        List<Nationalities> nationalities = new List<Nationalities>();
+        private void fillnationalities()
+        {
+            nationalities = customersLogs.GroupBy(g => g.nationalityId).Select(g => new Nationalities { nationalityId = g.FirstOrDefault().custId.Value, name = g.FirstOrDefault().Nationality }).ToList();
+            //if (vendors.Where(x => x.name == "unknown").Count() > 0)
+            //    vendors.Where(x => x.name == "unknown").FirstOrDefault().name = AppSettings.resourcemanager.GetString("trUnKnown");
+            cb_Nationality.SelectedValuePath = "nationalityId";
+            cb_Nationality.DisplayMemberPath = "name";
+            cb_Nationality.ItemsSource = nationalities;
+        }
+
+        List<Departments> departments = new List<Departments>();
+        private void filldepartments()
+        {
+            departments = customersLogs.GroupBy(g => g.departmentId).Select(g => new Departments { departmentId = g.FirstOrDefault().departmentId.Value, name = g.FirstOrDefault().department }).ToList();
+            //if (vendors.Where(x => x.name == "unknown").Count() > 0)
+            //    vendors.Where(x => x.name == "unknown").FirstOrDefault().name = AppSettings.resourcemanager.GetString("trUnKnown");
+            cb_department.SelectedValuePath = "departmentId";
+            cb_department.DisplayMemberPath = "name";
+            cb_department.ItemsSource = departments;
+        }
+        #endregion
         #region validate - clearValidate - textChange - lostFocus - . . . . 
         void Clear()
         {
             tb_barcode.Text = "";
 
-         
-          
+
+
 
             // last 
             HelpClass.clearValidate(requiredControlList, this);
@@ -632,18 +670,18 @@ namespace DataEntryApp.View.archive
         private async Task<bool> chkIfCustomersLogNameIsExists(string customersLogname, long uId)
         {
             bool isValid = true;
-           /*
-            if (customersLogs == null)
-                await RefreshCustomersLogsList();
-            if (customersLogs.Any(i => i.AccountName == customersLogname && i.customersLogId != uId))
-                isValid = false;
-            if (!isValid)
-                Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trErrorDuplicateCustomersLogNameToolTip"), animation: ToasterAnimation.FadeIn);
-         */
+            /*
+             if (customersLogs == null)
+                 await RefreshCustomersLogsList();
+             if (customersLogs.Any(i => i.AccountName == customersLogname && i.customersLogId != uId))
+                 isValid = false;
+             if (!isValid)
+                 Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trErrorDuplicateCustomersLogNameToolTip"), animation: ToasterAnimation.FadeIn);
+          */
             return isValid;
         }
 
-       
+
 
 
 
@@ -837,11 +875,11 @@ namespace DataEntryApp.View.archive
         {
             try
             {
-               btn_login.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
-               btn_login.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
+                btn_login.Background = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                btn_login.Foreground = Application.Current.Resources["White"] as SolidColorBrush;
 
-               btn_logout.Background = Application.Current.Resources["White"] as SolidColorBrush;
-               btn_logout.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
+                btn_logout.Background = Application.Current.Resources["White"] as SolidColorBrush;
+                btn_logout.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
                 string barcode = "";
                 string type = "in";
                 //sign in
@@ -866,20 +904,20 @@ namespace DataEntryApp.View.archive
                             Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trPopError"), animation: ToasterAnimation.FadeIn);
                         }
                     }
-                else
-                {
-                    Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("msginsuccess"), animation: ToasterAnimation.FadeIn);
+                    else
+                    {
+                        Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("msginsuccess"), animation: ToasterAnimation.FadeIn);
 
 
 
-                    Clear();
-                    await RefreshCustomersLogsList();
-                    await Search();
-                }
+                        Clear();
+                        await RefreshCustomersLogsList();
+                        await Search();
+                    }
                 }
 
                 HelpClass.EndAwait(grid_main);
-          
+
 
             }
             catch (Exception ex)
@@ -915,7 +953,7 @@ namespace DataEntryApp.View.archive
                     Clear();
                     if (s <= 0)
                     {
-                        if (s==-4)
+                        if (s == -4)
                         {
                             Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("brcodenotexist"), animation: ToasterAnimation.FadeIn);
                         }
@@ -923,8 +961,8 @@ namespace DataEntryApp.View.archive
                         {
                             Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("msgnoout"), animation: ToasterAnimation.FadeIn);
                         }
-                }
-                        
+                    }
+
                     else
                     {
                         Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("msgoutsuccess"), animation: ToasterAnimation.FadeIn);
