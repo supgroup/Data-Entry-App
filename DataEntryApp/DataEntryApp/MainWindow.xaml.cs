@@ -110,7 +110,7 @@ namespace DataEntryApp
             
             mi_changePassword.Header = resourcemanager.GetString("trChangePassword");
             BTN_logOut.Header = resourcemanager.GetString("trLogOut");
-            txt_firstPath.Text = resourcemanager.GetString("trCards");
+            //txt_firstPath.Text = resourcemanager.GetString("trCards");
             //txt_notifications.Text = resourcemanager.GetString("trNotifications");
             //txt_noNoti.Text = resourcemanager.GetString("trNoNotifications");
             //btn_showAll.Content = resourcemanager.GetString("trShowAll");
@@ -453,11 +453,11 @@ namespace DataEntryApp
                 colorTextRefreash(button.Tag.ToString());
                 ColorIconRefreash(button.Tag.ToString());
                 openVisible(button.Tag.ToString());
+                first = button.Tag.ToString();
+                setMainPath();
                 grid_main.Children.Clear();
                 grid_main.Children.Add(uc_sectionData.Instance);
-                txt_firstPath.Text = resourcemanager.GetString("trSectionData");
-                txt_secondPath.Text = "";
-            }
+             }
             catch (Exception ex)
             {
                 HelpClass.ExceptionMessage(ex, this);
@@ -489,13 +489,10 @@ namespace DataEntryApp
                 colorTextRefreash(button.Tag.ToString());
                 ColorIconRefreash(button.Tag.ToString());
                 openVisible(button.Tag.ToString());
+                first = button.Tag.ToString();
+                setMainPath();
                 grid_main.Children.Clear();
                 grid_main.Children.Add(uc_settings.Instance);
-                txt_firstPath.Text = resourcemanager.GetString("trSettings");
-                txt_secondPath.Text = "";
-              
-
-
 
             }
             catch (Exception ex)
@@ -569,11 +566,11 @@ namespace DataEntryApp
                 colorTextRefreash(button.Tag.ToString());
                 ColorIconRefreash(button.Tag.ToString());
                  openVisible(button.Tag.ToString());
+                first = button.Tag.ToString();
+                setMainPath();
                 grid_main.Children.Clear();
                 
                 grid_main.Children.Add(uc_applications.Instance);
-                txt_firstPath.Text= resourcemanager.GetString("trCards");
-                txt_secondPath.Text = "";
             }
             catch (Exception ex)
             {
@@ -588,16 +585,70 @@ namespace DataEntryApp
                 colorTextRefreash(button.Tag.ToString());
                 ColorIconRefreash(button.Tag.ToString());
                 openVisible(button.Tag.ToString());
+                first = button.Tag.ToString();
+                setMainPath();
+
                 grid_main.Children.Clear();
              
                 grid_main.Children.Add(uc_attendance.Instance);
-                txt_firstPath.Text = resourcemanager.GetString("attendancearchive");
-                txt_secondPath.Text = "";
+               
             }
             catch (Exception ex)
             {
                 HelpClass.ExceptionMessage(ex, this);
             }
+        }
+
+        public string first, second;
+        public void setMainPath()
+        {
+            #region first
+            if (!string.IsNullOrWhiteSpace( first))
+            {
+                switch (first)
+                {
+                    case "cards":
+                        txt_firstPath.Text = resourcemanager.GetString("trCards");
+                        break;
+                        case "archive":
+                        txt_firstPath.Text = resourcemanager.GetString("attendancearchive");
+                        break;
+                        case "sectionData":
+                        txt_firstPath.Text = resourcemanager.GetString("trSectionData");
+                        break;
+                        case "settings":
+                        txt_firstPath.Text = resourcemanager.GetString("trSettings");
+                        break;
+
+
+
+                    default:
+                        txt_firstPath.Text = "";
+                        break;
+                }
+            }
+            #endregion
+
+            #region second
+            if (!string.IsNullOrWhiteSpace(first))
+            {
+                switch (second)
+                {
+                    case "cards":
+                        txt_secondPath.Text =">" + resourcemanager.GetString("trCards");
+                        break;
+                   case "user":
+                        txt_secondPath.Text =">" + resourcemanager.GetString("trUsers");
+                        break;
+                   
+
+
+                    default:
+                        txt_secondPath.Text = "";
+                        break;
+                }
+            }
+            #endregion
         }
 
     }
