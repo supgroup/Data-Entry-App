@@ -391,7 +391,7 @@
                                         <ComboBox   x:Name="cb_custname" Padding="10,5,5,5"      IsEditable="True"
                                         TextBlock.Foreground="#4E4E4E"   Margin="4,0"
                                         Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                                        materialDesign:HintAssist.Hint="custname..."    
+                                        materialDesign:HintAssist.Hint="custname..."  materialDesign:HintAssist.Foreground="{StaticResource MainColor}" materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource MainColor}"  
                                         VerticalAlignment="Center" BorderThickness="0"
                                         Height="40" 
                                         SelectedValue="{Binding custlevel, Mode=OneWay}"/>
@@ -402,7 +402,7 @@
                                         <ComboBox   x:Name="cb_Nationality" Padding="10,5,5,5"      IsEditable="True"
                                         TextBlock.Foreground="#4E4E4E"   Margin="4,0"
                                         Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                                        materialDesign:HintAssist.Hint="Nationality..."    
+                                        materialDesign:HintAssist.Hint="Nationality..."   materialDesign:HintAssist.Foreground="{StaticResource MainColor}" materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource MainColor}" 
                                         VerticalAlignment="Center" BorderThickness="0"
                                         Height="40" 
                                         SelectedValue="{Binding custlevel, Mode=OneWay}"/>
@@ -413,7 +413,7 @@
                                         <ComboBox   x:Name="cb_department" Padding="10,5,5,5"      IsEditable="True"
                                         TextBlock.Foreground="#4E4E4E"   Margin="4,0"
                                         Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                                        materialDesign:HintAssist.Hint="department..."    
+                                        materialDesign:HintAssist.Hint="department..."    materialDesign:HintAssist.Foreground="{StaticResource MainColor}" materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource MainColor}"
                                         VerticalAlignment="Center" BorderThickness="0"
                                         Height="40" 
                                         SelectedValue="{Binding custlevel, Mode=OneWay}"/>
@@ -426,25 +426,25 @@
                                     </Grid.ColumnDefinitions>
                                     <Border Grid.Row="2" Grid.Column="0" CornerRadius="10"  Height="40"   Margin="0,5,5,5"   BorderThickness="1" BorderBrush="{StaticResource MainColor}">
                                         <Grid   >
-                                            <DatePicker  x:Name="dp_sInDate" 
+                                            <DatePicker  x:Name="dp_fromDate" 
                                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                                          BorderBrush="#737373"   BorderThickness="0" Margin="4,0"
-                                        TextBlock.Foreground="#4E4E4E"
+                                        TextBlock.Foreground="#4E4E4E" 
                                          SelectedDate="{Binding reservationDate, Mode=OneWay}" Padding="10,0,5,0"  
                                         materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
-                                        materialDesign:HintAssist.Hint="InDate..."  
+                                        materialDesign:HintAssist.Hint="InDate..."  materialDesign:HintAssist.Foreground="{StaticResource MainColor}" materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource MainColor}"
                                         Foreground="#4E4E4E"   Height="40"    />
                                         </Grid>
                                     </Border>
                                     <Border Grid.Column="2"  CornerRadius="10"  Height="40"   Margin="0,5,5,5"   BorderThickness="1" BorderBrush="{StaticResource MainColor}">
                                         <Grid   >
-                                            <DatePicker  x:Name="dp_sOutDate" 
+                                            <DatePicker  x:Name="dp_toDate" 
                                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                                          BorderBrush="#737373"   BorderThickness="0" Margin="4,0"
                                         TextBlock.Foreground="#4E4E4E"
                                          SelectedDate="{Binding reservationDate, Mode=OneWay}" Padding="10,0,5,0"  
                                         materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
-                                        materialDesign:HintAssist.Hint="OutDate..."  
+                                        materialDesign:HintAssist.Hint="OutDate..."  materialDesign:HintAssist.Foreground="{StaticResource MainColor}" materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource MainColor}"
                                         Foreground="#4E4E4E"   Height="40"    />
                                         </Grid>
                                     </Border>

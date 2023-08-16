@@ -2899,4 +2899,16 @@
   <data name="signOut" xml:space="preserve">
     <value>خروج</value>
   </data>
+  <data name="attendanceDays" xml:space="preserve">
+    <value>ايام الحضور</value>
+  </data>
+  <data name="attendanceHours" xml:space="preserve">
+    <value>ساعات الحضور</value>
+  </data>
+  <data name="from" xml:space="preserve">
+    <value>من</value>
+  </data>
+  <data name="to" xml:space="preserve">
+    <value>الى</value>
+  </data>
 </root>

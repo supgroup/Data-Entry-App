@@ -100,7 +100,7 @@ namespace DataEntryApp.View.archive
         }
         private void translate()
         {
-            //barcodeNum attendenceRecord signIn signOut attendenceFilter
+            //barcodeNum attendenceRecord signIn signOut attendenceFilter attendanceDays attendanceHours
             //txt_title.Text = MainWindow.resourcemanager.GetString("trCustomersLogs");
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, MainWindow.resourcemanager.GetString("trSearchHint"));
          txt_active.Text = MainWindow.resourcemanager.GetString("trActive");
@@ -122,7 +122,17 @@ namespace DataEntryApp.View.archive
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_barcode, MainWindow.resourcemanager.GetString("barcodeNum"));
             txt_filter.Text = MainWindow.resourcemanager.GetString("attendenceFilter");
 
-            
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(cb_custname, MainWindow.resourcemanager.GetString("trNameHint"));
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(cb_Nationality, MainWindow.resourcemanager.GetString("nationalityHint"));
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(cb_department, MainWindow.resourcemanager.GetString("specializationHint"));
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(dp_fromDate, MainWindow.resourcemanager.GetString("from"));
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(dp_toDate, MainWindow.resourcemanager.GetString("to"));
+            //
+            txt_custname.Text = MainWindow.resourcemanager.GetString("trName");
+            txt_nationality.Text = MainWindow.resourcemanager.GetString("nationality");
+            txt_department.Text = MainWindow.resourcemanager.GetString("specialization");       
+            txt_attendanceDays.Text = MainWindow.resourcemanager.GetString("attendanceDays");
+            txt_attendanceHour.Text = MainWindow.resourcemanager.GetString("attendanceHours");
             ////contactNumberHint
             //tt_clear.Content = MainWindow.resourcemanager.GetString("trClear");
             //tt_report.Content = MainWindow.resourcemanager.GetString("trPdf");
