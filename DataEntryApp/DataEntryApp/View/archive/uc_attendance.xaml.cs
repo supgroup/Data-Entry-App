@@ -510,23 +510,22 @@ namespace DataEntryApp.View.archive
         async Task Search()
         {
             //search
-            /*
+         
             if (customersLogs is null)
                 await RefreshCustomersLogsList();
             searchText = tb_search.Text.ToLower();
-            customersLogsQuery = customersLogs.Where(s => (s.code.ToLower().Contains(searchText) ||
-            s.name.ToLower().Contains(searchText) ||
-            s.mobile.ToLower().Contains(searchText)
-            ) && s.isActive == tgl_customersLogState);
-            */
+            customersLogsQuery = customersLogs.Where(s => (s.custname.ToLower().Contains(searchText))
+
+            );
+         
             RefreshCustomersLogsView();
         }
         async Task<IEnumerable<CustomersLogs>> RefreshCustomersLogsList()
         {
-            /*
+            
             customersLogs = await customersLog.GetAll();
-            customersLogs = customersLogs.Where(x => x.type != "ag");
-            */
+           // customersLogs = customersLogs.Where(x => x.type != "ag");
+            
             return customersLogs;
         }
         void RefreshCustomersLogsView()
