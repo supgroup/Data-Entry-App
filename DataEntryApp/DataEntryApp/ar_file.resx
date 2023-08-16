@@ -2872,4 +2872,31 @@
   <data name="logoutTime" xml:space="preserve">
     <value>وقت الخروج</value>
   </data>
+  <data name="attendenceFilter" xml:space="preserve">
+    <value>فلترة الحضور</value>
+  </data>
+  <data name="attendenceRecord" xml:space="preserve">
+    <value>تسجيل الحضور</value>
+  </data>
+  <data name="barcodeNum" xml:space="preserve">
+    <value>رقم الباركود</value>
+  </data>
+  <data name="brcodenotexist" xml:space="preserve">
+    <value>رقم الباركود غير موجود</value>
+  </data>
+  <data name="msginsuccess" xml:space="preserve">
+    <value>تم تسجيل الدخول بنجاح</value>
+  </data>
+  <data name="msgnoout" xml:space="preserve">
+    <value>لايوجد تسجيل خروج</value>
+  </data>
+  <data name="msgoutsuccess" xml:space="preserve">
+    <value>تم تسجيل الخروج بنجاح</value>
+  </data>
+  <data name="signIn" xml:space="preserve">
+    <value>دخول</value>
+  </data>
+  <data name="signOut" xml:space="preserve">
+    <value>خروج</value>
+  </data>
 </root>

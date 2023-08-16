@@ -337,7 +337,7 @@
                             <TextBox x:Name="tb_barcode"  Text="{Binding barcode, Mode=OneWay}" Padding="10,5,0,0" 
                                       Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                       materialDesign:HintAssist.Hint="barcode..." materialDesign:HintAssist.Foreground="{StaticResource MainColor}" materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource MainColor}" 
-                                     Foreground="#4E4E4E"  
+                                     Foreground="#4E4E4E"  Tag="barcode"
                                       MaxLength="50" BorderThickness="0"
                                      materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
                                      Height="40"   Margin="4,0"  
@@ -369,7 +369,7 @@
                     <Border Background="{StaticResource MainColor}" Height="40"
                     CornerRadius="15 15 0 0">
                     <Grid   >
-                            <TextBlock Text="Filter" x:Name="txt_title" Margin="10,0,0,0" Foreground="White" 
+                            <TextBlock Text="Filter" x:Name="txt_filter" Margin="10,0,0,0" Foreground="White" 
                      FontSize="14"      HorizontalAlignment="Left"  VerticalAlignment="Center" 
                            FontWeight="Bold" />
                     </Grid>
