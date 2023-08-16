@@ -101,7 +101,7 @@ namespace DataEntryApp.View.sectionData
         private void translate()
         {
 
-            txt_title.Text = MainWindow.resourcemanager.GetString("trNationalities");
+            txt_title.Text = MainWindow.resourcemanager.GetString("nationality");
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, MainWindow.resourcemanager.GetString("trSearchHint"));
     
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_name, MainWindow.resourcemanager.GetString("trNameHint"));
@@ -149,8 +149,7 @@ namespace DataEntryApp.View.sectionData
         { //add
             try
             {
-                CustomersLogs cl = new CustomersLogs();
-                decimal res = await cl.savelog("17-10-6-8-","out");
+              
                 HelpClass.StartAwait(grid_main);
 
                 //chk duplicate userName

@@ -113,7 +113,7 @@ namespace DataEntryApp.View.sectionData
             dg_user.Columns[0].Header = MainWindow.resourcemanager.GetString("trNo.");
             dg_user.Columns[1].Header = MainWindow.resourcemanager.GetString("trName");
             dg_user.Columns[2].Header = MainWindow.resourcemanager.GetString("trUserName");
-            dg_user.Columns[2].Header = MainWindow.resourcemanager.GetString("contactNumber");
+            dg_user.Columns[3].Header = MainWindow.resourcemanager.GetString("contactNumber");
             //contactNumberHint
             tt_clear.Content = MainWindow.resourcemanager.GetString("trClear");
             tt_report.Content = MainWindow.resourcemanager.GetString("trPdf");
@@ -505,7 +505,7 @@ namespace DataEntryApp.View.sectionData
             if (users is null)
                 await RefreshUsersList();
             searchText = tb_search.Text.ToLower();
-            usersQuery = users.Where(s => (s.code.ToLower().Contains(searchText) ||
+            usersQuery = users.Where(s => (s.userId.ToString().Contains(searchText) ||
             s.name.ToLower().Contains(searchText) ||
             s.mobile.ToLower().Contains(searchText)
             ) && s.isActive == tgl_userState);
