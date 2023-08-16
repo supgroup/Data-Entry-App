@@ -217,6 +217,7 @@
     <Compile Include="converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="converters\countConverter.cs" />
     <Compile Include="converters\dateFrameConverter.cs" />
+    <Compile Include="converters\dateTimeToTimeConverter.cs" />
     <Compile Include="converters\isActiveConverter.cs" />
     <Compile Include="converters\packagePeriodConverter.cs" />
     <Compile Include="converters\permissionsNameConverter.cs" />

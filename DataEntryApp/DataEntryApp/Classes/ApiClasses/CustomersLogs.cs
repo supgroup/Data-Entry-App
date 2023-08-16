@@ -29,6 +29,7 @@ namespace DataEntryApp.ApiClasses
         public string Nationality { get; set; }
         public Nullable<long> nationalityId { get; set; }
         public Nullable<long> departmentId { get; set; }
+        public Nullable<bool> isActive { get; set; }
         private string urimainpath = "customersLogs/";
 
 

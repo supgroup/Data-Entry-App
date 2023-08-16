@@ -2878,4 +2878,10 @@ Please add Email in setting</value>
   <data name="attendancearchive" xml:space="preserve">
     <value>Attendance archive</value>
   </data>
+  <data name="loginTime" xml:space="preserve">
+    <value>Login Time</value>
+  </data>
+  <data name="logoutTime" xml:space="preserve">
+    <value>Logout Time</value>
+  </data>
 </root>

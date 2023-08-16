@@ -2866,4 +2866,10 @@
   <data name="attendancearchive" xml:space="preserve">
     <value>ارشيف الحضور</value>
   </data>
+  <data name="loginTime" xml:space="preserve">
+    <value>وقت الدخول</value>
+  </data>
+  <data name="logoutTime" xml:space="preserve">
+    <value>وقت الخروج</value>
+  </data>
 </root>

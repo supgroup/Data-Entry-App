@@ -15,6 +15,7 @@
             <converters:packagePeriodConverter   x:Key="packagePeriodConverter"/>
             <converters:isActiveConverter   x:Key="isActiveConverter"/>
             <converters:dateFrameConverter x:Key="dateFrameConverter"/>
+            <converters:dateTimeToTimeConverter x:Key="dateTimeToTimeConverter"/>
             <converters:unlimitedConverter x:Key="unlimitedConverter"/>
             <converters:countConverter x:Key="countConverter"/>
 
