@@ -106,8 +106,9 @@ namespace DataEntryApp.View.sectionData
             {
                 Button button = sender as Button;
                 colorButtonRefreash(button.Tag.ToString());
-               MainWindow mainWindow = new MainWindow()  ;
-                mainWindow.txt_secondPath.Text = "userr";
+                MainWindow.mainWindow.second = "user";
+                MainWindow.mainWindow.setMainPath();
+
                // mainWindow.ChangeText(">Users");
                 grid_main.Children.Clear();
                 grid_main.Children.Add(uc_users.Instance);
