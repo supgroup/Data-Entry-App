@@ -212,7 +212,7 @@ namespace DataEntryApp.Classes
             //table columns
             paramarr.Add(new ReportParameter("nationality",customer.Nationality));
             paramarr.Add(new ReportParameter("department", customer.department));
-       
+            paramarr.Add(new ReportParameter("barcodeNum", customer.barcode));
             paramarr.Add(new ReportParameter("barcodeimage", "file:\\" + BarcodeToImage(customer.barcode==null?"-":customer.barcode, "cardnum")));
             return paramarr;
         }

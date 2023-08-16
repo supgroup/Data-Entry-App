@@ -26,7 +26,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.23328in</Top>
+            <Top>0.18328in</Top>
             <Left>3.20766in</Left>
             <Height>0.27in</Height>
             <Width>0.39191in</Width>
@@ -42,7 +42,7 @@
             <Source>External</Source>
             <Value>=Parameters!barcodeimage.Value</Value>
             <Sizing>Fit</Sizing>
-            <Top>3.52708cm</Top>
+            <Top>3.17783cm</Top>
             <Left>0.86cm</Left>
             <Height>0.91475cm</Height>
             <Width>8.28288cm</Width>
@@ -74,7 +74,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.96079in</Top>
+            <Top>0.91079in</Top>
             <Left>1.30688in</Left>
             <Height>0.27in</Height>
             <Width>1.64259in</Width>
@@ -93,7 +93,7 @@
             <Source>Embedded</Source>
             <Value>champer_industry_logo</Value>
             <Sizing>Fit</Sizing>
-            <Top>0.23328in</Top>
+            <Top>0.18328in</Top>
             <Left>0.86cm</Left>
             <Height>2cm</Height>
             <Width>2cm</Width>
@@ -125,7 +125,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.96079in</Top>
+            <Top>0.91079in</Top>
             <Left>2.94947in</Left>
             <Height>0.27in</Height>
             <Width>0.65009in</Width>
@@ -159,7 +159,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.59079in</Top>
+            <Top>0.54079in</Top>
             <Left>2.96405in</Left>
             <Height>0.27in</Height>
             <Width>0.63552in</Width>
@@ -193,7 +193,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.59078in</Top>
+            <Top>0.54078in</Top>
             <Left>1.30687in</Left>
             <Height>0.27in</Height>
             <Width>1.6426in</Width>
@@ -228,7 +228,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.23328in</Top>
+            <Top>0.18328in</Top>
             <Left>1.30687in</Left>
             <Height>0.27in</Height>
             <Width>1.6426in</Width>
@@ -243,8 +243,43 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="Textbox33">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!barcodeNum.Value</Value>
+                    <Style>
+                      <FontFamily>cairo</FontFamily>
+                      <FontSize>6pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>Gray</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox4</rd:DefaultName>
+            <Top>1.61125in</Top>
+            <Left>0.33858in</Left>
+            <Height>0.22851in</Height>
+            <Width>3.26098in</Width>
+            <ZIndex>8</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Top</VerticalAlign>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>5cm</Height>
+        <Height>4.8cm</Height>
         <Style>
           <Border>
             <Style>None</Style>
@@ -255,12 +290,19 @@
       <Page>
         <PageHeight>5cm</PageHeight>
         <PageWidth>10cm</PageWidth>
+        <InteractiveHeight>5cm</InteractiveHeight>
+        <InteractiveWidth>10cm</InteractiveWidth>
         <LeftMargin>0cm</LeftMargin>
         <RightMargin>0cm</RightMargin>
         <TopMargin>0cm</TopMargin>
         <BottomMargin>0cm</BottomMargin>
         <ColumnSpacing>1cm</ColumnSpacing>
-        <Style />
+        <Style>
+          <Border>
+            <Color>#e5b922</Color>
+            <Style>None</Style>
+          </Border>
+        </Style>
       </Page>
     </ReportSection>
   </ReportSections>
@@ -318,11 +360,17 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="barcodeNum">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>8</NumberOfRows>
+      <NumberOfRows>9</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
@@ -363,6 +411,11 @@
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>7</RowIndex>
           <ParameterName>barcodeimage</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>8</RowIndex>
+          <ParameterName>barcodeNum</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
