@@ -229,9 +229,6 @@
     <Compile Include="View\badge\uc_applications.xaml.cs">
       <DependentUpon>uc_applications.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\badge\uc_customers.xaml.cs">
-      <DependentUpon>uc_customers.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\badge\us_programs.xaml.cs">
       <DependentUpon>us_programs.xaml</DependentUpon>
     </Compile>
@@ -319,10 +316,6 @@
     <Page Include="View\badge\uc_applications.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\badge\uc_customers.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\badge\us_programs.xaml">
       <Generator>MSBuild:Compile</Generator>
