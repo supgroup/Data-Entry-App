@@ -526,6 +526,7 @@ namespace DataEntryApp.View.archive
             try
             {
                 HelpClass.StartAwait(grid_main);
+                Clear();
                 await RefreshCustomersLogsList();
                 await Search();
                 HelpClass.EndAwait(grid_main);
@@ -731,9 +732,19 @@ namespace DataEntryApp.View.archive
         {
             tb_barcode.Text = "";
 
-
-
-
+            tb_search.Text = "";
+            cb_custname.SelectedItem = null;
+       
+            cb_Nationality.SelectedItem = null;
+            cb_department.SelectedItem = null;
+            dp_fromDate.SelectedDate = null;
+            dp_toDate.SelectedDate = null;
+            //
+            tb_custname.Text = "-";
+            tb_nationality.Text = "-";
+            tb_department.Text = "-";
+            tb_attendanceDays.Text = "-";
+            tb_attendanceHour.Text = "-";
             // last 
             HelpClass.clearValidate(requiredControlList, this);
         }
