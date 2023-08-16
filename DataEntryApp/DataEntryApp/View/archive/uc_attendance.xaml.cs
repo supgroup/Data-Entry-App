@@ -90,9 +90,7 @@ namespace DataEntryApp.View.archive
                 await Search();
                 Clear();
 
-                fillcustomers();
-                fillnationalities();
-                filldepartments();
+                fillCombo();
 
                 HelpClass.EndAwait(grid_main);
             }
@@ -536,10 +534,24 @@ namespace DataEntryApp.View.archive
             if (customersLogs is null)
                 await RefreshCustomersLogsList();
             searchText = tb_search.Text.ToLower();
-            customersLogsQuery = customersLogs.Where(s => (s.custname.ToLower().Contains(searchText))
 
+            customersLogsQuery = customersLogs.Where(s => (s.custname.ToLower().Contains(searchText) || s.custId.ToString().Contains(searchText))
+           &&
+           //customer
+           (cb_custname.SelectedIndex != -1 ? s.custId == (long)cb_custname.SelectedValue : true)
+            &&
+            // Nationality
+           (cb_Nationality.SelectedIndex != -1 ? s.nationalityId == (long)cb_Nationality.SelectedValue : true)
+            &&
+            // department
+           (cb_department.SelectedIndex != -1 ? s.departmentId == (long)cb_department.SelectedValue : true)
+           &&
+            //start date
+            (dp_fromDate.SelectedDate != null ? s.sInDate.Value.Date >= dp_fromDate.SelectedDate.Value.Date : true)
+            &&
+            //end date
+            (dp_toDate.SelectedDate != null ? s.sInDate.Value.Date <= dp_toDate.SelectedDate.Value.Date : true)
             );
-
             RefreshCustomersLogsView();
         }
         async Task<IEnumerable<CustomersLogs>> RefreshCustomersLogsList()
@@ -555,7 +567,13 @@ namespace DataEntryApp.View.archive
             dg_customersLog.ItemsSource = customersLogsQuery;
         }
         #endregion
+        private void fillCombo()
+        {
+            fillcustomers();
+            fillnationalities();
+            filldepartments();
 
+        }
         #region filter
         List<Customers> customers = new List<Customers>();
         private void fillcustomers()
@@ -571,7 +589,7 @@ namespace DataEntryApp.View.archive
         List<Nationalities> nationalities = new List<Nationalities>();
         private void fillnationalities()
         {
-            nationalities = customersLogs.GroupBy(g => g.nationalityId).Select(g => new Nationalities { nationalityId = g.FirstOrDefault().custId.Value, name = g.FirstOrDefault().Nationality }).ToList();
+            nationalities = customersLogs.GroupBy(g => g.nationalityId).Select(g => new Nationalities { nationalityId = g.FirstOrDefault().nationalityId.Value, name = g.FirstOrDefault().Nationality }).ToList();
             //if (vendors.Where(x => x.name == "unknown").Count() > 0)
             //    vendors.Where(x => x.name == "unknown").FirstOrDefault().name = AppSettings.resourcemanager.GetString("trUnKnown");
             cb_Nationality.SelectedValuePath = "nationalityId";
@@ -589,6 +607,112 @@ namespace DataEntryApp.View.archive
             cb_department.DisplayMemberPath = "name";
             cb_department.ItemsSource = departments;
         }
+
+        private async void Cb_custname_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                HelpClass.StartAwait(grid_main);
+                //if (cb_custname.SelectedItem != null)
+                //{
+
+                //}
+
+                await Search();
+
+                HelpClass.EndAwait(grid_main);
+            }
+            catch (Exception ex)
+            {
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this);
+            }
+        }
+
+        private async void Cb_Nationality_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                HelpClass.StartAwait(grid_main);
+                //if (cb_custname.SelectedItem != null)
+                //{
+
+                //}
+
+                await Search();
+
+                HelpClass.EndAwait(grid_main);
+            }
+            catch (Exception ex)
+            {
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this);
+            }
+        }
+
+        private async void Cb_department_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                HelpClass.StartAwait(grid_main);
+                //if (cb_custname.SelectedItem != null)
+                //{
+
+                //}
+
+                await Search();
+
+                HelpClass.EndAwait(grid_main);
+            }
+            catch (Exception ex)
+            {
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this);
+            }
+        }
+
+        private async void Dp_fromDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                HelpClass.StartAwait(grid_main);
+                //if (cb_custname.SelectedItem != null)
+                //{
+
+                //}
+
+                await Search();
+
+                HelpClass.EndAwait(grid_main);
+            }
+            catch (Exception ex)
+            {
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this);
+            }
+        }
+
+        private async void Dp_toDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                HelpClass.StartAwait(grid_main);
+                //if (cb_custname.SelectedItem != null)
+                //{
+
+                //}
+
+                await Search();
+
+                HelpClass.EndAwait(grid_main);
+            }
+            catch (Exception ex)
+            {
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this);
+            }
+        }
+
         #endregion
         #region validate - clearValidate - textChange - lostFocus - . . . . 
         void Clear()
@@ -911,8 +1035,9 @@ namespace DataEntryApp.View.archive
 
 
                         Clear();
-                        await RefreshCustomersLogsList();
+                        await RefreshCustomersLogsList();                     
                         await Search();
+                        fillCombo();
                     }
                 }
 
@@ -972,6 +1097,7 @@ namespace DataEntryApp.View.archive
                         Clear();
                         await RefreshCustomersLogsList();
                         await Search();
+                        fillCombo();
                     }
                 }
 
@@ -985,5 +1111,7 @@ namespace DataEntryApp.View.archive
                 HelpClass.ExceptionMessage(ex, this);
             }
         }
+
+
     }
 }

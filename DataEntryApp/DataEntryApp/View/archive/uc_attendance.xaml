@@ -394,7 +394,7 @@
                                         materialDesign:HintAssist.Hint="custname..."  materialDesign:HintAssist.Foreground="{StaticResource MainColor}" materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource MainColor}"  
                                         VerticalAlignment="Center" BorderThickness="0"
                                         Height="40" 
-                                        SelectedValue="{Binding custlevel, Mode=OneWay}"/>
+                                        SelectedValue="{Binding custlevel, Mode=OneWay}" SelectionChanged="Cb_custname_SelectionChanged"/>
                                     </Grid>
                                 </Border>
                                 <Border Grid.Row="1" Grid.Column="0" CornerRadius="10" Margin="0,5,5,5"   BorderThickness="1" BorderBrush="{StaticResource MainColor}">
@@ -405,7 +405,7 @@
                                         materialDesign:HintAssist.Hint="Nationality..."   materialDesign:HintAssist.Foreground="{StaticResource MainColor}" materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource MainColor}" 
                                         VerticalAlignment="Center" BorderThickness="0"
                                         Height="40" 
-                                        SelectedValue="{Binding custlevel, Mode=OneWay}"/>
+                                        SelectedValue="{Binding custlevel, Mode=OneWay}" SelectionChanged="Cb_Nationality_SelectionChanged"/>
                                     </Grid>
                                 </Border>
                                 <Border Grid.Row="2" Grid.Column="0" CornerRadius="10" Margin="0,5,5,5"   BorderThickness="1" BorderBrush="{StaticResource MainColor}">
@@ -416,7 +416,7 @@
                                         materialDesign:HintAssist.Hint="department..."    materialDesign:HintAssist.Foreground="{StaticResource MainColor}" materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource MainColor}"
                                         VerticalAlignment="Center" BorderThickness="0"
                                         Height="40" 
-                                        SelectedValue="{Binding custlevel, Mode=OneWay}"/>
+                                        SelectedValue="{Binding custlevel, Mode=OneWay}" SelectionChanged="Cb_department_SelectionChanged"/>
                                     </Grid>
                                 </Border>
                                 <Grid Grid.Row="3">
@@ -433,7 +433,7 @@
                                          SelectedDate="{Binding reservationDate, Mode=OneWay}" Padding="10,0,5,0"  
                                         materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
                                         materialDesign:HintAssist.Hint="InDate..."   materialDesign:HintAssist.Foreground="{StaticResource MainColor}" materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource MainColor}"
-                                        Foreground="#4E4E4E"   Height="40"    />
+                                        Foreground="#4E4E4E"   Height="40" SelectedDateChanged="Dp_fromDate_SelectedDateChanged"    />
                                         </Grid>
                                     </Border>
                                     <Border Grid.Column="2"  CornerRadius="10"  Height="40"   Margin="0,5,5,5"   BorderThickness="1" BorderBrush="{StaticResource MainColor}">
@@ -445,7 +445,7 @@
                                          SelectedDate="{Binding reservationDate, Mode=OneWay}" Padding="10,0,5,0"  
                                         materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
                                         materialDesign:HintAssist.Hint="OutDate..."  materialDesign:HintAssist.Foreground="{StaticResource MainColor}" materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource MainColor}"
-                                        Foreground="#4E4E4E"   Height="40"    />
+                                        Foreground="#4E4E4E"   Height="40" SelectedDateChanged="Dp_toDate_SelectedDateChanged"    />
                                         </Grid>
                                     </Border>
                                 </Grid>
