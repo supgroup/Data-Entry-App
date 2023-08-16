@@ -630,7 +630,7 @@ namespace DataEntryApp
             #endregion
 
             #region second
-            if (!string.IsNullOrWhiteSpace(first))
+            if (!string.IsNullOrWhiteSpace(second))
             {
                 switch (second)
                 {
@@ -640,8 +640,13 @@ namespace DataEntryApp
                    case "user":
                         txt_secondPath.Text =">" + resourcemanager.GetString("trUsers");
                         break;
-                   
-
+                    case "nationalities":
+                        txt_secondPath.Text = ">" + resourcemanager.GetString("nationalities");
+                        break;
+                    case "specialties":
+                        txt_secondPath.Text = ">" + resourcemanager.GetString("specialties");
+                        break;
+                        
 
                     default:
                         txt_secondPath.Text = "";
