@@ -469,12 +469,10 @@ namespace DataEntryApp.View.archive
         {//selection
             try
             {
-                HelpClass.StartAwait(grid_main);
-                
+                HelpClass.StartAwait(grid_main);                
                 if (dg_customersLog.SelectedIndex != -1)
                 {
-                    customersLog = dg_customersLog.SelectedItem as CustomersLogs;
-                  
+                    customersLog = dg_customersLog.SelectedItem as CustomersLogs;                  
                     if (customersLog != null)
                     {
                         //tb_code.Text = customersLog.code;
@@ -489,8 +487,7 @@ namespace DataEntryApp.View.archive
                         //HelpClass.getPhone(customersLog.phone, cb_areaPhone, cb_areaPhoneLocal, tb_phone);
                         //HelpClass.getPhone(customersLog.fax, cb_areaFax, cb_areaFaxLocal, tb_fax);
                     }
-                }
-              
+                }              
                 //HelpClass.clearValidate(requiredControlList, this);
                 //p_error_email.Visibility = Visibility.Collapsed;
 
