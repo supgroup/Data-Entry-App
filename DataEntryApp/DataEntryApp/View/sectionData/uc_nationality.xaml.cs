@@ -104,11 +104,11 @@ namespace DataEntryApp.View.sectionData
             txt_title.Text = MainWindow.resourcemanager.GetString("nationality");
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, MainWindow.resourcemanager.GetString("trSearchHint"));
     
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_name, MainWindow.resourcemanager.GetString("trNameHint"));
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_name, MainWindow.resourcemanager.GetString("nationalityHint"));
  
 
             dg_nationality.Columns[0].Header = MainWindow.resourcemanager.GetString("trNo.");
-            dg_nationality.Columns[1].Header = MainWindow.resourcemanager.GetString("trName");
+            dg_nationality.Columns[1].Header = MainWindow.resourcemanager.GetString("nationality");
             //dg_nationality.Columns[2].Header = MainWindow.resourcemanager.GetString("trUserName");
             //dg_nationality.Columns[2].Header = MainWindow.resourcemanager.GetString("contactNumber");
             //contactNumberHint

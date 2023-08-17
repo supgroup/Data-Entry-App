@@ -15,6 +15,7 @@
                     <Value>:الاسم</Value>
                     <Style>
                       <FontFamily>cairo</FontFamily>
+                      <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <Color>#e5b922</Color>
                     </Style>
@@ -27,9 +28,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
             <Top>0.18328in</Top>
-            <Left>3.20766in</Left>
+            <Left>3.06155in</Left>
             <Height>0.27in</Height>
-            <Width>0.39191in</Width>
+            <Width>0.53802in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -42,7 +43,7 @@
             <Source>External</Source>
             <Value>=Parameters!barcodeimage.Value</Value>
             <Sizing>Fit</Sizing>
-            <Top>3.17783cm</Top>
+            <Top>3.30483cm</Top>
             <Left>0.86cm</Left>
             <Height>0.91475cm</Height>
             <Width>8.28288cm</Width>
@@ -63,6 +64,7 @@
                     <Value>=Parameters!department.Value</Value>
                     <Style>
                       <FontFamily>cairo</FontFamily>
+                      <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <Color>Gray</Color>
                     </Style>
@@ -74,10 +76,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.91079in</Top>
+            <Top>0.87329in</Top>
             <Left>1.30688in</Left>
             <Height>0.27in</Height>
-            <Width>1.64259in</Width>
+            <Width>1.75467in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -114,6 +116,7 @@
                     <Value>:الاختصاص</Value>
                     <Style>
                       <FontFamily>cairo</FontFamily>
+                      <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <Color>#e5b922</Color>
                     </Style>
@@ -125,10 +128,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.91079in</Top>
-            <Left>2.94947in</Left>
+            <Top>0.87329in</Top>
+            <Left>3.06155in</Left>
             <Height>0.27in</Height>
-            <Width>0.65009in</Width>
+            <Width>0.53801in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -148,6 +151,7 @@
                     <Value>:الجنسية</Value>
                     <Style>
                       <FontFamily>cairo</FontFamily>
+                      <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <Color>#e5b922</Color>
                     </Style>
@@ -159,10 +163,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.54079in</Top>
-            <Left>2.96405in</Left>
+            <Top>0.51579in</Top>
+            <Left>3.06155in</Left>
             <Height>0.27in</Height>
-            <Width>0.63552in</Width>
+            <Width>0.53802in</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -182,6 +186,7 @@
                     <Value>=Parameters!nationality.Value</Value>
                     <Style>
                       <FontFamily>cairo</FontFamily>
+                      <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <Color>Gray</Color>
                     </Style>
@@ -193,10 +198,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.54078in</Top>
+            <Top>0.51578in</Top>
             <Left>1.30687in</Left>
             <Height>0.27in</Height>
-            <Width>1.6426in</Width>
+            <Width>1.75468in</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -217,6 +222,7 @@
                     <Value>=Parameters!name.Value</Value>
                     <Style>
                       <FontFamily>cairo</FontFamily>
+                      <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                       <Color>Gray</Color>
                     </Style>
@@ -231,7 +237,7 @@
             <Top>0.18328in</Top>
             <Left>1.30687in</Left>
             <Height>0.27in</Height>
-            <Width>1.6426in</Width>
+            <Width>1.75468in</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -243,7 +249,7 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox33">
+          <Textbox Name="Textbox34">
             <CanGrow>true</CanGrow>
             <CanShrink>true</CanShrink>
             <KeepTogether>true</KeepTogether>
@@ -261,15 +267,15 @@
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>1.61125in</Top>
+            <Top>1.1351in</Top>
             <Left>0.33858in</Left>
-            <Height>0.22851in</Height>
-            <Width>3.26098in</Width>
+            <Height>0.16601in</Height>
+            <Width>0.89886in</Width>
             <ZIndex>8</ZIndex>
             <Style>
               <Border>

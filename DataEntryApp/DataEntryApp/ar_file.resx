@@ -2914,4 +2914,7 @@
   <data name="send" xml:space="preserve">
     <value>ارسال</value>
   </data>
+  <data name="specialtyHint" xml:space="preserve">
+    <value>التخصص ...</value>
+  </data>
 </root>

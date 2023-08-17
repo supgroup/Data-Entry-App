@@ -2926,4 +2926,7 @@ Please add Email in setting</value>
   <data name="send" xml:space="preserve">
     <value>Send</value>
   </data>
+  <data name="specialtyHint" xml:space="preserve">
+    <value>Specialty ...</value>
+  </data>
 </root>

@@ -104,11 +104,11 @@ namespace DataEntryApp.View.sectionData
             txt_title.Text = MainWindow.resourcemanager.GetString("specialty");
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, MainWindow.resourcemanager.GetString("trSearchHint"));
     
-            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_name, MainWindow.resourcemanager.GetString("trNameHint"));
+            MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_name, MainWindow.resourcemanager.GetString("specialtyHint"));
  
 
             dg_specialty.Columns[0].Header = MainWindow.resourcemanager.GetString("trNo.");
-            dg_specialty.Columns[1].Header = MainWindow.resourcemanager.GetString("trName");
+            dg_specialty.Columns[1].Header = MainWindow.resourcemanager.GetString("specialty");
             //dg_specialty.Columns[2].Header = MainWindow.resourcemanager.GetString("trUserName");
             //dg_specialty.Columns[2].Header = MainWindow.resourcemanager.GetString("contactNumber");
             //contactNumberHint
