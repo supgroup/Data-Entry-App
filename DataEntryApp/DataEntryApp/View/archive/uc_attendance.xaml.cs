@@ -23,7 +23,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Reporting.WinForms;
-
+using System.Windows.Threading;
 namespace DataEntryApp.View.archive
 {
     /// <summary>
@@ -36,6 +36,9 @@ namespace DataEntryApp.View.archive
             try
             {
                 InitializeComponent();
+                //  this. += new System.Windows.Forms.KeyPressEventHandler(this.HandleKeyPress);
+
+                // Loaded += UserControl_Loaded;
             }
             catch (Exception ex)
             {
@@ -63,6 +66,7 @@ namespace DataEntryApp.View.archive
             try
             {
                 HelpClass.StartAwait(grid_main);
+                MainWindow.mainWindow.KeyDown += HandleKeyPress;
                 //   requiredControlList = new List<string> { "name", "lastName", "AccountName",  "type", "mobile" , "country" };
                 requiredControlList = new List<string> { "barcode" };
                 #region translate
@@ -136,7 +140,7 @@ namespace DataEntryApp.View.archive
             txt_department.Text = MainWindow.resourcemanager.GetString("specialization");
             txt_attendanceDays.Text = MainWindow.resourcemanager.GetString("attendanceDays");
             txt_attendanceHour.Text = MainWindow.resourcemanager.GetString("attendanceHours");
-            
+
             ////contactNumberHint
             //tt_clear.Content = MainWindow.resourcemanager.GetString("trClear");
             //tt_report.Content = MainWindow.resourcemanager.GetString("trPdf");
@@ -169,8 +173,187 @@ namespace DataEntryApp.View.archive
 
 
         }
+        private static DispatcherTimer timer;
+        #region//to handle barcode characters
+
+
+
+        // for barcode
+        public List<Control> controls;
+        DateTime _lastKeystroke = new DateTime(0);
+        static private string _BarcodeStr = "";
+        static private object _Sender;
+        bool _IsFocused = false;
+        #endregion
+        //private async void HandleKeyPress(object sender, KeyEventArgs e)
+        //{
+        //    try
+
+
+
+        //        {
+        //        //if (!_IsFocused)
+        //        //{
+        //        //    //Control c = CheckActiveControl();
+        //        //    //if (c == null)
+        //        //        tb_barcode.Focus();
+        //        //    _IsFocused = true;
+        //        //}
+        //        if (sender != null)
+        //            HelpClass.StartAwait(grid_main);
+        //        TimeSpan elapsed = (DateTime.Now - _lastKeystroke);
+        //        if (elapsed.TotalMilliseconds > 80)
+        //        {
+        //            _BarcodeStr = "";
+
+        //        }
+
+        //        string digit = "";
+        //        // record keystroke & timestamp 
+        //        if (e.Key >= Key.D0 && e.Key <= Key.D9)
+        //        {
+        //            //digit pressed!         
+        //            digit = e.Key.ToString().Substring(1);
+        //            // = "1" when D1 is pressed
+        //        }
+        //        else if (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+        //        {
+        //            digit = e.Key.ToString().Substring(6); // = "1" when NumPad1 is pressed
+        //        }
+        //        else if (e.Key >= Key.A && e.Key <= Key.Z)
+        //            digit = e.Key.ToString();
+        //        else if (e.Key == Key.OemMinus)
+        //        {
+        //            digit = "-";
+        //        }
+
+        //        _BarcodeStr += digit.ToString();
+        //        _lastKeystroke = DateTime.Now;
+        //        // process barcode
+
+
+
+
+        //          if (e.Key.ToString() == "Return"  )
+        //        {
+        //            //   await dealWithBarcode(_BarcodeStr);
+        //            await dealWithBarcode(_BarcodeStr);
+
+        //            tb_barcode.Text = "";
+        //            //if (_Sender != null) //clear barcode from inputs
+        //            //{
+        //            //    DatePicker dt = _Sender as DatePicker;
+        //            //     TextBox tb = _Sender as TextBox;
+        //            //    tb_barcode.Text = string.Empty;
+        //            //    //if (dt != null)
+        //            //    //{
+        //            //    //    if (dt.Name == "dp_desrvedDate")
+        //            //    //        _BarcodeStr = _BarcodeStr.Substring(1);
+        //            //    //}
+        //            //    //else if (tb != null)
+        //            //    //{
+        //            //    //    if (tb.Name == "tb_barcode" )// remove barcode from text box
+        //            //    //    {
+        //            //    //        string tbString = tb.Text;
+        //            //    //        string newStr = "";
+        //            //    //        int startIndex = tbString.IndexOf(_BarcodeStr);
+        //            //    //        if (startIndex != -1)
+        //            //    //            newStr = tbString.Remove(startIndex, _BarcodeStr.Length);
+
+        //            //    //        tb.Text = newStr;
+        //            //    //    }
+        //            //    //}
+        //            //}
+        //          //  _BarcodeStr = "";
+        //            e.Handled = true;
+        //            _IsFocused = false;
+        //        }
+        //        _Sender = null;
+
+        //        //if (e.KeyboardDevice.IsKeyDown(Key.LeftCtrl) || e.KeyboardDevice.IsKeyDown(Key.RightCtrl))
+        //        //{
+        //        //    switch (e.Key)
+        //        //    {
+        //        //        case Key.P:
+        //        //            //handle P key
+        //        //            Btn_printInvoice_Click(null, null);
+        //        //            break;
+        //        //        case Key.S:
+        //        //            //handle S key
+        //        //            Btn_save_Click(btn_save, null);
+        //        //            break;
+        //        //        case Key.I:
+        //        //            //handle S key
+        //        //            Btn_items_Click(null, null);
+        //        //            break;
+        //        //    }
+        //        //}
+        //        if (sender != null)
+        //            HelpClass.EndAwait(grid_main);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        if (sender != null)
+        //            HelpClass.EndAwait(grid_main);
+        //        HelpClass.ExceptionMessage(ex, this);
+        //    }
+        //}
+        // DateTime _lastKeystroke = new DateTime(0);
+
+        private async void HandleKeyPress(object sender, KeyEventArgs e)
+        {
+            tb_barcode.Focus();
+
+            // check timing (keystrokes within 80 ms)
+            TimeSpan elapsed = (DateTime.Now - _lastKeystroke);
+            if (elapsed.TotalMilliseconds > 80)
+                _BarcodeStr = "";
+
+            // record keystroke & timestamp
+            // _BarcodeStr += e.Key.ToString();
+            _lastKeystroke = DateTime.Now;
+
+            // process barcode
+            string digit = "";
+            // record keystroke & timestamp 
+            if (e.Key >= Key.D0 && e.Key <= Key.D9)
+            {
+                //digit pressed!         
+                digit = e.Key.ToString().Substring(1);
+                // = "1" when D1 is pressed
+            }
+            else if (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+            {
+                digit = e.Key.ToString().Substring(6); // = "1" when NumPad1 is pressed
+            }
+            else if (e.Key >= Key.A && e.Key <= Key.Z)
+                digit = e.Key.ToString();
+            else if (e.Key == Key.OemMinus)
+            {
+                digit = "-";
+            }
+            _BarcodeStr += digit;
+
+            // if (e.Key == Key.Return)
+            if (e.Key.ToString() == "Return")
+            {
+                await dealWithBarcode(_BarcodeStr);
+                tb_barcode.Text = "";
+
+            }
+
+            //   _BarcodeStr = "";
+        }
+
+        private async Task dealWithBarcode(string barcode)
+        {
+            await sendbarcode(barcode);
+            tb_barcode.Text = "";
+        }
+
+
         #region Add - Update - Delete - Search - Tgl - Clear - DG_SelectionChanged - refresh
-         
+
         private async void Btn_update_Click(object sender, RoutedEventArgs e)
         {//update
             /*
@@ -398,10 +581,10 @@ namespace DataEntryApp.View.archive
         {//selection
             try
             {
-                HelpClass.StartAwait(grid_main);                
+                HelpClass.StartAwait(grid_main);
                 if (dg_customersLog.SelectedIndex != -1)
                 {
-                    customersLog = dg_customersLog.SelectedItem as CustomersLogs;                  
+                    customersLog = dg_customersLog.SelectedItem as CustomersLogs;
                     if (customersLog != null)
                     {
                         //tb_code.Text = customersLog.code;
@@ -416,7 +599,7 @@ namespace DataEntryApp.View.archive
                         //HelpClass.getPhone(customersLog.phone, cb_areaPhone, cb_areaPhoneLocal, tb_phone);
                         //HelpClass.getPhone(customersLog.fax, cb_areaFax, cb_areaFaxLocal, tb_fax);
                     }
-                }              
+                }
                 //HelpClass.clearValidate(requiredControlList, this);
                 //p_error_email.Visibility = Visibility.Collapsed;
 
@@ -428,18 +611,18 @@ namespace DataEntryApp.View.archive
                 HelpClass.ExceptionMessage(ex, this);
             }
         }
-        private long calcDays( )
+        private long calcDays()
         {
             long days = 0;
-          //  customersLog
+            //  customersLog
             var list = customersLogs.Where(s => s.custId == customersLog.custId && s.sInDate != null && s.sOutDate != null).
-                GroupBy(g => ((DateTime) g.sInDate).Date).Select(g => new Customers { custId = g.FirstOrDefault().custId.Value}).ToList();
+                GroupBy(g => ((DateTime)g.sInDate).Date).Select(g => new Customers { custId = g.FirstOrDefault().custId.Value }).ToList();
             days = list.Count();
             return days;
         }
         private TimeSpan calcHours()
         {
-             
+
             //  customersLog
             List<CustomersLogs> list = customersLogs.Where(s => s.custId == customersLog.custId && s.sInDate != null && s.sOutDate != null).ToList();
             TimeSpan total = new TimeSpan();
@@ -663,11 +846,15 @@ namespace DataEntryApp.View.archive
 
             tb_search.Text = "";
             cb_custname.SelectedItem = null;
-       
+            cb_custname.Text = "";
             cb_Nationality.SelectedItem = null;
+            cb_Nationality.Text = "";
             cb_department.SelectedItem = null;
+            cb_department.Text = "";
             dp_fromDate.SelectedDate = null;
+            dp_fromDate.Text = "";
             dp_toDate.SelectedDate = null;
+            dp_toDate.Text = "";
             //
             tb_custname.Text = "-";
             tb_nationality.Text = "-";
@@ -770,8 +957,27 @@ namespace DataEntryApp.View.archive
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
+
+            try
+            {
+                if (sender != null)
+                    HelpClass.StartAwait(grid_main);
+                MainWindow.mainWindow.KeyDown -= HandleKeyPress;
+                // await newDraft();
+                timer.Stop();
+
+                GC.Collect();
+                if (sender != null)
+                    HelpClass.EndAwait(grid_main);
+            }
+            catch (Exception ex)
+            {
+                if (sender != null)
+                    HelpClass.EndAwait(grid_main);
+            }
+
             // Collect all generations of memory.
-            GC.Collect();
+
         }
         #region reports
 
@@ -941,7 +1147,7 @@ namespace DataEntryApp.View.archive
 
 
         #endregion
-      string type = "in";
+        string type = "in";
         private void Btn_pieChart_Click(object sender, RoutedEventArgs e)
         {
 
@@ -956,13 +1162,13 @@ namespace DataEntryApp.View.archive
 
                 btn_logout.Background = Application.Current.Resources["White"] as SolidColorBrush;
                 btn_logout.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
-                 
-             //   string barcode = "";
 
-                 type = "in";
+                //   string barcode = "";
+
+                type = "in";
                 //sign in
-               
-          
+
+
 
 
             }
@@ -984,8 +1190,8 @@ namespace DataEntryApp.View.archive
                 btn_login.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
 
                 //logout
-               
-                   type = "out";
+
+                type = "out";
             }
             catch (Exception ex)
             {
@@ -993,83 +1199,78 @@ namespace DataEntryApp.View.archive
                 HelpClass.ExceptionMessage(ex, this);
             }
         }
-
-        private async void Btn_send_Click(object sender, RoutedEventArgs e)
+        private async Task sendbarcode(string barcode)
         {
             try
             {
                 HelpClass.StartAwait(grid_main);
-                string barcode = "";
-                if (HelpClass.validate(requiredControlList, this))
+                // string barcode = "";
+                if (barcode!="")
                 {
-                    if (type=="in")
+                    if (type == "in")
                     {
                         //in
-                      
 
-                            barcode = tb_barcode.Text;
 
-                            decimal s = await customersLog.savelog(barcode, type);
+                        //   barcode = tb_barcode.Text;
 
-                            if (s <= 0)
+                        decimal s = await customersLog.savelog(barcode, type);
+
+                        if (s <= 0)
+                        {
+                            if (s == -4)
                             {
-                                if (s == -4)
-                                {
-                                    Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("brcodenotexist"), animation: ToasterAnimation.FadeIn);
-                                }
-                                else
-                                {
-                                    Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trPopError"), animation: ToasterAnimation.FadeIn);
-                                }
+                                Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("brcodenotexist"), animation: ToasterAnimation.FadeIn);
                             }
                             else
                             {
-                                Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("msginsuccess"), animation: ToasterAnimation.FadeIn);
-
-
-
-                                Clear();
-                                await RefreshCustomersLogsList();
-                                await Search();
-                                fillCombo();
+                                Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trPopError"), animation: ToasterAnimation.FadeIn);
                             }
-                        
+                        }
+                        else
+                        {
+                            Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("msginsuccess"), animation: ToasterAnimation.FadeIn);
+
+
+
+                            Clear();
+                            await RefreshCustomersLogsList();
+                            await Search();
+                            fillCombo();
+                        }
+
 
                     }
                     else
                     {
                         //out
-                       
-
-                            barcode = tb_barcode.Text;
 
 
-
-
-                            decimal s = await customersLog.savelog(barcode, type);
-                            Clear();
-                            if (s <= 0)
+                        //  barcode = tb_barcode.Text;
+                        decimal s = await customersLog.savelog(barcode, type);
+                        Clear();
+                        if (s <= 0)
+                        {
+                            if (s == -4)
                             {
-                                if (s == -4)
-                                {
-                                    Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("brcodenotexist"), animation: ToasterAnimation.FadeIn);
-                                }
-                                else
-                                {
-                                    Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("msgnoout"), animation: ToasterAnimation.FadeIn);
-                                }
+                                Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("brcodenotexist"), animation: ToasterAnimation.FadeIn);
                             }
-
                             else
                             {
-                                Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("msgoutsuccess"), animation: ToasterAnimation.FadeIn);
-
-                                Clear();
-                                await RefreshCustomersLogsList();
-                                await Search();
-                                fillCombo();
+                                Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("msgnoout"), animation: ToasterAnimation.FadeIn);
                             }
-                       
+                        }
+
+                        else
+                        {
+                            Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("msgoutsuccess"), animation: ToasterAnimation.FadeIn);
+
+                            Clear();
+                            await RefreshCustomersLogsList();
+                            await Search();
+                            fillCombo();
+                        }
+
 
                     }
                 }
@@ -1079,7 +1280,7 @@ namespace DataEntryApp.View.archive
 
 
 
-                    HelpClass.EndAwait(grid_main);
+                HelpClass.EndAwait(grid_main);
 
 
             }
@@ -1088,6 +1289,106 @@ namespace DataEntryApp.View.archive
                 HelpClass.EndAwait(grid_main);
                 HelpClass.ExceptionMessage(ex, this);
             }
+        }
+        private async void Btn_send_Click(object sender, RoutedEventArgs e)
+        {
+            if (HelpClass.validate(requiredControlList, this))
+                {
+                await sendbarcode(tb_barcode.Text);
+            }
+            
+            //try
+            //{
+            //    HelpClass.StartAwait(grid_main);
+            //    string barcode = "";
+            //    if (HelpClass.validate(requiredControlList, this))
+            //    {
+            //        if (type == "in")
+            //        {
+            //            //in
+
+
+            //            barcode = tb_barcode.Text;
+
+            //            decimal s = await customersLog.savelog(barcode, type);
+
+            //            if (s <= 0)
+            //            {
+            //                if (s == -4)
+            //                {
+            //                    Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("brcodenotexist"), animation: ToasterAnimation.FadeIn);
+            //                }
+            //                else
+            //                {
+            //                    Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trPopError"), animation: ToasterAnimation.FadeIn);
+            //                }
+            //            }
+            //            else
+            //            {
+            //                Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("msginsuccess"), animation: ToasterAnimation.FadeIn);
+
+
+
+            //                Clear();
+            //                await RefreshCustomersLogsList();
+            //                await Search();
+            //                fillCombo();
+            //            }
+
+
+            //        }
+            //        else
+            //        {
+            //            //out
+
+
+            //            barcode = tb_barcode.Text;
+
+
+
+
+            //            decimal s = await customersLog.savelog(barcode, type);
+            //            Clear();
+            //            if (s <= 0)
+            //            {
+            //                if (s == -4)
+            //                {
+            //                    Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("brcodenotexist"), animation: ToasterAnimation.FadeIn);
+            //                }
+            //                else
+            //                {
+            //                    Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("msgnoout"), animation: ToasterAnimation.FadeIn);
+            //                }
+            //            }
+
+            //            else
+            //            {
+            //                Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("msgoutsuccess"), animation: ToasterAnimation.FadeIn);
+
+            //                Clear();
+            //                await RefreshCustomersLogsList();
+            //                await Search();
+            //                fillCombo();
+            //            }
+
+
+            //        }
+            //    }
+
+
+
+
+
+
+            //    HelpClass.EndAwait(grid_main);
+
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    HelpClass.EndAwait(grid_main);
+            //    HelpClass.ExceptionMessage(ex, this);
+            //}
         }
     }
 }
