@@ -576,7 +576,25 @@ namespace DataEntryApp.View.archive
                 HelpClass.ExceptionMessage(ex, this);
             }
         }
+        private void Btn_clearFilter_Click(object sender, RoutedEventArgs e)
+        {//clear
+            try
+            {
+                HelpClass.StartAwait(grid_main);
 
+                ClearFilter();
+                //p_error_password.Visibility = Visibility.Collapsed;
+                //p_error_email.Visibility = Visibility.Collapsed;
+
+                HelpClass.EndAwait(grid_main);
+            }
+            catch (Exception ex)
+            {
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this);
+            }
+        }
+        
         private async void Dg_customersLog_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {//selection
             try
@@ -864,7 +882,26 @@ namespace DataEntryApp.View.archive
             // last 
             HelpClass.clearValidate(requiredControlList, this);
         }
+        void ClearFilter()
+        {
+            //tb_barcode.Text = "";
 
+          //  tb_search.Text = "";
+            cb_custname.SelectedItem = null;
+            cb_custname.Text = "";
+            cb_Nationality.SelectedItem = null;
+            cb_Nationality.Text = "";
+            cb_department.SelectedItem = null;
+            cb_department.Text = "";
+            dp_fromDate.SelectedDate = null;
+            dp_fromDate.Text = "";
+            dp_toDate.SelectedDate = null;
+            dp_toDate.Text = "";
+            //
+           
+            // last 
+           // HelpClass.clearValidate(requiredControlList, this);
+        }
         private void Number_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             try

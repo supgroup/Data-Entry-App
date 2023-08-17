@@ -421,7 +421,20 @@
                         </Grid>
                     </Border>
                     <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        
                         <StackPanel>
+                            <DockPanel LastChildFill="True"  >
+                                <TextBlock x:Name="txt_baseInformation" Foreground="#737373" FontSize="10" VerticalAlignment="Center" Margin="5,5,5,5"/>
+                                <Button DockPanel.Dock="Right" x:Name="btn_clearFilter" Click="Btn_clearFilter_Click" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Margin="5,1" >
+                                    <materialDesign:PackIcon Foreground="{StaticResource MainColor}" Kind="RefreshCircle"   Width="20" Height="20">
+                                        <materialDesign:PackIcon.ToolTip>
+                                            <ToolTip x:Name="tt_clear" Placement="left" HorizontalOffset="5" 
+                                             PlacementRectangle="50,0,0,0" VerticalOffset="20"/>
+                                        </materialDesign:PackIcon.ToolTip>
+                                    </materialDesign:PackIcon>
+                                </Button>
+                                <Separator Background="#999999" VerticalAlignment="Center" Width="auto" />
+                            </DockPanel>
                             <Grid Grid.Row="1" Margin="10,5,5,5"  >
                                 <Grid.RowDefinitions >
                                     <RowDefinition Height="auto"/>
@@ -434,6 +447,7 @@
                                 <!--</Grid>-->
                                 <Border Grid.Row="0" Grid.Column="0" CornerRadius="10" Margin="0,5,5,5"   BorderThickness="1" BorderBrush="{StaticResource MainColor}">
                                     <Grid   >
+                                        
                                         <ComboBox   x:Name="cb_custname" Padding="10,5,5,5"      IsEditable="True"
                                         TextBlock.Foreground="#4E4E4E"   Margin="4,0"
                                         Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
