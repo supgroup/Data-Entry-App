@@ -309,7 +309,7 @@
                                 </Path>
                             </Grid>
                         </Button>
-                        
+
 
 
                         <!--<TextBlock   Background="{x:Null}" x:Name="txt_count"    Margin="0,0,0,0" 
@@ -336,7 +336,7 @@
             <Border  Margin="0,0,0,15"
                 CornerRadius="10"
            Grid.Row="0" Grid.Column="1" Background="White">
-              
+
                 <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"></RowDefinition>
@@ -364,9 +364,14 @@
                        materialDesign:ButtonAssist.CornerRadius="10" Background="{StaticResource White}" Foreground="{DynamicResource MainColor}" BorderBrush="{x:Null}" 
                         Margin="5"    Content="logout"/>
                     </Grid>
-                    <Border  Grid.Row="2"  CornerRadius="10" Margin="10 5 10 10"   BorderThickness="1" BorderBrush="{StaticResource MainColor}">
-                        <Grid>
-                            <TextBox x:Name="tb_barcode"  Text="{Binding barcode, Mode=OneWay}" Padding="10,5,0,0" 
+                    <Grid   Grid.Row="2"   >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <Border    CornerRadius="10" Margin="10 5 5 10"   BorderThickness="1" BorderBrush="{StaticResource MainColor}">
+                            <Grid>
+                                <TextBox x:Name="tb_barcode"  Text="{Binding barcode, Mode=OneWay}" Padding="10,5,0,0" 
                                       Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                       materialDesign:HintAssist.Hint="barcode..." materialDesign:HintAssist.Foreground="{StaticResource MainColor}" materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource MainColor}" 
                                      Foreground="#4E4E4E"  Tag="barcode"
@@ -374,58 +379,59 @@
                                      materialDesign:TextFieldAssist.CharacterCounterStyle="{Binding}"
                                      Height="40"   Margin="4,0"  
                                  LostFocus="validateEmpty_LostFocus" TextChanged="ValidateEmpty_TextChange" />
-                            <Path Fill="#E81123"   Stretch="Fill" Margin="5,5,15,5" x:Name="p_error_barcode"
+                                <Path Fill="#E81123"   Stretch="Fill" Margin="5,5,15,5" x:Name="p_error_barcode"
                               HorizontalAlignment="Right" Visibility="Collapsed"   
                          VerticalAlignment="Center" Width="15"  Height="15"
                               Data="M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 Z M12,13 C11.45,13 11,12.55 11,12 L11,8 C11,7.45 11.45,7 12,7 C12.55,7 13,7.45 13,8 L13,12 C13,12.55 12.55,13 12,13 Z M13,17 L11,17 L11,15 L13,15 L13,17 Z">
-                            </Path>
-                        </Grid>
-                    </Border>
+                                </Path>
+                            </Grid>
+                        </Border>
 
-                    <Border  Grid.Row="3"   >
-                        <Grid>
-                            <Button   x:Name="btn_send"   Grid.Row="3" Width="200" 
+
+                        <Button   x:Name="btn_send" Width="90"  Height="40" Grid.Column="1"
                         materialDesign:ButtonAssist.CornerRadius="10"      Background="{DynamicResource Grey}" BorderBrush="{x:Null}"  
-                        Margin="5 5 5 15"    Content="Send" Foreground="{DynamicResource White}" Click="Btn_send_Click"/>
+                     Margin="0,4,5,0" VerticalAlignment="Top"  Content="Send" Foreground="{DynamicResource White}" Click="Btn_send_Click"   />
 
-                        </Grid>
-                    </Border>
 
-                   
+
+                    </Grid>
+
+
+
 
                 </Grid>
             </Border>
             <Border  Margin="0,0,0,0"
                 CornerRadius="10 10 7 7"
            Grid.Row="1" Grid.Column="1" Background="White">
-            
-            <Grid >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
+
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Border Background="{StaticResource MainColor}" Height="40"
                     CornerRadius="10 10 0 0">
-                    <Grid   >
+                        <Grid   >
                             <TextBlock Text="Filter" x:Name="txt_filter" Margin="10,0,0,0" Foreground="White" 
                      FontSize="14"      HorizontalAlignment="Left"  VerticalAlignment="Center" 
                            FontWeight="Bold" />
-                    </Grid>
-                </Border>
-                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                    <StackPanel>
-                        <Grid Grid.Row="1" Margin="10,5,5,5"  >
-                            <Grid.RowDefinitions >
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                            </Grid.RowDefinitions>
+                        </Grid>
+                    </Border>
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <Grid Grid.Row="1" Margin="10,5,5,5"  >
+                                <Grid.RowDefinitions >
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
 
-                            <!--<Grid x:Name="grid_image" Grid.RowSpan="3"  Grid.Column="1">-->
-                            <!--</Grid>-->
+                                <!--<Grid x:Name="grid_image" Grid.RowSpan="3"  Grid.Column="1">-->
+                                <!--</Grid>-->
                                 <Border Grid.Row="0" Grid.Column="0" CornerRadius="10" Margin="0,5,5,5"   BorderThickness="1" BorderBrush="{StaticResource MainColor}">
                                     <Grid   >
                                         <ComboBox   x:Name="cb_custname" Padding="10,5,5,5"      IsEditable="True"
@@ -490,8 +496,8 @@
                                     </Border>
                                 </Grid>
 
-                      
-                        </Grid>
+
+                            </Grid>
 
                             <Border Grid.Row="2"  Height="1"  BorderBrush="{StaticResource LightGrey}" 
                     BorderThickness="1" Opacity="0.2" Margin="5,5,5,0"  />
@@ -559,10 +565,10 @@
                                        HorizontalAlignment="Left"  VerticalAlignment="Center"  />
                             </Grid>
                         </StackPanel>
-                </ScrollViewer>
-              
-            </Grid>
-        </Border>
+                    </ScrollViewer>
+
+                </Grid>
+            </Border>
         </Grid>
     </Grid>
 </UserControl>
