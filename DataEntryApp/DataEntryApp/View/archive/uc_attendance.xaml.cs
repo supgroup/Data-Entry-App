@@ -1024,11 +1024,6 @@ namespace DataEntryApp.View.archive
 
         public void BuildReport()
         {
-            /*
-            //string firstTitle = "paymentsReport";
-            ////string secondTitle = "";
-            ////string subTitle = "";
-            //string Title = "";
 
             List<ReportParameter> paramarr = new List<ReportParameter>();
 
@@ -1036,26 +1031,26 @@ namespace DataEntryApp.View.archive
             bool isArabic = ReportCls.checkLang();
             //if (isArabic)
             //{
-            addpath = @"\Reports\SectionData\Ar\ArCustomersLogs.rdlc";
+            addpath = @"\Reports\Attendence\Attendence.rdlc";
 
             //}
             //else
             //{
-            //    addpath = @"\Reports\SectionData\En\EnAgents.rdlc";
+            //    addpath = @"\Reports\Applications\En\EnPrograms.rdlc";
             //}
-            //D:\myproj\posproject3\DataEntryApp\DataEntryApp\Reports\statisticReports\En\EnBook.rdlc
-            string reppath = reportclass.PathUp(Directory.GetCurrentDirectory(), 2, addpath);
-            //     subTitle = clsReports.ReportTabTitle(firstTitle, secondTitle);
-            //  Title = MainWindow.resourcemanagerreport.GetString("trAccountantReport");
 
-            clsReports.customersLogsReport(customersLogsQuery, rep, reppath, paramarr);
-            clsReports.setReportLanguage(paramarr);
+            string reppath = reportclass.PathUp(Directory.GetCurrentDirectory(), 2, addpath);
+
+            
+
+            clsReports.AttendenceReport(customersLogsQuery, rep, reppath, paramarr);
+            // clsReports.setReportLanguage(paramarr);
             clsReports.Header(paramarr);
 
             rep.SetParameters(paramarr);
 
             rep.Refresh();
-            */
+
         }
 
         private void Btn_pdf_Click(object sender, RoutedEventArgs e)

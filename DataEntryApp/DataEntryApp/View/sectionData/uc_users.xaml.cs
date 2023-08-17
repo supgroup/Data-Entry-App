@@ -116,10 +116,10 @@ namespace DataEntryApp.View.sectionData
             dg_user.Columns[3].Header = MainWindow.resourcemanager.GetString("contactNumber");
             //contactNumberHint
             tt_clear.Content = MainWindow.resourcemanager.GetString("trClear");
-            tt_report.Content = MainWindow.resourcemanager.GetString("trPdf");
-            tt_preview.Content = MainWindow.resourcemanager.GetString("trPreview");
-            tt_print.Content = MainWindow.resourcemanager.GetString("trPrint");
-            tt_excel.Content = MainWindow.resourcemanager.GetString("trExcel");
+            //tt_report.Content = MainWindow.resourcemanager.GetString("trPdf");
+            //tt_preview.Content = MainWindow.resourcemanager.GetString("trPreview");
+            //tt_print.Content = MainWindow.resourcemanager.GetString("trPrint");
+            //tt_excel.Content = MainWindow.resourcemanager.GetString("trExcel");
             tt_count.Content = MainWindow.resourcemanager.GetString("trCount");
 
             btn_add.Content = MainWindow.resourcemanager.GetString("trAdd");

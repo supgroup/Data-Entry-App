@@ -96,7 +96,74 @@ namespace DataEntryApp.Classes
 
          //   DateFormConv(paramarr);
         }
+        public static void AttendenceReport(IEnumerable<CustomersLogs> Query, LocalReport rep, string reppath, List<ReportParameter> paramarr)
+        {
+            rep.ReportPath = reppath;
+            rep.EnableExternalImages = true;
+            rep.DataSources.Clear();
+            List<CustomersLogs> cList = JsonConvert.DeserializeObject<List<CustomersLogs>>(JsonConvert.SerializeObject(Query));
+            foreach (CustomersLogs row in cList)
+            {
+                row.strDate =  dateFrameConverter(row.sInDate);
+                row.strIndate = dateTimeToTimeConverter(row.sInDate);
+                row.strOutdate= dateTimeToTimeConverter(row.sOutDate);
+            }
 
+            rep.DataSources.Add(new ReportDataSource("DataSet", cList));
+            //title
+            paramarr.Add(new ReportParameter("trTitle", MainWindow.resourcemanagerreport.GetString("attendancearchive")));
+            //table columns
+            paramarr.Add(new ReportParameter("trNo", MainWindow.resourcemanagerreport.GetString("trNo.")));
+            paramarr.Add(new ReportParameter("trName", MainWindow.resourcemanagerreport.GetString("trName")));
+            paramarr.Add(new ReportParameter("trDate", MainWindow.resourcemanagerreport.GetString("trDate")));
+            paramarr.Add(new ReportParameter("trsIndate", MainWindow.resourcemanagerreport.GetString("loginTime")));
+            paramarr.Add(new ReportParameter("trsOutdate", MainWindow.resourcemanagerreport.GetString("logoutTime")));
+            
+
+
+
+            //   DateFormConv(paramarr);
+        }
+        public static string dateTimeToTimeConverter(DateTime? date)
+        {
+            try
+            {
+                if (date != null)
+                {
+                    DateTime dt = (DateTime)date;
+                    return dt.ToShortTimeString();
+                }
+                else
+                    return "-";
+            }
+            catch
+            {
+                return "";
+            }
+        }
+    
+        public static  string dateFrameConverter(DateTime? date)
+        {
+            DateTime dateval;
+            if (date is DateTime)
+                dateval = (DateTime)date;
+            else return date.ToString();
+
+            switch (MainWindow.dateFormat)
+            {
+                case "ShortDatePattern":
+                    return dateval.ToString(@"dd/MM/yyyy");
+                case "LongDatePattern":
+                    return dateval.ToString(@"dddd, MMMM d, yyyy");
+                case "MonthDayPattern":
+                    return dateval.ToString(@"MMMM dd");
+                case "YearMonthPattern":
+                    return dateval.ToString(@"MMMM yyyy");
+                default:
+                    return dateval.ToString(@"dd/MM/yyyy");
+            }
+
+        }
         public static void BookReport(IEnumerable<BookSts> Query, LocalReport rep, string reppath, List<ReportParameter> paramarr)
         {
             rep.ReportPath = reppath;

@@ -482,6 +482,9 @@
     <Content Include="Reports\Applications\Card\cardreport.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Reports\Attendence\Attendence.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Reports\Sale\Book\Ar\ArBook.rdlc" />
     <EmbeddedResource Include="Reports\Sale\Book\En\EnBook.rdlc" />
     <EmbeddedResource Include="Reports\Sale\Book\Serials\Ar\serials.rdlc" />
@@ -521,6 +524,7 @@
     <None Include="Properties\DataSources\AdministratorApp.ApiClasses.Users.datasource" />
     <None Include="Properties\DataSources\AdministratorApp.ApiClasses.Versions.datasource" />
     <None Include="Properties\DataSources\AdministratorApp.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\DataEntryApp.ApiClasses.CustomersLogs.datasource" />
     <None Include="Properties\DataSources\Newtonsoft.Json.Bson.BsonObjectId.datasource" />
     <None Include="Properties\DataSources\Newtonsoft.Json.Bson.BsonReader.datasource" />
     <None Include="Properties\DataSources\Newtonsoft.Json.Bson.BsonWriter.datasource" />
