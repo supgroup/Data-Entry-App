@@ -382,8 +382,16 @@
                         </Grid>
                     </Border>
 
+                    <Border  Grid.Row="3"   >
+                        <Grid>
+                            <Button   x:Name="btn_send"   Grid.Row="3" Width="200" 
+                        materialDesign:ButtonAssist.CornerRadius="10"      Background="{DynamicResource Grey}" BorderBrush="{x:Null}"  
+                        Margin="5 5 5 15"    Content="Send" Foreground="{DynamicResource White}" Click="Btn_send_Click"/>
 
+                        </Grid>
+                    </Border>
 
+                   
 
                 </Grid>
             </Border>

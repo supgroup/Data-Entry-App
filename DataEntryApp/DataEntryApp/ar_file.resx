@@ -2911,4 +2911,7 @@
   <data name="to" xml:space="preserve">
     <value>الى</value>
   </data>
+  <data name="send" xml:space="preserve">
+    <value>ارسال</value>
+  </data>
 </root>

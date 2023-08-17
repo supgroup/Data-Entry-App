@@ -121,6 +121,7 @@ namespace DataEntryApp.View.archive
             txt_recordAttendance.Text = MainWindow.resourcemanager.GetString("attendenceRecord");
             btn_login.Content = MainWindow.resourcemanager.GetString("signIn");
             btn_logout.Content = MainWindow.resourcemanager.GetString("signOut");
+            btn_send.Content = MainWindow.resourcemanager.GetString("send");
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_barcode, MainWindow.resourcemanager.GetString("barcodeNum"));
             txt_filter.Text = MainWindow.resourcemanager.GetString("attendenceFilter");
 
@@ -135,6 +136,7 @@ namespace DataEntryApp.View.archive
             txt_department.Text = MainWindow.resourcemanager.GetString("specialization");
             txt_attendanceDays.Text = MainWindow.resourcemanager.GetString("attendanceDays");
             txt_attendanceHour.Text = MainWindow.resourcemanager.GetString("attendanceHours");
+            
             ////contactNumberHint
             //tt_clear.Content = MainWindow.resourcemanager.GetString("trClear");
             //tt_report.Content = MainWindow.resourcemanager.GetString("trPdf");
@@ -168,80 +170,7 @@ namespace DataEntryApp.View.archive
 
         }
         #region Add - Update - Delete - Search - Tgl - Clear - DG_SelectionChanged - refresh
-        private async void Btn_add_Click(object sender, RoutedEventArgs e)
-        { //add
-            /*
-            try
-            {
-                HelpClass.StartAwait(grid_main);
-
-                //chk duplicate customersLogName
-                bool duplicateCustomersLogName = false;
-                duplicateCustomersLogName = await chkIfCustomersLogNameIsExists(tb_AccountName.Text, 0);
-                //chk password length
-                bool passLength = false;
-                passLength = chkPasswordLength(pb_password.Password);
-
-                customersLog = new CustomersLogs();
-                if (HelpClass.validate(requiredControlList, this) && duplicateCustomersLogName && passLength)
-                {
-                    //if (cb_type.SelectedValue != null)
-                    //{
-                    //tb_code.Text = await customersLog.generateCodeNumber(cb_type.SelectedValue.ToString());
-                    customersLog.code = await HelpClass.generateRandomString(3, "us", "CustomersLogs", 0);
-
-                    //}
-                    customersLog.name = tb_name.Text;
-                    //customersLog.lastName = tb_lastName.Text;
-                    //customersLog.countryId = Convert.ToInt32(cb_country.SelectedValue);
-                    customersLog.AccountName = tb_AccountName.Text;
-                    customersLog.password = Md5Encription.MD5Hash("Inc-m" + pb_password.Password); ;
-                    //customersLog.email = tb_email.Text;
-                    customersLog.mobile = tb_mobile.Text; ;
-                    //if (!tb_phone.Text.Equals(""))
-                    //    customersLog.phone = cb_areaPhone.Text + "-" + cb_areaPhoneLocal.Text + "-" + tb_phone.Text;
-                    //if (!tb_fax.Text.Equals(""))
-                    //    customersLog.fax = cb_areaFax.Text + "-" + cb_areaFaxLocal.Text + "-" + tb_fax.Text;
-                    //if (cb_type.SelectedValue != null)
-                    //    customersLog.type = cb_type.SelectedValue.ToString();
-                    //customersLog.address = tb_address.Text;
-                    //customersLog.notes = tb_notes.Text;
-                    customersLog.isActive = 1;
-                    customersLog.createCustomersLogId = MainWindow.customersLogLogin.customersLogId;
-                    customersLog.updateCustomersLogId = MainWindow.customersLogLogin.customersLogId;
-
-                    decimal s = await customersLog.Save(customersLog);
-                    if (s <= 0)
-                        Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trPopError"), animation: ToasterAnimation.FadeIn);
-                    else
-                    {
-                        Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trPopAdd"), animation: ToasterAnimation.FadeIn);
-
-                        if (isImgPressed)
-                        {
-                            int customersLogId = (int)s;
-                            string b = await customersLog.uploadImage(imgFileName,
-                                Md5Encription.MD5Hash("Inc-m" + customersLogId.ToString()), customersLogId);
-                            customersLog.image = b;
-                            isImgPressed = false;
-                        }
-
-                        Clear();
-                        await RefreshCustomersLogsList();
-                        await Search();
-                    }
-                }
-
-                HelpClass.EndAwait(grid_main);
-            }
-            catch (Exception ex)
-            {
-
-                HelpClass.EndAwait(grid_main);
-                HelpClass.ExceptionMessage(ex, this);
-            }
-            */
-        }
+         
         private async void Btn_update_Click(object sender, RoutedEventArgs e)
         {//update
             /*
@@ -1012,7 +941,7 @@ namespace DataEntryApp.View.archive
 
 
         #endregion
-
+      string type = "in";
         private void Btn_pieChart_Click(object sender, RoutedEventArgs e)
         {
 
@@ -1027,44 +956,13 @@ namespace DataEntryApp.View.archive
 
                 btn_logout.Background = Application.Current.Resources["White"] as SolidColorBrush;
                 btn_logout.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
-                string barcode = "";
-                string type = "in";
+                 
+             //   string barcode = "";
+
+                 type = "in";
                 //sign in
-                if (HelpClass.validate(requiredControlList, this))
-                {
-
-                    barcode = tb_barcode.Text;
-
-
-
-
-                    decimal s = await customersLog.savelog(barcode, type);
-
-                    if (s <= 0)
-                    {
-                        if (s == -4)
-                        {
-                            Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("brcodenotexist"), animation: ToasterAnimation.FadeIn);
-                        }
-                        else
-                        {
-                            Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trPopError"), animation: ToasterAnimation.FadeIn);
-                        }
-                    }
-                    else
-                    {
-                        Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("msginsuccess"), animation: ToasterAnimation.FadeIn);
-
-
-
-                        Clear();
-                        await RefreshCustomersLogsList();                     
-                        await Search();
-                        fillCombo();
-                    }
-                }
-
-                HelpClass.EndAwait(grid_main);
+               
+          
 
 
             }
@@ -1086,45 +984,102 @@ namespace DataEntryApp.View.archive
                 btn_login.Foreground = Application.Current.Resources["MainColor"] as SolidColorBrush;
 
                 //logout
+               
+                   type = "out";
+            }
+            catch (Exception ex)
+            {
+                HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this);
+            }
+        }
+
+        private async void Btn_send_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                HelpClass.StartAwait(grid_main);
                 string barcode = "";
-                string type = "out";
-                //sign in
                 if (HelpClass.validate(requiredControlList, this))
                 {
-
-                    barcode = tb_barcode.Text;
-
-
-
-
-                    decimal s = await customersLog.savelog(barcode, type);
-                    Clear();
-                    if (s <= 0)
+                    if (type=="in")
                     {
-                        if (s == -4)
-                        {
-                            Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("brcodenotexist"), animation: ToasterAnimation.FadeIn);
-                        }
-                        else
-                        {
-                            Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("msgnoout"), animation: ToasterAnimation.FadeIn);
-                        }
-                    }
+                        //in
+                      
 
+                            barcode = tb_barcode.Text;
+
+                            decimal s = await customersLog.savelog(barcode, type);
+
+                            if (s <= 0)
+                            {
+                                if (s == -4)
+                                {
+                                    Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("brcodenotexist"), animation: ToasterAnimation.FadeIn);
+                                }
+                                else
+                                {
+                                    Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trPopError"), animation: ToasterAnimation.FadeIn);
+                                }
+                            }
+                            else
+                            {
+                                Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("msginsuccess"), animation: ToasterAnimation.FadeIn);
+
+
+
+                                Clear();
+                                await RefreshCustomersLogsList();
+                                await Search();
+                                fillCombo();
+                            }
+                        
+
+                    }
                     else
                     {
-                        Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("msgoutsuccess"), animation: ToasterAnimation.FadeIn);
+                        //out
+                       
+
+                            barcode = tb_barcode.Text;
 
 
 
-                        Clear();
-                        await RefreshCustomersLogsList();
-                        await Search();
-                        fillCombo();
+
+                            decimal s = await customersLog.savelog(barcode, type);
+                            Clear();
+                            if (s <= 0)
+                            {
+                                if (s == -4)
+                                {
+                                    Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("brcodenotexist"), animation: ToasterAnimation.FadeIn);
+                                }
+                                else
+                                {
+                                    Toaster.ShowWarning(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("msgnoout"), animation: ToasterAnimation.FadeIn);
+                                }
+                            }
+
+                            else
+                            {
+                                Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("msgoutsuccess"), animation: ToasterAnimation.FadeIn);
+
+                                Clear();
+                                await RefreshCustomersLogsList();
+                                await Search();
+                                fillCombo();
+                            }
+                       
+
                     }
                 }
 
-                HelpClass.EndAwait(grid_main);
+
+
+
+
+
+                    HelpClass.EndAwait(grid_main);
 
 
             }
@@ -1134,7 +1089,5 @@ namespace DataEntryApp.View.archive
                 HelpClass.ExceptionMessage(ex, this);
             }
         }
-
-
     }
 }

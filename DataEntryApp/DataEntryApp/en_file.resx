@@ -2923,4 +2923,7 @@ Please add Email in setting</value>
   <data name="to" xml:space="preserve">
     <value>To</value>
   </data>
+  <data name="send" xml:space="preserve">
+    <value>Send</value>
+  </data>
 </root>
