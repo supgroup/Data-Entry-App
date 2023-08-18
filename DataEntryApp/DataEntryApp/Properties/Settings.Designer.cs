@@ -70,5 +70,17 @@ namespace DataEntryApp.Properties {
                 this["reportPrinter"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:1005/api/")]
+        public string APIUri {
+            get {
+                return ((string)(this["APIUri"]));
+            }
+            set {
+                this["APIUri"] = value;
+            }
+        }
     }
 }

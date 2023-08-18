@@ -29,7 +29,7 @@ namespace DataEntryApp.Classes
         public static BrushConverter bc = new BrushConverter();
         public static ImageBrush brush = new ImageBrush();
         static Users userModel = new Users();
-
+        public static bool isSupportPermision=false;
         //static Customers customerModel = new Customers();
         //static Packages packageModel = new Packages();
 

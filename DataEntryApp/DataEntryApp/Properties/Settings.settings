@@ -14,5 +14,8 @@
     <Setting Name="reportPrinter" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="APIUri" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:1005/api/</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

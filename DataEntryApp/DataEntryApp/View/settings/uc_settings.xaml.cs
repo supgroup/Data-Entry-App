@@ -15,6 +15,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DataEntryApp.View.windows;
+using netoaster;
+using System.Configuration;
+
+
 namespace DataEntryApp.View.settings
 {
     /// <summary>
@@ -44,6 +48,27 @@ namespace DataEntryApp.View.settings
                 if (sender != null)
                     HelpClass.StartAwait(grid_mainGrid);
                 menuList = new List<string> { "emails" ,"general","reportsSettings"};
+                if (HelpClass.isSupportPermision)
+                {
+                    brd_Uri.Visibility = Visibility.Visible;
+                    string uri = Properties.Settings.Default.APIUri;
+                    brd_backup.Visibility = Visibility.Visible;
+                    if (uri.Length > 5)
+                    {
+                        tb_Uri.Text = uri.Remove(uri.Length - 5);
+                    }
+                    else
+                    {
+                        tb_Uri.Text = "";
+                    }
+                }
+                else
+                {
+                    brd_Uri.Visibility = Visibility.Collapsed;
+                    brd_backup.Visibility = Visibility.Collapsed;
+                }
+  
+
                 #region translate
                 if (MainWindow.lang.Equals("en"))
                 {
@@ -197,6 +222,66 @@ namespace DataEntryApp.View.settings
                 //}
                 //else
                 //    Toaster.ShowInfo(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trdontHavePermission"), animation: ToasterAnimation.FadeIn);
+                if (sender != null)
+                    HelpClass.EndAwait(grid_main);
+            }
+            catch (Exception ex)
+            {
+                if (sender != null)
+                    HelpClass.EndAwait(grid_main);
+                HelpClass.ExceptionMessage(ex, this);
+            }
+        }
+
+        private void Btn_uri_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Btn_backup_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Btn_saveActivationSite_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Tb_PreventSpaces(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void Tb_validateEmptyTextChange(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Tb_validateEmptyLostFocus(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private async void Btn_saveUri_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (sender != null)
+                    HelpClass.StartAwait(grid_main);
+                if(tb_Uri.Text != "")
+                {
+                    string apiUri = tb_Uri.Text + @"/api/";
+                    Properties.Settings.Default.APIUri = apiUri;
+                    Properties.Settings.Default.Save();
+                    Global.APIUri = apiUri;
+
+                    Toaster.ShowSuccess(Window.GetWindow(this), message: MainWindow.resourcemanager.GetString("trPopSave"), animation: ToasterAnimation.FadeIn);
+                    await Task.Delay(1000);
+                }
+                //
+               
+                //
                 if (sender != null)
                     HelpClass.EndAwait(grid_main);
             }
