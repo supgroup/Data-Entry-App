@@ -109,7 +109,7 @@ namespace DataEntryApp.View.archive
             //barcodeNum attendenceRecord signIn signOut attendenceFilter attendanceDays attendanceHours
             //txt_title.Text = MainWindow.resourcemanager.GetString("trCustomersLogs");
             MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_search, MainWindow.resourcemanager.GetString("trSearchHint"));
-            txt_active.Text = MainWindow.resourcemanager.GetString("trActive");
+            //txt_active.Text = MainWindow.resourcemanager.GetString("trActive");
             //MaterialDesignThemes.Wpf.HintAssist.SetHint(pb_password, MainWindow.resourcemanager.GetString("trPasswordHint"));
             //MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_passwordMirror, MainWindow.resourcemanager.GetString("trPasswordHint"));
             //MaterialDesignThemes.Wpf.HintAssist.SetHint(tb_mobile, MainWindow.resourcemanager.GetString("contactNumberHint"));
