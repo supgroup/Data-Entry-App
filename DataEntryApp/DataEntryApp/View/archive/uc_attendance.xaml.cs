@@ -1064,7 +1064,7 @@ namespace DataEntryApp.View.archive
 
                 saveFileDialog.Filter = "PDF|*.pdf;";
 
-                if (saveFileDialog2.ShowDialog() == true)
+                if (saveFileDialog.ShowDialog() == true)
                 {
                     string filepath = saveFileDialog.FileName;
                     LocalReportExtensions.ExportToPDF(rep, filepath);

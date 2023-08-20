@@ -707,11 +707,12 @@ namespace DataEntryApp.View.applications
             }
             catch (Exception ex)
             {
+                 
                 HelpClass.EndAwait(grid_main);
                 HelpClass.ExceptionMessage(ex, this);
             }
         }
-
+  
         private void Btn_print_Click(object sender, RoutedEventArgs e)
         {
             //print

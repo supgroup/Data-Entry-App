@@ -73,7 +73,7 @@ namespace DataEntryApp.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:1005/api/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:1004/api/")]
         public string APIUri {
             get {
                 return ((string)(this["APIUri"]));

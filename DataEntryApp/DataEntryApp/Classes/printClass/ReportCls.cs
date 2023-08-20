@@ -83,21 +83,48 @@ namespace DataEntryApp.Classes
 
 
         }
-
         public string PathUp(string path, int levelnum, string addtopath)
         {
             int pos1 = 0;
-            for (int i = 1; i <= levelnum; i++)
-            {
-                pos1 = path.LastIndexOf("\\");
-                path = path.Substring(0, pos1);
-            }
+            levelnum = 0;
+            //for (int i = 1; i <= levelnum; i++)
+            //{
+            //    //pos1 = path.LastIndexOf("\\");
+            //    //path = path.Substring(0, pos1);
+            //}
 
             string newPath = path + addtopath;
+            try
+            {
+                FileAttributes attr = File.GetAttributes(newPath);
+                if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                { }
+                else
+                {
+                    string finalDir = Path.GetDirectoryName(newPath);
+                    if (!Directory.Exists(finalDir))
+                        Directory.CreateDirectory(finalDir);
+                    if (!File.Exists(newPath))
+                        File.Create(newPath);
+                }
+            }
+            catch { }
             return newPath;
-            //addtopath = addtopath.Substring(1);
-            //return addtopath;
         }
+        //public string PathUp(string path, int levelnum, string addtopath)
+        //{
+        //    int pos1 = 0;
+        //    for (int i = 1; i <= levelnum; i++)
+        //    {
+        //        pos1 = path.LastIndexOf("\\");
+        //        path = path.Substring(0, pos1);
+        //    }
+
+        //    string newPath = path + addtopath;
+        //    return newPath;
+        //    //addtopath = addtopath.Substring(1);
+        //    //return addtopath;
+        //}
 
         public string TimeToString(TimeSpan? time)
         {
