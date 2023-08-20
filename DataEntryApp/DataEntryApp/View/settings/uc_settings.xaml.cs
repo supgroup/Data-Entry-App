@@ -67,7 +67,7 @@ namespace DataEntryApp.View.settings
                     brd_Uri.Visibility = Visibility.Collapsed;
                     brd_backup.Visibility = Visibility.Collapsed;
                 }
-  
+                brd_backup.Visibility = Visibility.Collapsed;
 
                 #region translate
                 if (MainWindow.lang.Equals("en"))
