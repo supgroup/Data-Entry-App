@@ -708,6 +708,7 @@ namespace DataEntryApp.View.archive
         void RefreshCustomersLogsView()
         {
             dg_customersLog.ItemsSource = customersLogsQuery;
+            txt_count.Text = customersLogsQuery.Count().ToString();
         }
         #endregion
         private void fillCombo()
