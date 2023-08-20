@@ -9,7 +9,7 @@
             <Source>External</Source>
             <Value>=Parameters!barcodeimage.Value</Value>
             <Sizing>Fit</Sizing>
-            <Top>1.65335cm</Top>
+            <Top>1.56542cm</Top>
             <Left>0.34671cm</Left>
             <Height>0.5cm</Height>
             <Width>4.36164cm</Width>
@@ -47,16 +47,15 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.04315in</Top>
+            <Top>0.01815in</Top>
             <Left>0.1365in</Left>
-            <Height>0.42812cm</Height>
+            <Height>0.42119cm</Height>
             <Width>1.71718in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <PaddingBottom>1pt</PaddingBottom>
             </Style>
           </Textbox>
           <Textbox Name="Textbox34">
@@ -80,9 +79,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.5488in</Top>
+            <Top>0.52255in</Top>
             <Left>0.1365in</Left>
-            <Height>0.10213in</Height>
+            <Height>0.09375in</Height>
             <Width>0.90719in</Width>
             <ZIndex>2</ZIndex>
             <Style>
@@ -112,16 +111,15 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.2117in</Top>
+            <Top>0.18397in</Top>
             <Left>0.1365in</Left>
-            <Height>0.42812cm</Height>
+            <Height>0.43cm</Height>
             <Width>1.71718in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <PaddingBottom>1pt</PaddingBottom>
             </Style>
           </Textbox>
           <Textbox Name="Textbox35">
@@ -144,16 +142,15 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.38025in</Top>
+            <Top>0.35326in</Top>
             <Left>0.1365in</Left>
-            <Height>0.42812cm</Height>
+            <Height>0.43cm</Height>
             <Width>1.71718in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <PaddingBottom>1pt</PaddingBottom>
             </Style>
           </Textbox>
         </ReportItems>
