@@ -302,45 +302,49 @@ namespace DataEntryApp.View.archive
 
         private async void HandleKeyPress(object sender, KeyEventArgs e)
         {
-            tb_barcode.Focus();
-
-            // check timing (keystrokes within 80 ms)
-            TimeSpan elapsed = (DateTime.Now - _lastKeystroke);
-            if (elapsed.TotalMilliseconds > 80)
-                _BarcodeStr = "";
-
-            // record keystroke & timestamp
-            // _BarcodeStr += e.Key.ToString();
-            _lastKeystroke = DateTime.Now;
-
-            // process barcode
-            string digit = "";
-            // record keystroke & timestamp 
-            if (e.Key >= Key.D0 && e.Key <= Key.D9)
+            if (!tb_search.IsFocused)
             {
-                //digit pressed!         
-                digit = e.Key.ToString().Substring(1);
-                // = "1" when D1 is pressed
-            }
-            else if (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
-            {
-                digit = e.Key.ToString().Substring(6); // = "1" when NumPad1 is pressed
-            }
-            else if (e.Key >= Key.A && e.Key <= Key.Z)
-                digit = e.Key.ToString();
-            else if (e.Key == Key.OemMinus)
-            {
-                digit = "-";
-            }
-            _BarcodeStr += digit;
+                tb_barcode.Focus();
 
-            // if (e.Key == Key.Return)
-            if (e.Key.ToString() == "Return")
-            {
-                await dealWithBarcode(_BarcodeStr);
-                tb_barcode.Text = "";
+                // check timing (keystrokes within 80 ms)
+                TimeSpan elapsed = (DateTime.Now - _lastKeystroke);
+                if (elapsed.TotalMilliseconds > 80)
+                    _BarcodeStr = "";
 
+                // record keystroke & timestamp
+                // _BarcodeStr += e.Key.ToString();
+                _lastKeystroke = DateTime.Now;
+
+                // process barcode
+                string digit = "";
+                // record keystroke & timestamp 
+                if (e.Key >= Key.D0 && e.Key <= Key.D9)
+                {
+                    //digit pressed!         
+                    digit = e.Key.ToString().Substring(1);
+                    // = "1" when D1 is pressed
+                }
+                else if (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                {
+                    digit = e.Key.ToString().Substring(6); // = "1" when NumPad1 is pressed
+                }
+                else if (e.Key >= Key.A && e.Key <= Key.Z)
+                    digit = e.Key.ToString();
+                else if (e.Key == Key.OemMinus)
+                {
+                    digit = "-";
+                }
+                _BarcodeStr += digit;
+
+                // if (e.Key == Key.Return)
+                if (e.Key.ToString() == "Return")
+                {
+                    await dealWithBarcode(_BarcodeStr);
+                    tb_barcode.Text = "";
+
+                }
             }
+         
 
             //   _BarcodeStr = "";
         }

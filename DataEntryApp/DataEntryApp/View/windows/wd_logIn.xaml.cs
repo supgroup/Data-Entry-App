@@ -49,13 +49,14 @@ namespace DataEntryApp.View.windows
                 HelpClass.StartAwait(grid_main);
 
                 bdrLogIn.RenderTransform = Animations.borderAnimation(-100, bdrLogIn, true);
-
+                Global.APIUri = Properties.Settings.Default.APIUri;
+            //    Global.APIUri = "http://192.168.1.103:1004/api/";
                 #region properties
                 if (Properties.Settings.Default.userName != string.Empty)
                 {
                     txtUserName.Text = Properties.Settings.Default.userName;
                     txtPassword.Password = Properties.Settings.Default.password;
-                    Global.APIUri = Properties.Settings.Default.APIUri;
+               
                     // MainWindow.lang = "en";
                     MainWindow.lang = Properties.Settings.Default.Lang;
                     //menuIsOpen = Properties.Settings.Default.menuIsOpen;
