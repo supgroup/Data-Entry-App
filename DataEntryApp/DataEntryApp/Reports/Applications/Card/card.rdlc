@@ -9,10 +9,10 @@
             <Source>External</Source>
             <Value>=Parameters!barcodeimage.Value</Value>
             <Sizing>Fit</Sizing>
-            <Top>1.56542cm</Top>
-            <Left>0.34671cm</Left>
-            <Height>0.5cm</Height>
-            <Width>4.36164cm</Width>
+            <Top>1.61831cm</Top>
+            <Left>0.44196cm</Left>
+            <Height>0.4cm</Height>
+            <Width>4.09573cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -25,10 +25,10 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>السيد/ة : </Value>
+                    <Value xml:space="preserve"> </Value>
                     <Style>
                       <FontFamily>cairo</FontFamily>
-                      <FontSize>7pt</FontSize>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -36,7 +36,7 @@
                     <Value>=Parameters!name.Value</Value>
                     <Style>
                       <FontFamily>cairo</FontFamily>
-                      <FontSize>7pt</FontSize>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -47,15 +47,16 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.01815in</Top>
-            <Left>0.1365in</Left>
-            <Height>0.42119cm</Height>
-            <Width>1.71718in</Width>
+            <Top>0.08065in</Top>
+            <Left>0.03005in</Left>
+            <Height>0.68298cm</Height>
+            <Width>1.91842in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
+              <VerticalAlign>Top</VerticalAlign>
             </Style>
           </Textbox>
           <Textbox Name="Textbox34">
@@ -79,10 +80,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.52255in</Top>
-            <Left>0.1365in</Left>
-            <Height>0.09375in</Height>
-            <Width>0.90719in</Width>
+            <Top>0.55418in</Top>
+            <Left>0.174in</Left>
+            <Height>0.08295in</Height>
+            <Width>0.86969in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -100,7 +101,7 @@
                     <Value>=Parameters!nationality.Value</Value>
                     <Style>
                       <FontFamily>cairo</FontFamily>
-                      <FontSize>7pt</FontSize>
+                      <FontSize>9pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -111,42 +112,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.18397in</Top>
-            <Left>0.1365in</Left>
-            <Height>0.43cm</Height>
-            <Width>1.71718in</Width>
+            <Top>0.34954in</Top>
+            <Left>0.03005in</Left>
+            <Height>0.51979cm</Height>
+            <Width>1.91842in</Width>
             <ZIndex>3</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox35">
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!department.Value</Value>
-                    <Style>
-                      <FontFamily>cairo</FontFamily>
-                      <FontSize>7pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.35326in</Top>
-            <Left>0.1365in</Left>
-            <Height>0.43cm</Height>
-            <Width>1.71718in</Width>
-            <ZIndex>4</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
