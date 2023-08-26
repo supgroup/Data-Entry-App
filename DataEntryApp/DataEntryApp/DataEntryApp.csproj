@@ -415,6 +415,7 @@
     <Compile Include="Classes\ApiClasses\Statistics.cs" />
     <Compile Include="Classes\ApiClasses\Users.cs" />
     <Compile Include="Classes\DynamicallyClass.cs" />
+    <Compile Include="Classes\Databaseclass.cs" />
     <Compile Include="Classes\SmoScript.cs" />
     <Compile Include="Classes\ProgramScript.cs" />
     <Compile Include="Classes\FillCombo.cs" />

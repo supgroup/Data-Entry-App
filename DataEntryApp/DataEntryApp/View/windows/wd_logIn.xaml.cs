@@ -144,24 +144,13 @@ namespace DataEntryApp.View.windows
         {//log in
             try
             {
-              
-             // AddNewConnectionString();
-               
-                //using (dedbEntities entity = new dedbEntities())
-                //{
-                //    if (entity.Database.Exists())
-                //    {
-                //        MessageBox.Show("ok");
-                //        //string db = entity.Database.Connection.Database;
-                //        //string ds = entity.Database.Connection.DataSource;
-                //    }
-                //    else
-                //    {
-                //        AddNewConnectionString(".\\SQLEXPRESS", "bookdb");
-                  
-                //        MessageBox.Show("not exist");
-                //    }
-                //}
+         //       string dbname = "db1test2";
+         //string msg=     Databaseclass.CreateDatabase(@".\SQLEXPRESS", dbname, "sa", "123456");
+         //       msg = Databaseclass.runScript(@".\SQLEXPRESS", dbname, "sa", "123456", @"D:/scrpt1.sql");
+         //       //  SmoScript.Main(@".\SQLEXPRESS", "dedb", "sa", "123456");
+             
+           
+
                 if (!logInProcessing)
                 {
                     logInProcessing = true;

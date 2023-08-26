@@ -34,6 +34,12 @@ namespace DataEntryApp.Classes
             // استعراض الجداول في قاعدة البيانات
             List<string> tables = GetTables(server);
             string script = "";
+            //drop
+            foreach (string table in tables)
+            {
+                script += GenerateTableScriptDrop(server, table);
+                //Console.WriteLine(script);
+            }
             // توليد نص SQL لكل جدول
             foreach (string table in tables)
             {
@@ -148,6 +154,51 @@ namespace DataEntryApp.Classes
                 }
             }
 
+            return scriptBuilder.ToString();
+        }
+
+        static string GenerateTableScriptDrop(Server server, string tableName )
+        {
+            StringBuilder scriptBuilder = new StringBuilder();
+
+            // استعلام عن الجدول
+            Table table = server.Databases[server.ConnectionContext.DatabaseName].Tables[tableName];
+
+            // توليد نص SQL للجدول
+            ScriptingOptions options = new ScriptingOptions();
+            options.IncludeHeaders = true;
+            options.SchemaQualify = true;
+            options.Default = true;
+            options.ExtendedProperties = true;
+            //  options.IncludeDatabaseContext = true;
+            options.DriPrimaryKey = true;
+            //options.DriForeignKeys = true;
+            //options.SchemaQualifyForeignKeysReferences = true;
+
+            // options.PrimaryObject = true;
+            //  options.SetTargetServerVersion=ServerVersion()
+            options.ScriptDrops = true;
+            //options.ScriptForCreateDrop = true;
+
+            options.IncludeIfNotExists = true;
+            options.ScriptData = true;
+            options.ScriptSchema = true;
+            //options.ExcludeObjectTypes = new[] { typeof(Diagram) };
+            //StringCollection tableScripts = table.Script(options);
+            //
+            Scripter scripter = new Scripter(server);
+            scripter.Options = options;
+
+
+            IEnumerable<string> tableScripts = scripter.EnumScript(new Urn[] { table.Urn });
+            //  StringCollection dataScripts = scripter.EnumScript(new Urn[] { table.Urn });
+            IEnumerable<string> dataScripts = scripter.EnumScript(new Urn[] { table.Urn });
+            // توليد نص SQL للجدول
+            foreach (string tableScript in tableScripts)
+            {
+                scriptBuilder.AppendLine(tableScript);
+                scriptBuilder.AppendLine();
+            }
             return scriptBuilder.ToString();
         }
     }
